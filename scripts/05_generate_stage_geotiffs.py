@@ -27,6 +27,7 @@ from hydroclim_risk.config import PROJECT_ROOT, load_data_config, load_threshold
 from hydroclim_risk.exposure import compute_exposure_layer, write_exposure_layer  # noqa: E402
 from hydroclim_risk.hazard import (  # noqa: E402
     cdd_dry_score,
+    combine_hazard,
     compute_h_dry,
     compute_h_wet,
     cwd_dry_score,
@@ -78,10 +79,18 @@ def generate_hazard_and_probability(period: str, domain_cfg: dict) -> tuple[dict
             "rx5day_wet_score": rx5day_wet_score(rx5_p),
         }
     )
+    # H_overall = max(H_dry, H_wet) PER MEMBER (combine_hazard never averages
+    # the two), THEN ensemble mean -- see 04_generate_doc_images.py's comment
+    # on why this differs from max(h_dry_mean, h_wet_mean).
+    h_overall = combine_hazard(h_dry, h_wet)
+
     h_dry_mean = to_north_up(h_dry.mean(dim="realization"))
     h_wet_mean = to_north_up(h_wet.mean(dim="realization"))
+    h_overall_mean = to_north_up(h_overall.mean(dim="realization"))
 
-    for name, arr in [("h_dry_mean", h_dry_mean), ("h_wet_mean", h_wet_mean)]:
+    for name, arr in [
+        ("h_dry_mean", h_dry_mean), ("h_wet_mean", h_wet_mean), ("h_overall_mean", h_overall_mean),
+    ]:
         path = PROJECT_ROOT / "outputs" / "hazard" / f"ethiopia_{period}_{INIT_DATE}_{name}.tif"
         write_grid_geotiff(
             arr, path, variable=name,

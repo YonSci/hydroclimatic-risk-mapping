@@ -31,6 +31,7 @@ from hydroclim_risk.export import save_png_preview  # noqa: E402
 from hydroclim_risk.exposure import compute_exposure_layer  # noqa: E402
 from hydroclim_risk.hazard import (  # noqa: E402
     cdd_dry_score,
+    combine_hazard,
     compute_h_dry,
     compute_h_wet,
     cwd_dry_score,
@@ -63,7 +64,7 @@ def generate_hazard_and_probability(period: str, domain_cfg: dict) -> dict[str, 
     recomputing.
     """
     slug = _slug(period)
-    print(f"  [{period}] Hazard (H_dry, H_wet)...")
+    print(f"  [{period}] Hazard (H_dry, H_wet, H_overall)...")
     rainfall_p = load_member_indicator(period, "percentile")
     spi = load_member_indicator(period, "spi", apply_spi_cap=True)
     cdd_p = load_member_indicator(period, "cdd")
@@ -88,10 +89,18 @@ def generate_hazard_and_probability(period: str, domain_cfg: dict) -> dict[str, 
             "rx5day_wet_score": rx5day_wet_score(rx5_p),
         }
     )
-    # Ensemble-mean H_dry/H_wet -- a single representative map per period
-    # (H itself is per-member; P/S are what collapse the ensemble downstream).
+    # H_overall = max(H_dry, H_wet) PER MEMBER (combine_hazard never averages
+    # the two -- see hazard.py), THEN take the ensemble mean, matching how
+    # H_dry_mean/H_wet_mean are each reduced below. This is NOT the same as
+    # max(h_dry_mean, h_wet_mean) -- mean-of-max != max-of-means in general.
+    h_overall = combine_hazard(h_dry, h_wet)
+
+    # Ensemble-mean H_dry/H_wet/H_overall -- a single representative map per
+    # period (H itself is per-member; P/S are what collapse the ensemble
+    # downstream).
     h_dry_mean = to_north_up(h_dry.mean(dim="realization"))
     h_wet_mean = to_north_up(h_wet.mean(dim="realization"))
+    h_overall_mean = to_north_up(h_overall.mean(dim="realization"))
 
     save_png_preview(
         h_dry_mean, IMG_DIR / f"hazard_h_dry_{slug}.png",
@@ -102,6 +111,11 @@ def generate_hazard_and_probability(period: str, domain_cfg: dict) -> dict[str, 
         h_wet_mean, IMG_DIR / f"hazard_h_wet_{slug}.png",
         title=f"H_wet — {period} 2026 (ensemble mean)", cmap="YlGnBu",
         vmin=0, vmax=1, colorbar_label="H_wet (0-1)", domain_cfg=domain_cfg,
+    )
+    save_png_preview(
+        h_overall_mean, IMG_DIR / f"hazard_h_overall_{slug}.png",
+        title=f"H_overall = max(H_dry, H_wet) — {period} 2026 (ensemble mean)", cmap="inferno",
+        vmin=0, vmax=1, colorbar_label="H_overall (0-1)", domain_cfg=domain_cfg,
     )
 
     print(f"  [{period}] Probability & Severity (P_drought, P_wet, S_drought, S_wet)...")
@@ -182,7 +196,7 @@ def main() -> None:
         vmin=0, vmax=4, colorbar_label="Class (0=Very low .. 4=Very high)", domain_cfg=domain_cfg,
     )
 
-    n_written = 6 * len(PERIODS) + 1 + 2 + 2
+    n_written = 7 * len(PERIODS) + 1 + 2 + 2
     print(f"\nWrote {n_written} PNGs to {IMG_DIR}")
 
 
