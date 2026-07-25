@@ -26,7 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 import numpy as np  # noqa: E402
 
-from hydroclim_risk.config import PROJECT_ROOT, load_data_config  # noqa: E402
+from hydroclim_risk.config import PROJECT_ROOT, load_data_config, load_thresholds_config  # noqa: E402
 from hydroclim_risk.export import save_png_preview  # noqa: E402
 from hydroclim_risk.exposure import compute_exposure_layer  # noqa: E402
 from hydroclim_risk.hazard import (  # noqa: E402
@@ -104,7 +104,7 @@ def generate_hazard_and_probability(period: str, domain_cfg: dict) -> dict[str, 
         vmin=0, vmax=1, colorbar_label="H_wet (0-1)", domain_cfg=domain_cfg,
     )
 
-    print(f"  [{period}] Probability & Severity (P_drought, P_wet)...")
+    print(f"  [{period}] Probability & Severity (P_drought, P_wet, S_drought, S_wet)...")
     hazard_prob = compute_hazard_and_probability_for_period(period)
     save_png_preview(
         hazard_prob["p_drought"], IMG_DIR / f"probability_p_drought_{slug}.png",
@@ -115,6 +115,21 @@ def generate_hazard_and_probability(period: str, domain_cfg: dict) -> dict[str, 
         hazard_prob["p_wet"], IMG_DIR / f"probability_p_wet_{slug}.png",
         title=f"P_wet — {period} 2026 (fraction of 25 members)", cmap="YlGnBu",
         vmin=0, vmax=1, colorbar_label="P_wet (0-1)", domain_cfg=domain_cfg,
+    )
+    # S is only defined among members that already cleared the high-hazard
+    # threshold (compute_s_drought/wet's event_mask), so its real range is
+    # [threshold, 1], not [0, 1] -- use the threshold as vmin so the color
+    # scale isn't 40% dead space, instead of copying H/P's vmin=0.
+    threshold = load_thresholds_config()["hazard"]["high_hazard_threshold"]
+    save_png_preview(
+        hazard_prob["s_drought"], IMG_DIR / f"severity_s_drought_{slug}.png",
+        title=f"S_drought — {period} 2026 (mean H_dry among drought-classified members)", cmap="YlOrBr",
+        vmin=threshold, vmax=1, colorbar_label=f"S_drought ({threshold}-1)", domain_cfg=domain_cfg,
+    )
+    save_png_preview(
+        hazard_prob["s_wet"], IMG_DIR / f"severity_s_wet_{slug}.png",
+        title=f"S_wet — {period} 2026 (mean H_wet among wet-classified members)", cmap="YlGnBu",
+        vmin=threshold, vmax=1, colorbar_label=f"S_wet ({threshold}-1)", domain_cfg=domain_cfg,
     )
     return hazard_prob
 
@@ -167,7 +182,7 @@ def main() -> None:
         vmin=0, vmax=4, colorbar_label="Class (0=Very low .. 4=Very high)", domain_cfg=domain_cfg,
     )
 
-    n_written = 4 * len(PERIODS) + 1 + 2 + 2
+    n_written = 6 * len(PERIODS) + 1 + 2 + 2
     print(f"\nWrote {n_written} PNGs to {IMG_DIR}")
 
 

@@ -23,7 +23,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from hydroclim_risk.acquisition.common import write_grid_geotiff  # noqa: E402
-from hydroclim_risk.config import PROJECT_ROOT, load_data_config  # noqa: E402
+from hydroclim_risk.config import PROJECT_ROOT, load_data_config, load_thresholds_config  # noqa: E402
 from hydroclim_risk.exposure import compute_exposure_layer, write_exposure_layer  # noqa: E402
 from hydroclim_risk.hazard import (  # noqa: E402
     cdd_dry_score,
@@ -96,6 +96,22 @@ def generate_hazard_and_probability(period: str, domain_cfg: dict) -> tuple[dict
         write_grid_geotiff(
             hazard_prob[name], path, variable=name,
             tags={"period": period, "init_date": INIT_DATE, "range": "0-1", "n_members": "25"},
+            cfg=domain_cfg,
+        )
+        written.append(path)
+
+    # S is only defined among members that cleared the high-hazard threshold
+    # (its real range is [threshold, 1], not [0, 1]) -- record that in the tag
+    # rather than letting a downstream reader assume a 0-1 range like P/H.
+    threshold = load_thresholds_config()["hazard"]["high_hazard_threshold"]
+    for name in ["s_drought", "s_wet"]:
+        path = PROJECT_ROOT / "outputs" / "probability" / f"ethiopia_{period}_{INIT_DATE}_{name}.tif"
+        write_grid_geotiff(
+            hazard_prob[name], path, variable=name,
+            tags={
+                "period": period, "init_date": INIT_DATE,
+                "range": f"{threshold}-1 (NaN where no member qualifies as an event)",
+            },
             cfg=domain_cfg,
         )
         written.append(path)
