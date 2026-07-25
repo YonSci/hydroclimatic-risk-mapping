@@ -301,6 +301,28 @@ bands:
 | 60–79.9 | High | 3 |
 | 80–100 | Very high | 4 |
 
+Alongside `risk_class`, every batch run also writes a `dominant_code` layer
+(`dominant_risk_code()` in [`risk/risk.py`](src/hydroclim_risk/risk/risk.py)). It's easy to
+assume this is just `argmax(R_drought, R_wet)` (whichever is numerically larger) — **it
+isn't**. Each of `R_drought`/`R_wet` is independently tested against the "Very low" band's
+ceiling (19.9) before being compared to the other:
+
+| Code | Label | Condition |
+|---|---|---|
+| 0 | None / insignificant | neither `R_drought` nor `R_wet` exceeds 19.9 |
+| 1 | Drought-dominated | only `R_drought` exceeds 19.9 |
+| 2 | Wet-dominated | only `R_wet` exceeds 19.9 |
+| 3 | Mixed / compound | **both** exceed 19.9 |
+
+This matters because a plain argmax always picks a winner, even between two
+barely-nonzero values — it would mislabel every genuinely low-risk cell as "drought" or
+"wet" dominant. In the real `population`/JJAS output, 1,398 of 1,479 valid cells (94.5%)
+are code `0`; a naive argmax would have force-assigned all of them to a hazard type that
+isn't actually significant there. `dominant_code` reuses the same `0=none / 1=drought / 2=wet / 3=mixed` numbering as
+`hazard.dominant_hazard_code` (methodology.md's convention for keeping the two layers
+consistent), but it's computed from `R`, not `H` — don't assume the two rasters have
+identical values just because they share a coding scheme.
+
 **Example output** — `R_dominant` and its five-class breakdown, population sector, JJAS
 2026:
 
