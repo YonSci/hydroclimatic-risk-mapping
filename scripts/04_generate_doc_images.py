@@ -1,8 +1,17 @@
 """Generate representative PNG quicklooks of each pipeline stage's real
 output (Hazard, Probability & Severity, Exposure, Vulnerability, Risk) for
-embedding in README.md / docs/. Uses JJAS 2026 + the population sector as
-the representative period/sector throughout, and the existing
-export.save_png_preview renderer -- no new rendering logic.
+embedding in README.md / docs/. Uses the population sector as the
+representative exposure/vulnerability/risk sector throughout, and the
+existing export.save_png_preview renderer -- no new rendering logic.
+
+Hazard and Probability & Severity are genuinely period-dependent (they come
+from the per-period forecast ensemble), so they're rendered for every
+monthly period plus the JJAS season aggregate. Exposure and Vulnerability
+are NOT period-dependent in this pipeline (population counts and
+socioeconomic/terrain vulnerability don't vary by forecast month) -- each
+gets exactly one PNG, not five. Risk is rendered only for JJAS (the
+headline seasonal product); see scripts/03_generate_risk_maps.py for the
+full period x sector risk batch.
 
 Run:
     python scripts\\04_generate_doc_images.py
@@ -38,22 +47,29 @@ from hydroclim_risk.risk.pipeline import compute_hazard_and_probability_for_peri
 from hydroclim_risk.risk.risk import classify_risk, combine_dominant_risk, compute_risk, dominant_risk_code  # noqa: E402
 from hydroclim_risk.vulnerability import compute_v_drought, compute_v_wet  # noqa: E402
 
-PERIOD = "JJAS"
+PERIODS = ["June", "July", "August", "September", "JJAS"]
 SECTOR = "population"
 IMG_DIR = PROJECT_ROOT / "docs" / "images"
 
 
-def main() -> None:
-    domain_cfg = load_data_config()
-    IMG_DIR.mkdir(parents=True, exist_ok=True)
+def _slug(period: str) -> str:
+    return period.lower()
 
-    print(f"Computing member-level indicators for {PERIOD}...")
-    rainfall_p = load_member_indicator(PERIOD, "percentile")
-    spi = load_member_indicator(PERIOD, "spi", apply_spi_cap=True)
-    cdd_p = load_member_indicator(PERIOD, "cdd")
-    cwd_p = load_member_indicator(PERIOD, "cwd")
-    rx1_p = load_member_indicator(PERIOD, "rx1day")
-    rx5_p = load_member_indicator(PERIOD, "rx5day")
+
+def generate_hazard_and_probability(period: str, domain_cfg: dict) -> dict[str, np.ndarray]:
+    """Compute + render H_dry/H_wet (ensemble mean) and P_drought/P_wet for
+    one period. Returns the hazard_prob dict (p_drought/p_wet/s_drought/
+    s_wet) so JJAS's call site can reuse it for the Risk stage without
+    recomputing.
+    """
+    slug = _slug(period)
+    print(f"  [{period}] Hazard (H_dry, H_wet)...")
+    rainfall_p = load_member_indicator(period, "percentile")
+    spi = load_member_indicator(period, "spi", apply_spi_cap=True)
+    cdd_p = load_member_indicator(period, "cdd")
+    cwd_p = load_member_indicator(period, "cwd")
+    rx1_p = load_member_indicator(period, "rx1day")
+    rx5_p = load_member_indicator(period, "rx5day")
 
     h_dry = compute_h_dry(
         {
@@ -77,32 +93,40 @@ def main() -> None:
     h_dry_mean = to_north_up(h_dry.mean(dim="realization"))
     h_wet_mean = to_north_up(h_wet.mean(dim="realization"))
 
-    print("[1/5] Hazard (H_dry, H_wet)...")
     save_png_preview(
-        h_dry_mean, IMG_DIR / "hazard_h_dry_jjas.png",
-        title=f"H_dry — {PERIOD} 2026 (ensemble mean)", cmap="YlOrBr",
+        h_dry_mean, IMG_DIR / f"hazard_h_dry_{slug}.png",
+        title=f"H_dry — {period} 2026 (ensemble mean)", cmap="YlOrBr",
         vmin=0, vmax=1, colorbar_label="H_dry (0-1)", domain_cfg=domain_cfg,
     )
     save_png_preview(
-        h_wet_mean, IMG_DIR / "hazard_h_wet_jjas.png",
-        title=f"H_wet — {PERIOD} 2026 (ensemble mean)", cmap="YlGnBu",
+        h_wet_mean, IMG_DIR / f"hazard_h_wet_{slug}.png",
+        title=f"H_wet — {period} 2026 (ensemble mean)", cmap="YlGnBu",
         vmin=0, vmax=1, colorbar_label="H_wet (0-1)", domain_cfg=domain_cfg,
     )
 
-    print("[2/5] Probability & Severity (P_drought, P_wet)...")
-    hazard_prob = compute_hazard_and_probability_for_period(PERIOD)
+    print(f"  [{period}] Probability & Severity (P_drought, P_wet)...")
+    hazard_prob = compute_hazard_and_probability_for_period(period)
     save_png_preview(
-        hazard_prob["p_drought"], IMG_DIR / "probability_p_drought_jjas.png",
-        title=f"P_drought — {PERIOD} 2026 (fraction of 25 members)", cmap="YlOrBr",
+        hazard_prob["p_drought"], IMG_DIR / f"probability_p_drought_{slug}.png",
+        title=f"P_drought — {period} 2026 (fraction of 25 members)", cmap="YlOrBr",
         vmin=0, vmax=1, colorbar_label="P_drought (0-1)", domain_cfg=domain_cfg,
     )
     save_png_preview(
-        hazard_prob["p_wet"], IMG_DIR / "probability_p_wet_jjas.png",
-        title=f"P_wet — {PERIOD} 2026 (fraction of 25 members)", cmap="YlGnBu",
+        hazard_prob["p_wet"], IMG_DIR / f"probability_p_wet_{slug}.png",
+        title=f"P_wet — {period} 2026 (fraction of 25 members)", cmap="YlGnBu",
         vmin=0, vmax=1, colorbar_label="P_wet (0-1)", domain_cfg=domain_cfg,
     )
+    return hazard_prob
 
-    print(f"[3/5] Exposure ({SECTOR})...")
+
+def main() -> None:
+    domain_cfg = load_data_config()
+    IMG_DIR.mkdir(parents=True, exist_ok=True)
+
+    print("[1/5 & 2/5] Hazard + Probability & Severity, per period...")
+    hazard_prob_by_period = {period: generate_hazard_and_probability(period, domain_cfg) for period in PERIODS}
+
+    print(f"[3/5] Exposure ({SECTOR}) -- static, one PNG (not period-dependent)...")
     e_layer = compute_exposure_layer(SECTOR, domain_cfg=domain_cfg)
     save_png_preview(
         e_layer.normalized, IMG_DIR / "exposure_population.png",
@@ -110,7 +134,7 @@ def main() -> None:
         vmin=0, vmax=1, colorbar_label="E (0-1)", domain_cfg=domain_cfg,
     )
 
-    print("[4/5] Vulnerability (V_drought, V_wet)...")
+    print("[4/5] Vulnerability (V_drought, V_wet) -- static, one PNG each...")
     v_drought = compute_v_drought(domain_cfg=domain_cfg)
     v_wet = compute_v_wet(domain_cfg=domain_cfg)
     save_png_preview(
@@ -124,7 +148,8 @@ def main() -> None:
         vmin=0, vmax=1, colorbar_label="V_wet (0-1)", domain_cfg=domain_cfg,
     )
 
-    print(f"[5/5] Risk (R_dominant, risk_class) for {SECTOR}...")
+    print(f"[5/5] Risk (R_dominant, risk_class) for {SECTOR}, JJAS only...")
+    hazard_prob = hazard_prob_by_period["JJAS"]
     r_drought = compute_risk(hazard_prob["p_drought"], hazard_prob["s_drought"], e_layer.normalized, v_drought)
     r_wet = compute_risk(hazard_prob["p_wet"], hazard_prob["s_wet"], e_layer.normalized, v_wet)
     r_dominant = combine_dominant_risk(r_drought, r_wet)
@@ -133,16 +158,17 @@ def main() -> None:
 
     save_png_preview(
         r_dominant, IMG_DIR / "risk_r_dominant_population_jjas.png",
-        title=f"R_dominant — {SECTOR} sector, {PERIOD} 2026", cmap="YlOrRd",
+        title=f"R_dominant — {SECTOR} sector, JJAS 2026", cmap="YlOrRd",
         vmin=0, vmax=100, colorbar_label="R (0-100)", domain_cfg=domain_cfg,
     )
     save_png_preview(
         risk_class.astype(np.float64), IMG_DIR / "risk_class_population_jjas.png",
-        title=f"Risk class — {SECTOR} sector, {PERIOD} 2026", cmap="YlOrRd",
+        title=f"Risk class — {SECTOR} sector, JJAS 2026", cmap="YlOrRd",
         vmin=0, vmax=4, colorbar_label="Class (0=Very low .. 4=Very high)", domain_cfg=domain_cfg,
     )
 
-    print(f"\nWrote 9 PNGs to {IMG_DIR}")
+    n_written = 4 * len(PERIODS) + 1 + 2 + 2
+    print(f"\nWrote {n_written} PNGs to {IMG_DIR}")
 
 
 if __name__ == "__main__":

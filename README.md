@@ -159,6 +159,19 @@ H_{overall} = \max(H_{dry}, H_{wet})
   <img src="docs/images/hazard_h_wet_jjas.png" width="48%" alt="H_wet map, JJAS 2026, ensemble mean">
 </p>
 
+<details>
+<summary><b>Monthly breakdown</b> — H_dry / H_wet for June, July, August, September</summary>
+<br>
+
+| | H_dry | H_wet |
+|---|---|---|
+| **June** | ![H_dry June](docs/images/hazard_h_dry_june.png) | ![H_wet June](docs/images/hazard_h_wet_june.png) |
+| **July** | ![H_dry July](docs/images/hazard_h_dry_july.png) | ![H_wet July](docs/images/hazard_h_wet_july.png) |
+| **August** | ![H_dry August](docs/images/hazard_h_dry_august.png) | ![H_wet August](docs/images/hazard_h_wet_august.png) |
+| **September** | ![H_dry September](docs/images/hazard_h_dry_september.png) | ![H_wet September](docs/images/hazard_h_wet_september.png) |
+
+</details>
+
 ### 2. Probability & Severity (P, S)
 
 Across the 25-member forecast ensemble, with a configurable high-hazard threshold
@@ -181,6 +194,19 @@ exceeding the high-hazard threshold):
   <img src="docs/images/probability_p_wet_jjas.png" width="48%" alt="P_wet map, JJAS 2026">
 </p>
 
+<details>
+<summary><b>Monthly breakdown</b> — P_drought / P_wet for June, July, August, September</summary>
+<br>
+
+| | P_drought | P_wet |
+|---|---|---|
+| **June** | ![P_drought June](docs/images/probability_p_drought_june.png) | ![P_wet June](docs/images/probability_p_wet_june.png) |
+| **July** | ![P_drought July](docs/images/probability_p_drought_july.png) | ![P_wet July](docs/images/probability_p_wet_july.png) |
+| **August** | ![P_drought August](docs/images/probability_p_drought_august.png) | ![P_wet August](docs/images/probability_p_wet_august.png) |
+| **September** | ![P_drought September](docs/images/probability_p_drought_september.png) | ![P_wet September](docs/images/probability_p_wet_september.png) |
+
+</details>
+
 ### 3. Exposure (E)
 
 Absolute exposure (people, hectares, head of livestock, facility counts) is preserved
@@ -191,7 +217,9 @@ per-sector — sectors are **never blended into one index** — and separately n
 E_{norm} = \text{clip}\left(\frac{E_{raw} - P_{5}(E)}{P_{95}(E) - P_{5}(E)},\ 0,\ 1\right)
 ```
 
-**Example output** — normalized population exposure:
+**Example output** — normalized population exposure. Unlike Hazard/Probability, exposure
+isn't period-dependent in this pipeline (population counts don't vary by forecast month),
+so there's a single map, not a monthly set:
 
 <p align="center">
   <img src="docs/images/exposure_population.png" width="60%" alt="Normalized population exposure map">
@@ -215,7 +243,8 @@ content), and river/water-body proximity in equal proportion — see
 [`docs/data_provenance.md`](docs/data_provenance.md) for why these four physical
 indicators were chosen.
 
-**Example output** — `V_drought` / `V_wet` composite indices (static across periods):
+**Example output** — `V_drought` / `V_wet` composite indices. Also not period-dependent
+(socioeconomic/terrain vulnerability doesn't change month to month), so one map each:
 
 <p align="center">
   <img src="docs/images/vulnerability_v_drought.png" width="48%" alt="V_drought composite map">
@@ -258,11 +287,44 @@ bands:
   <img src="docs/images/risk_class_population_jjas.png" width="48%" alt="Risk class map, population sector, JJAS 2026">
 </p>
 
+#### Why `population`, and what's actually in `outputs/risk/`
+
+`R = 100 × P × S × E × V` is computed **separately per exposure sector** — a hospital-poor
+area and a hospital-rich area have identical Hazard/Probability/Vulnerability but very
+different `infrastructure`-sector risk. Nothing here is limited to population; the full
+batch run (`python scripts/hydroclim_risk_cli.py generate-risk`, see
+[`scripts/03_generate_risk_maps.py`](scripts/03_generate_risk_maps.py)) already writes
+`outputs/risk/` in full:
+
+```
+outputs/risk/ethiopia_{period}_{init_date}_{sector}_{product}.tif
+```
+
+| Axis | Values | Count |
+|---|---|---|
+| `period` | June, July, August, September, JJAS | 5 |
+| `sector` | population, cropland_total, cropland_irrigated, cropland_rainfed, livestock_cattle, buildings, roads, healthsites, built_up | 9 |
+| `product` | r_drought, r_wet, r_dominant, dominant_code, risk_class | 5 |
+
+5 × 9 × 5 = **225 GeoTIFFs**, all already generated and QC-passed. `population` is used
+for the two README images above purely as **one illustrative, easy-to-interpret sector**
+so this document shows two maps instead of 45 (9 sectors × 5 products for JJAS alone) —
+it's a documentation choice, not a pipeline limitation. Swap `SECTOR` in
+[`scripts/04_generate_doc_images.py`](scripts/04_generate_doc_images.py) /
+[`scripts/05_generate_stage_geotiffs.py`](scripts/05_generate_stage_geotiffs.py) to
+regenerate the same example set for any other sector, or read any of the 225 files
+directly — e.g. `outputs/risk/ethiopia_JJAS_2026-05-01_healthsites_risk_class.tif` for
+health-facility risk instead of population risk.
+
 > [!NOTE]
-> All six example maps above are generated by
+> All 25 PNGs across the sections above (Hazard/Probability × 5 periods, Exposure ×1,
+> Vulnerability ×2, Risk ×2) are generated by
 > [`scripts/04_generate_doc_images.py`](scripts/04_generate_doc_images.py) from this
-> pipeline's real output (JJAS 2026, population sector) — not mockups. Re-run it after any
-> pipeline change to refresh these images.
+> pipeline's real output — not mockups. The GeoTIFF counterpart of every image here is
+> written by [`scripts/05_generate_stage_geotiffs.py`](scripts/05_generate_stage_geotiffs.py)
+> to `outputs/hazard/`, `outputs/probability/`, `outputs/exposure/`, `outputs/vulnerability/`,
+> and `outputs/risk/` respectively (not tracked in git — regenerate on demand). Re-run both
+> scripts after any pipeline change to refresh these images/files.
 
 ## Pipeline Architecture
 

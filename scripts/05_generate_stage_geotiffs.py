@@ -1,11 +1,15 @@
 """Write GeoTIFF outputs for each pipeline stage's representative layer
 (Hazard, Probability & Severity, Exposure, Vulnerability, Risk) -- the raster
-counterparts of the PNG quicklooks from
-scripts/04_generate_doc_images.py, for GIS use rather than documentation.
+counterparts of scripts/04_generate_doc_images.py's PNG quicklooks, for GIS
+use rather than documentation.
 
-Uses the same representative period/sector (JJAS 2026, population) as
-04_generate_doc_images.py so every file here is directly comparable to the
-corresponding image in docs/images/ and to README.md's example maps.
+Hazard and Probability & Severity are genuinely period-dependent, so they're
+written for every monthly period plus the JJAS season aggregate. Exposure
+and Vulnerability are NOT period-dependent in this pipeline -- each gets
+exactly one GeoTIFF, not five (see 04_generate_doc_images.py's docstring).
+Risk is written only for JJAS (the headline seasonal product); see
+scripts/03_generate_risk_maps.py for the full period x sector risk batch
+already in outputs/risk/.
 
 Run:
     python scripts\\05_generate_stage_geotiffs.py
@@ -43,22 +47,19 @@ from hydroclim_risk.risk.pipeline import (  # noqa: E402
 from hydroclim_risk.risk.risk import classify_risk, combine_dominant_risk, compute_risk, dominant_risk_code  # noqa: E402
 from hydroclim_risk.vulnerability import compute_v_drought, compute_v_wet  # noqa: E402
 
-PERIOD = "JJAS"
+PERIODS = ["June", "July", "August", "September", "JJAS"]
 SECTOR = "population"
 INIT_DATE = "2026-05-01"
 
 
-def main() -> None:
-    domain_cfg = load_data_config()
+def generate_hazard_and_probability(period: str, domain_cfg: dict) -> tuple[dict, list[Path]]:
     written: list[Path] = []
-
-    print(f"Computing member-level indicators for {PERIOD}...")
-    rainfall_p = load_member_indicator(PERIOD, "percentile")
-    spi = load_member_indicator(PERIOD, "spi", apply_spi_cap=True)
-    cdd_p = load_member_indicator(PERIOD, "cdd")
-    cwd_p = load_member_indicator(PERIOD, "cwd")
-    rx1_p = load_member_indicator(PERIOD, "rx1day")
-    rx5_p = load_member_indicator(PERIOD, "rx5day")
+    rainfall_p = load_member_indicator(period, "percentile")
+    spi = load_member_indicator(period, "spi", apply_spi_cap=True)
+    cdd_p = load_member_indicator(period, "cdd")
+    cwd_p = load_member_indicator(period, "cwd")
+    rx1_p = load_member_indicator(period, "rx1day")
+    rx5_p = load_member_indicator(period, "rx5day")
 
     h_dry = compute_h_dry(
         {
@@ -80,32 +81,45 @@ def main() -> None:
     h_dry_mean = to_north_up(h_dry.mean(dim="realization"))
     h_wet_mean = to_north_up(h_wet.mean(dim="realization"))
 
-    print("[1/5] Hazard -> outputs/hazard/...")
     for name, arr in [("h_dry_mean", h_dry_mean), ("h_wet_mean", h_wet_mean)]:
-        path = PROJECT_ROOT / "outputs" / "hazard" / f"ethiopia_{PERIOD}_{INIT_DATE}_{name}.tif"
+        path = PROJECT_ROOT / "outputs" / "hazard" / f"ethiopia_{period}_{INIT_DATE}_{name}.tif"
         write_grid_geotiff(
             arr, path, variable=name,
-            tags={"period": PERIOD, "init_date": INIT_DATE, "range": "0-1", "reduction": "ensemble_mean"},
+            tags={"period": period, "init_date": INIT_DATE, "range": "0-1", "reduction": "ensemble_mean"},
             cfg=domain_cfg,
         )
         written.append(path)
 
-    print("[2/5] Probability & Severity -> outputs/probability/...")
-    hazard_prob = compute_hazard_and_probability_for_period(PERIOD, init_date=INIT_DATE)
+    hazard_prob = compute_hazard_and_probability_for_period(period, init_date=INIT_DATE)
     for name in ["p_drought", "p_wet"]:
-        path = PROJECT_ROOT / "outputs" / "probability" / f"ethiopia_{PERIOD}_{INIT_DATE}_{name}.tif"
+        path = PROJECT_ROOT / "outputs" / "probability" / f"ethiopia_{period}_{INIT_DATE}_{name}.tif"
         write_grid_geotiff(
             hazard_prob[name], path, variable=name,
-            tags={"period": PERIOD, "init_date": INIT_DATE, "range": "0-1", "n_members": "25"},
+            tags={"period": period, "init_date": INIT_DATE, "range": "0-1", "n_members": "25"},
             cfg=domain_cfg,
         )
         written.append(path)
 
-    print(f"[3/5] Exposure ({SECTOR}) -> outputs/exposure/...")
+    return hazard_prob, written
+
+
+def main() -> None:
+    domain_cfg = load_data_config()
+    written: list[Path] = []
+
+    print("[1/5 & 2/5] Hazard + Probability & Severity, per period...")
+    hazard_prob_by_period: dict[str, dict] = {}
+    for period in PERIODS:
+        print(f"  Computing member-level indicators for {period}...")
+        hazard_prob, paths = generate_hazard_and_probability(period, domain_cfg)
+        hazard_prob_by_period[period] = hazard_prob
+        written.extend(paths)
+
+    print(f"[3/5] Exposure ({SECTOR}) -- static, one GeoTIFF (not period-dependent)...")
     e_layer = compute_exposure_layer(SECTOR, domain_cfg=domain_cfg)
     written.extend(write_exposure_layer(SECTOR, e_layer, domain_cfg=domain_cfg).values())
 
-    print("[4/5] Vulnerability -> outputs/vulnerability/...")
+    print("[4/5] Vulnerability -- static, one GeoTIFF each...")
     v_drought = compute_v_drought(domain_cfg=domain_cfg)
     v_wet = compute_v_wet(domain_cfg=domain_cfg)
     for name, arr in [("v_drought", v_drought), ("v_wet", v_wet)]:
@@ -117,7 +131,8 @@ def main() -> None:
         )
         written.append(path)
 
-    print(f"[5/5] Risk ({SECTOR}, {PERIOD}) -> outputs/risk/...")
+    print(f"[5/5] Risk ({SECTOR}, JJAS only) -> outputs/risk/...")
+    hazard_prob = hazard_prob_by_period["JJAS"]
     r_drought = compute_risk(hazard_prob["p_drought"], hazard_prob["s_drought"], e_layer.normalized, v_drought)
     r_wet = compute_risk(hazard_prob["p_wet"], hazard_prob["s_wet"], e_layer.normalized, v_wet)
     r_dominant = combine_dominant_risk(r_drought, r_wet)
@@ -129,7 +144,7 @@ def main() -> None:
         "risk_class": classify_risk(r_dominant),
     }
     written.extend(
-        write_risk_layers(PERIOD, SECTOR, risk_result, domain_cfg=domain_cfg, init_date=INIT_DATE).values()
+        write_risk_layers("JJAS", SECTOR, risk_result, domain_cfg=domain_cfg, init_date=INIT_DATE).values()
     )
 
     print(f"\nWrote {len(written)} GeoTIFFs:")
