@@ -1,0 +1,113 @@
+# Per-indicator standardization method for combining variables with different
+# units into hazard scores. Decided 2026-07-24 — see methodology.md's
+# percentile-based normalization section (S_rain_dry/wet, S_CDD_dry, etc.),
+# which already assumes percentile-ranked inputs; this file makes that the
+# pipeline's single source of truth per indicator instead of re-deciding it
+# ad hoc in each module.
+#
+# Options: absolute_anomaly | percentage_anomaly | historical_percentile |
+#          standardized_anomaly | raw_forecast_value
+
+indicators:
+  rainfall_total:
+    primary: historical_percentile
+    keep_as_diagnostic: [absolute_anomaly, percentage_anomaly]
+    note: >
+      Raw mm totals are not comparable across Ethiopia's domain (100 mm can be
+      unusually wet in one location, unusually dry in another) — see
+      project-context.md caveat. Percentile rank is what feeds H_dry/H_wet.
+
+  spi:
+    primary: standardized_anomaly
+    keep_as_diagnostic: []
+    note: >
+      Already a standardized statistic by construction (z-score-like, roughly
+      -3 to +3) — no further standardization needed. QC on 2026-07-24 found a
+      handful of grid cells beyond +/-4 (max observed |4.75|, September
+      spi_median). Fixed at consumption time (2026-07-24): since SPI is
+      recomputed by the sibling extremes-climate-indices pipeline, not by
+      hydroclim_risk, the cap is applied on load rather than at the source —
+      see hydroclim_risk.ingestion.geotiff.load_indicator's apply_spi_cap
+      (default True), which clips to thresholds.yaml's spi.cap_abs_value
+      (3.09, WMO extreme-category bound) for spi mean/median products only
+      (not spi_prob_drought/wet, which are already 0-1 probabilities). This
+      guards against gamma-fit artifacts at near-zero rainfall and because the
+      hazard-scoring formula already saturates at |SPI|=2.
+
+  cdd:
+    primary: historical_percentile
+    keep_as_diagnostic: [absolute_anomaly]
+    note: >
+      High CDD percentile -> drought hazard. Percentile product
+      (cdd_percentile.tif) delivered by the sibling pipeline 2026-07-24 on
+      request — verified 0-100 range across all 5 periods.
+
+  cwd:
+    primary: historical_percentile
+    keep_as_diagnostic: [absolute_anomaly]
+    note: >
+      Low CWD percentile -> drought hazard; high CWD percentile -> wetness
+      hazard. Percentile product (cwd_percentile.tif) delivered 2026-07-24,
+      verified 0-100 range across all 5 periods.
+
+  rx1day:
+    primary: historical_percentile
+    keep_as_diagnostic: [absolute_anomaly]
+    note: >
+      Percentile product (rx1day_percentile.tif) delivered 2026-07-24,
+      verified 0-100 range across all 5 periods.
+
+  rx5day:
+    primary: historical_percentile
+    keep_as_diagnostic: [absolute_anomaly]
+    note: >
+      Largest weight among wetness indicators per methodology.md. Percentile
+      product (rx5day_percentile.tif) delivered 2026-07-24, verified 0-100
+      range across all 5 periods.
+
+percentile_definition:
+  # Applies to every "historical_percentile" row above.
+  reference_climatology: 1993-2025   # see config/data.yaml
+  rule: >
+    Rank each 2026 forecast value against the full distribution of historical
+    values for the SAME calendar period (same month, or JJAS-vs-JJAS) across
+    all reference years and the sliced 25-member ensemble. Never mix calendar
+    periods when computing a percentile rank (methodology.md, "Standardization
+    formulas").
+  output_range: [0, 100]
+
+existing_outputs_status:
+  # outputs/geotiff/*_percentile_climatology_mean.tif is NOT a valid
+  # historical-percentile product — see [[data-percentile-mislabel-bug]]
+  # memory / QC report. The sibling pipeline was rerun 2026-07-24 (to deliver
+  # the cdd/cwd/rx1day/rx5day percentile request below) and regenerated this
+  # exact same bug — still mislabeled, re-quarantined a second time. Blocked
+  # defensively in hydroclim_risk.ingestion.geotiff.BLOCKED_PRODUCTS
+  # regardless of whether it's quarantined on disk.
+  percentile_climatology_mean_tif: broken_needs_regeneration
+  percentile_median_tif: valid_example_of_correct_percentile_output
+  # historical_percentile is now fully satisfied for every indicator listed
+  # above — cdd/cwd/rx1day/rx5day_percentile.tif delivered by the sibling
+  # pipeline 2026-07-24 on request, verified (0-100 range, correct units/tags,
+  # grid-aligned with the rest of the dataset) across all 5 periods.
+  cdd_percentile_tif: valid
+  cwd_percentile_tif: valid
+  rx1day_percentile_tif: valid
+  rx5day_percentile_tif: valid
+  # New finding from the same 2026-07-24 rerun: spi_climatology_mean.tif is a
+  # second instance of the exact same bug (byte-identical duplicate of
+  # rainfall_total_climatology_mean.tif) — quarantined and blocked alongside
+  # percentile_climatology_mean_tif. cdd/cwd/rx1day/rx5day climatology_mean
+  # were checked and are NOT affected.
+  spi_climatology_mean_tif: broken_needs_regeneration
+  # Resolved 2026-07-24 (later same day, after a further sibling-pipeline
+  # rerun): rainfall_total_mean.tif and spi_mean.tif are restored for all 5
+  # periods and re-verified (rainfall_total_mean.tif June re-matched a
+  # from-scratch recomputation from corrected_2026.nc, max abs diff 6e-5mm).
+  # Neither percentile_climatology_mean.tif nor spi_climatology_mean.tif
+  # reappeared in outputs/geotiff/ this time — full directory diff against
+  # the prior snapshot showed only the 20 expected new percentile files, no
+  # other changes. outputs/geotiff/ is now 130 files, all valid per
+  # catalog(). See data_percentile_mislabel_bug memory for the full timeline.
+  rainfall_total_mean_tif: valid
+  spi_mean_tif: valid

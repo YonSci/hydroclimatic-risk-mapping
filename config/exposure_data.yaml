@@ -1,0 +1,228 @@
+# Exposure/vulnerability data-acquisition registry for the Ethiopia
+# hydroclimatic risk pipeline. Every source below is free, no-registration,
+# no-API-key, and directly accessible as of 2026-07-24 (see
+# hydroclim_risk.acquisition module docstrings for verification notes).
+# NASA SEDAC's Global Gridded Relative Deprivation Index was considered and
+# deliberately excluded -- it requires a NASA Earthdata Login, unlike
+# everything else here; add it manually if that registration is completed.
+#
+# Every dataset is resampled onto the same 0.25 deg analysis grid defined in
+# config/data.yaml's `domain` block, so exposure/vulnerability layers align
+# with every hazard/probability layer without a separate reprojection step.
+
+output_dir: outputs/exposure_vulnerability
+raw_cache_dir: data/exposure_vulnerability_raw
+
+datasets:
+  population:
+    category: exposure
+    sector: population
+    source_name: worldpop
+    api_url: "https://hub.worldpop.org/rest/data/pop/wpgp?iso3=ETH"
+    variable: population_count
+    # population COUNT (people per source pixel) must be SUMMED when
+    # aggregating to a coarser cell, never averaged — averaging would
+    # silently shrink the national total by the resampling factor.
+    aggregation: sum
+    absolute_units: people
+    license: "CC-BY 4.0"
+    citation: "WorldPop (www.worldpop.org), University of Southampton"
+
+  cropland:
+    category: exposure
+    sector: agriculture
+    source_name: esa_worldcover
+    s3_bucket: esa-worldcover
+    s3_prefix: v200/2021/map
+    # 3x3-degree COG tiles named by SW-corner coordinate, confirmed via a
+    # live bucket listing on 2026-07-24, e.g. ESA_WorldCover_10m_2021_v200_N00E030_Map.tif
+    tile_name_pattern: "ESA_WorldCover_10m_2021_v200_{lat_tag}{lon_tag}_Map.tif"
+    tile_size_deg: 3
+    cropland_class_value: 40   # WorldCover legend: 40 = Cropland
+    variable: cropland_fraction
+    # fraction of each output cell classified as cropland (mean of a 0/1 mask)
+    aggregation: mean_of_binary_mask
+    license: "CC-BY 4.0"
+    citation: "ESA WorldCover 10m 2021 v200 (esa-worldcover.org)"
+
+  livestock:
+    category: exposure
+    sector: livestock
+    source_name: fao_glw4
+    base_url: "https://storage.googleapis.com/fao-gismgr-glw4-2020-data/DATA/GLW4-2020/MAPSET/D-DA"
+    species:
+      cattle: GLW4-2020.D-DA.CTL.tif
+      sheep: GLW4-2020.D-DA.SHP.tif
+      goats: GLW4-2020.D-DA.GTS.tif
+    variable: livestock_head_count
+    # GLW4 native units are head/km^2 (density) — convert to head count per
+    # source pixel (density * pixel area) before summing into each coarser
+    # output cell, same reasoning as population.
+    aggregation: area_weighted_sum
+    native_units: head_per_km2
+    license: "CC-BY 4.0"
+    citation: "FAO Gridded Livestock of the World v4 (2020), data.apps.fao.org"
+
+  poverty:
+    category: vulnerability
+    subcategory: sensitivity
+    source_name: meta_rwi
+    csv_url: "https://data.humdata.org/dataset/76f2a2ea-ba50-40f5-b79c-db95d668b843/resource/b6f16f54-3f80-47d6-8cf0-a17e4633b0f1/download/eth_relative_wealth_index.csv"
+    variable: relative_wealth_index
+    # point data (lat, lon, rwi) -> gridded via mean of points falling in
+    # each 0.25 deg cell. Higher RWI = wealthier = LESS vulnerable, so the
+    # vulnerability module (not this acquisition step) is responsible for
+    # inverting/normalizing this into a sensitivity score.
+    aggregation: mean_of_points
+    license: "CC-BY 4.0 (Meta Data for Good)"
+    citation: "Meta Data for Good - Relative Wealth Index"
+
+  irrigation:
+    category: vulnerability
+    subcategory: adaptive_capacity
+    source_name: fao_gmia_v5
+    zip_url: "https://storage.googleapis.com/fao-maps-catalog-data/geonetwork/aquamaps/gmia_v5_aei_pct_asc.zip"
+    # ASCII-grid, global, 5 arcmin (~0.0833 deg) native resolution
+    variable: irrigated_area_percent
+    aggregation: mean
+    license: "CC-BY 4.0"
+    citation: >
+      Siebert S., Henrich V., Frenken K., Burke J. (2013). Global Map of
+      Irrigation Areas version 5. University of Bonn / FAO.
+    also_feeds: "exposure.cropland irrigated/rainfed split (irrigated_area_percent of cropland_fraction)"
+
+  # --- Added 2026-07-24 in response to the user's expanded data list ---
+
+  ghs_built:
+    category: exposure
+    sector: infrastructure
+    source_name: jrc_ghsl
+    zip_url: "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_BUILT_S_GLOBE_R2023A/GHS_BUILT_S_E2020_GLOBE_R2023A_4326_30ss/V1-0/GHS_BUILT_S_E2020_GLOBE_R2023A_4326_30ss_V1_0.zip"
+    # single global WGS84 GeoTIFF (30 arcsec ~1km), not the Mollweide-tiled
+    # variant -- avoids equal-area tile-grid complexity entirely
+    variable: built_up_surface_m2
+    # m^2 of built-up surface per source pixel -- an extensive area quantity,
+    # same conservation requirement as population count
+    aggregation: sum
+    native_units: m2_per_pixel
+    license: "CC-BY 4.0"
+    citation: "European Commission, JRC. GHS-BUILT-S R2023A."
+
+  healthsites:
+    category: exposure
+    sector: infrastructure
+    source_name: healthsites_io
+    csv_url: "https://data.humdata.org/dataset/0cc29a44-cc6d-449a-b3b7-d28fb2066c26/resource/60386a01-4dde-4350-b735-c348c833352f/download/ethiopia.csv"
+    # bulk HDX mirror of the Global Healthsites Mapping Project -- no API key
+    # needed (the live healthsites.io API requires one; this pre-extracted
+    # CSV does not)
+    variable: health_facility_count
+    aggregation: count_of_points
+    license: "ODbL (OpenStreetMap contributors, via Global Healthsites Mapping Project)"
+    citation: "Global Healthsites Mapping Project, via Humanitarian Data Exchange"
+
+  aridity:
+    category: vulnerability
+    subcategory: sensitivity
+    source_name: cgiar_csi
+    zip_url: "https://ndownloader.figshare.com/files/56300327"
+    # Global-AI_ET0__annual_v3_1.zip -- annual Aridity Index + ET0, 30 arcsec
+    variable: aridity_index
+    aggregation: mean
+    license: "CC-BY 4.0"
+    citation: >
+      Zomer R.J., Xu J., Trabucco A. (2022). Version 3 of the Global Aridity
+      Index and Potential Evapotranspiration Database. Scientific Data 9, 409.
+
+  infrastructure:
+    category: exposure
+    sector: infrastructure
+    source_name: geofabrik_osm
+    shp_zip_url: "https://download.geofabrik.de/africa/ethiopia-latest-free.shp.zip"
+    roads_shp: gis_osm_roads_free_1.shp
+    buildings_shp: gis_osm_buildings_a_free_1.shp
+    # roads -> length (km) per cell via vector overlay; buildings -> count
+    # per cell via centroid binning (same point-in-cell pattern as poverty)
+    road_variable: road_length_km
+    building_variable: building_count
+    license: "ODbL (OpenStreetMap contributors)"
+    citation: "OpenStreetMap contributors, via Geofabrik"
+
+  # --- Round 2 additions, 2026-07-24 ---
+
+  gdessa:
+    category: vulnerability
+    subcategory: adaptive_capacity
+    source_name: iiasa_gdessa
+    # direct file URL obtained via Mendeley's public API
+    # (data.mendeley.com/public-api/datasets/kn4636mtvg/files?version=6);
+    # Mendeley's Cloudflare protection blocks Python's `requests` (TLS
+    # fingerprinting) even with a browser User-Agent header -- curl passes
+    # through fine, so this dataset downloads via a curl subprocess instead
+    # of the shared download_file() helper.
+    nc_url: "https://data.mendeley.com/public-files/datasets/kn4636mtvg/files/fa64e372-acc3-40e7-835c-5d1c923f5919/file_downloaded"
+    nc_variable: Pop_no_access_per_km2
+    # Sub-Saharan-Africa-wide NetCDF, dims (Time (Year) 1-7 = 2014-2020,
+    # Latitude, Longitude) -- only the latest year (2020) is used
+    variable: population_no_electricity_access
+    aggregation: sum
+    native_units: people_without_access_per_km2
+    license: "CC-BY 4.0"
+    citation: >
+      Falchetta G., Pachauri S., Parkinson S., Byers E. (2019). A
+      high-resolution gridded dataset to assess electrification in
+      sub-Saharan Africa. Scientific Data 6, 110.
+
+  # Ookla Open Data (connectivity) was considered and deliberately excluded
+  # 2026-07-24 -- its license is CC BY-NC-SA 4.0 (non-commercial,
+  # ShareAlike), unlike every other source here (all CC-BY 4.0 / ODbL,
+  # commercial-use-permitted). User confirmed: keep the dataset consistently
+  # commercially-safe rather than mix in an NC-restricted layer.
+
+  # --- Round 3 additions, 2026-07-25: real V_wet wetness-sensitivity data ---
+
+  terrain:
+    category: vulnerability
+    subcategory: sensitivity
+    source_name: noaa_etopo2022
+    # single global 30 arcsec (~900m) GeoTIFF, read via /vsicurl/ windowed
+    # request -- no auth, confirmed via HTTP HEAD (Accept-Ranges: bytes) and
+    # point-sampled against known Ethiopian elevations 2026-07-25
+    raster_url: "https://www.ngdc.noaa.gov/mgg/global/relief/ETOPO2022/data/30s/30s_bed_elev_gtif/ETOPO_2022_v1_30s_N90W180_bed.tif"
+    elevation_variable: elevation_m
+    slope_variable: slope_degrees
+    aggregation: native_resolution_gradient_then_mean
+    license: "Public domain (NOAA/NCEI, U.S. Government work); not for navigational use"
+    citation: "NOAA National Centers for Environmental Information. ETOPO 2022 15 Arc-Second Global Relief Model."
+
+  soil_drainage:
+    category: vulnerability
+    subcategory: sensitivity
+    source_name: isric_soilgrids
+    # topsoil (0-5cm) clay content mean, served as COGs behind a GDAL VRT on
+    # ISRIC's public WebDAV static file server -- anonymous read, no API key.
+    # rest.soilgrids.org (the REST API) was considered and rejected: paused/
+    # rate-limited (5 calls/min), unsuitable for a bulk grid.
+    vrt_url: "/vsicurl/https://files.isric.org/soilgrids/latest/data/clay/clay_0-5cm_mean.vrt"
+    variable: clay_content_percent
+    # source CRS is Interrupted Goode Homolosine, reprojected via a
+    # rasterio WarpedVRT during the windowed read (see acquisition/soil_drainage.py)
+    aggregation: mean
+    license: "CC-BY 4.0"
+    citation: >
+      Poggio L., de Sousa L.M., Batjes N.H., et al. (2021). SoilGrids 2.0:
+      producing soil information for the globe with quantified spatial
+      uncertainty. SOIL 7, 217-240. ISRIC - World Soil Information.
+
+  river_proximity:
+    category: vulnerability
+    subcategory: sensitivity
+    source_name: geofabrik_osm
+    # reuses the same Ethiopia OSM extract already cached for `infrastructure`
+    shp_zip_url: "https://download.geofabrik.de/africa/ethiopia-latest-free.shp.zip"
+    waterways_shp: gis_osm_waterways_free_1.shp
+    water_bodies_shp: gis_osm_water_a_free_1.shp
+    variable: river_water_body_distance_km
+    aggregation: nearest_feature_distance_aeqd_km
+    license: "ODbL (OpenStreetMap contributors)"
+    citation: "OpenStreetMap contributors, via Geofabrik"

@@ -1,0 +1,63 @@
+# Core numerical and tabular processing
+numpy
+pandas
+scipy
+
+# Multidimensional climate data
+xarray
+dask[array]
+distributed
+flox
+bottleneck
+cftime
+fsspec
+
+# NetCDF, HDF5 and Zarr
+netCDF4
+h5netcdf
+zarr
+numcodecs
+
+# Raster and vector geospatial processing
+rasterio
+rioxarray
+geopandas
+shapely
+pyproj
+pyogrio
+regionmask
+affine
+
+# External data acquisition (exposure/vulnerability sources)
+requests
+
+# Climate-index processing
+xclim
+cf-xarray
+pint
+
+# Statistical analysis and validation
+scikit-learn
+statsmodels
+
+# Plotting and mapping
+matplotlib
+cartopy
+mapclassify
+
+# Configuration and command-line utilities
+pyyaml
+pydantic
+pydantic-settings
+typer
+rich
+tqdm
+
+# Notebooks
+jupyterlab
+ipykernel
+
+# Testing and code quality
+pytest
+pytest-cov
+ruff

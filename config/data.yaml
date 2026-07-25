@@ -1,0 +1,58 @@
+# Data-source parameters for the Ethiopia hydroclimatic risk pipeline.
+# Config-driven per project convention — do not hardcode these in ingestion code.
+# Reference climatology, assessment period, and period/target-label naming live in
+# config/periods.yaml, not here.
+
+paths:
+  historical_nc: bias-corrected/corrected_1993_2025.nc
+  forecast_nc: bias-corrected/corrected_2026.nc
+  chirps_nc: chrips_historical/et_chirps_pr_r25_1993_2025.nc
+  boundaries_dir: boundaries/eth_shapefile
+  geotiff_dir: outputs/geotiff
+  netcdf_members_dir: outputs/netcdf
+
+domain:
+  lon_min: 33.0
+  lon_max: 48.0
+  lat_min: 3.0
+  lat_max: 15.0
+  resolution_deg: 0.25
+  grid_shape: [48, 60]   # [lat, lon]
+  crs: "EPSG:4326"
+
+ensemble:
+  # corrected_1993_2025.nc declares a `realization` dim of size 51, but only
+  # the first 25 slots hold real data for 1993-2016 (ECMWF SEAS5 25-member
+  # hindcast); indices 25-50 are NaN padding for those years. 2017-2025 has
+  # all 51 populated (51-member real-time system).
+  #
+  # Decision (2026-07-24, user-confirmed): always slice the historical file to
+  # realization[0:25], discarding members 25-50 even in years where they hold
+  # real data. This keeps the historical ensemble size uniform across
+  # 1993-2025 and consistent with corrected_2026.nc, which has exactly 25
+  # members. Do not use realization indices 25-50 from the historical file
+  # anywhere in the pipeline.
+  historical_realization_slice: [0, 25]
+  forecast_member_count: 25
+  probability_step: 0.04   # 1 / 25 members
+
+time_window:
+  # Both NetCDFs cover only a May 2 - Oct 31 window per year (183 days), not
+  # full calendar years. There is no explicit init-date/lead-time coordinate
+  # in the files; forecast initialization (~May 1) is implied by filename only.
+  season_start_mmdd: "05-02"
+  season_end_mmdd: "10-31"
+
+spatial_mask:
+  # Exported GeoTIFFs in outputs/geotiff/ carry a much larger NaN footprint
+  # (~44.7% of the 48x60 grid) than the raw source NetCDFs' static domain-edge
+  # mask (~7.7-8%). Resolved 2026-07-24: intentional — the files are produced
+  # by a separate sibling pipeline (D:\extremes-climate-indices, see
+  # references/project-context.md) whose own embedded GeoTIFF tag
+  # (`clipped_to_boundary`) confirms a deliberate clip to eth_admin0.shp, with
+  # a small buffer (116 valid cells outside admin0, 6 NaN cells just inside
+  # near the border). hydroclim_risk consumes these outputs as-is and does
+  # not need to reproduce this masking itself.
+  applied_in_existing_outputs: true
+  matches_source_static_mask: false
+  matches_tight_admin0_clip: false

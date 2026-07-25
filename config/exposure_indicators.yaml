@@ -1,0 +1,71 @@
+# Exposure layer registry for the Ethiopia hydroclimatic risk pipeline.
+#
+# Per methodology.md's Exposure section: keep separate maps per sector (do
+# NOT combine into one blended index unless explicitly requested), and
+# maintain both an absolute version (already have, from acquisition/) and a
+# normalized 0-1 version (robust 5th/95th-percentile, same convention as
+# vulnerability -- see hydroclim_risk.layers.robust_percentile_normalize).
+#
+# A layer entry may override p_low/p_high (see `healthsites` below) --
+# needed for heavily-skewed sparse point-count indicators where the default
+# 5/95 bounds both land on 0 and the normalization degenerates to a flat 0.5
+# everywhere. Found 2026-07-25: healthsites is 95.03% zero cells (only towns/
+# cities have any mapped facility), so its 95th percentile is 0 too.
+
+normalization:
+  method: robust_percentile
+  p_low: 5
+  p_high: 95
+
+layers:
+  population:
+    source_file: ethiopia_population.tif
+    sector: population
+    absolute_units: people
+    fill_gaps: true   # small real gap: 15 of 1484 Ethiopia cells missing (found 2026-07-25)
+
+  cropland_total:
+    source_file: ethiopia_cropland.tif
+    sector: agriculture
+    absolute_units: fraction_of_cell
+
+  cropland_irrigated:
+    derived: true   # cropland_fraction * (irrigation_percent / 100)
+    sector: agriculture
+    absolute_units: fraction_of_cell
+
+  cropland_rainfed:
+    derived: true   # cropland_fraction * (1 - irrigation_percent / 100)
+    sector: agriculture
+    absolute_units: fraction_of_cell
+
+  livestock_cattle:
+    source_file: ethiopia_livestock_cattle.tif
+    sector: livestock
+    absolute_units: head
+
+  buildings:
+    source_file: ethiopia_buildings.tif
+    sector: infrastructure
+    absolute_units: count
+
+  roads:
+    source_file: ethiopia_roads.tif
+    sector: infrastructure
+    absolute_units: km
+
+  healthsites:
+    source_file: ethiopia_healthsites.tif
+    sector: infrastructure
+    absolute_units: count
+    # override: default p_high=95 lands on 0 (95.03% of cells are exactly
+    # zero) -- p_low=0/p_high=99 keeps zero-vs-any-facility distinguishable
+    # while still compressing the single dominant outlier cell (Addis Ababa,
+    # 129 facilities) rather than letting it stretch the rest to near-zero
+    p_low: 0
+    p_high: 99
+
+  built_up:
+    source_file: ethiopia_ghs_built.tif
+    sector: infrastructure
+    absolute_units: m2

@@ -1,0 +1,37 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+
+# --- Editor / IDE (project-specific .vscode/settings.json IS tracked) ---
+.idea/
+
+# --- Claude Code local tooling (skill reference content is duplicated into docs/) ---
+.claude/
+
+# --- OS cruft ---
+.DS_Store
+Thumbs.db
+
+# --- Large source data (see docs/data_provenance.md for how to obtain each file) ---
+bias-corrected/
+chrips_historical/
+data/
+
+# --- Generated pipeline outputs (regenerate via scripts/03_generate_risk_maps.py) ---
+outputs/
+
+# --- Stray local scratch file (Windows `tree` command dump, not project content) ---
+folder_file.txt

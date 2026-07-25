@@ -1,0 +1,57 @@
+# Hazard and vulnerability weights for the Ethiopia hydroclimatic risk
+# pipeline, from methodology.md. Every weight group here MUST sum to 1.00 —
+# any module that consumes this file has to assert that sum at load time
+# (quality-safeguards.md "Verify weights sum to 1") and fail loudly, not
+# silently renormalize, since a mismatch means the config was edited
+# incorrectly.
+#
+# Weights are calibration-ready defaults, not fixed constants — the pipeline
+# must support re-running hazard/vulnerability/risk under alternate weight
+# sets for sensitivity testing (quality-safeguards.md), so keep every
+# consumer reading from this file rather than caching values.
+
+# --- Drought hazard (H_dry) ---
+# H_dry = 0.35*SPI_dry_score + 0.20*rainfall_percentile_dry_score
+#       + 0.30*CDD_dry_score + 0.15*CWD_dry_score
+# Rx1day/Rx5day are NEVER included here (methodology.md: a low value in
+# either isn't meaningful evidence of dryness).
+h_dry:
+  spi_dry_score: 0.35
+  rainfall_percentile_dry_score: 0.20
+  cdd_dry_score: 0.30
+  cwd_dry_score: 0.15
+  # sum must equal 1.00
+
+# --- Excess-wetness hazard (H_wet) — updated formula, use this one ---
+# H_wet = 0.20*SPI_wet_score + 0.20*rainfall_percentile_wet_score
+#       + 0.20*CWD_wet_score + 0.15*Rx1day_wet_score + 0.25*Rx5day_wet_score
+# CDD is NOT included (methodology.md: low CDD isn't strong independent
+# evidence of wetness once CWD/SPI/rainfall percentile are already in).
+h_wet:
+  spi_wet_score: 0.20
+  rainfall_percentile_wet_score: 0.20
+  cwd_wet_score: 0.20
+  rx1day_wet_score: 0.15
+  rx5day_wet_score: 0.25
+  # sum must equal 1.00
+
+# --- Drought vulnerability (V_drought) ---
+# V_drought = 0.60*drought_sensitivity + 0.40*adaptive_capacity_deficit
+v_drought:
+  drought_sensitivity: 0.60
+  adaptive_capacity_deficit: 0.40
+  # sum must equal 1.00
+
+# --- Excess-wetness vulnerability (V_wet) ---
+# V_wet = 0.60*wetness_sensitivity + 0.40*adaptive_capacity_deficit
+v_wet:
+  wetness_sensitivity: 0.60
+  adaptive_capacity_deficit: 0.40
+  # sum must equal 1.00
+
+validation:
+  sum_to_one_tolerance: 1.0e-6
+  groups_requiring_sum_to_one: [h_dry, h_wet, v_drought, v_wet]
+  hazard_combination_rule: >
+    H_overall = max(H_dry, H_wet) — never average; opposite hazard signals
+    would cancel and mask a real hazard (methodology.md).

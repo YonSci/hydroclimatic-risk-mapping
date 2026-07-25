@@ -1,0 +1,50 @@
+# Reference climatology and assessment-period definitions for the Ethiopia
+# hydroclimatic risk pipeline. Single source of truth for period naming —
+# every module (indicators, climatology, hazard, export) should read period
+# names/labels from here rather than hardcoding strings.
+
+reference_climatology:
+  start_year: 1993
+  end_year: 2025
+  source: bias-corrected/corrected_1993_2025.nc
+  note: >
+    2026 is the forecast target year and must never be included in the
+    climatology baseline. See config/data.yaml for the realization[0:25]
+    slicing rule applied to this file.
+
+assessment:
+  target_year: 2026
+  source: bias-corrected/corrected_2026.nc
+  init_date: "2026-05-01"   # implied by existing GeoTIFF filenames, not an explicit nc coordinate
+
+# Standardized period names — use these exact strings everywhere (file names,
+# log messages, CLI args, plot titles) instead of ad hoc variants like "Jun"
+# or "jjas".
+periods:
+  monthly: [June, July, August, September]
+  seasonal: [JJAS]
+
+# Calendar-month membership, needed by anything that aggregates daily data
+# into a period (indicator calculations, percentile ranking against the
+# reference climatology). JJAS = June+July+August+September combined.
+period_months:
+  June: [6]
+  July: [7]
+  August: [8]
+  September: [9]
+  JJAS: [6, 7, 8, 9]
+
+# Standardized target labels for 2026 outputs — use these for file naming and
+# any user-facing period identifier tied to the assessment year.
+target_labels:
+  June: June_2026
+  July: July_2026
+  August: August_2026
+  September: September_2026
+  JJAS: JJAS_2026
+
+percentile_ranking_rule: >
+  Never mix calendar periods when computing a historical percentile rank —
+  rank June 2026 only against historical Junes (1993-2025), JJAS 2026 only
+  against historical JJAS seasons, etc. See methodology.md "Standardization
+  formulas" and config/standardization.yaml.

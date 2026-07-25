@@ -1,0 +1,50 @@
+# Thresholds for the Ethiopia hydroclimatic risk pipeline.
+# All configurable per methodology.md — never hardcode these in indicator,
+# hazard, or probability code.
+
+rainfall_day:
+  dry_day_mm_per_day: 1.0    # rainfall < this -> dry day (CDD counts these)
+  wet_day_mm_per_day: 1.0    # rainfall >= this -> wet day (CWD counts these)
+
+hazard:
+  high_hazard_threshold: 0.60   # H_dry or H_wet >= this -> counted in P_drought/P_wet
+  note: >
+    methodology.md "Hazard probability": P_drought = count(H_drought >= 0.60) /
+    total_valid_realizations, same for P_wet. Do not hardcode 0.60 in the
+    probability module — read it from here so it stays a single tunable knob.
+
+spi:
+  # QC on 2026-07-24 found existing spi_mean/spi_median GeoTIFFs with isolated
+  # cells beyond +/-4 (max observed |4.75|) — see data_qc_findings memory /
+  # config/standardization.yaml. Cap at the WMO extreme-category bound when
+  # the SPI-calculation module is built.
+  cap_abs_value: 3.09
+  extreme_dry: -2.0
+  moderate_dry: -1.0
+  moderate_wet: 1.0
+  extreme_wet: 2.0
+
+# 0-100 percentile scoring bands used by S_rain_dry/wet, S_CDD_dry,
+# S_CWD_dry/wet, S_Rx1day_wet, S_Rx5day_wet (methodology.md "Standardization
+# formulas"). All five formulas share the same clip((P-50)/40, 0, 1) shape:
+# 50th percentile -> 0 score, 10th/90th percentile -> 1.0 (saturated).
+percentile_scoring:
+  neutral_percentile: 50
+  saturation_half_width: 40   # |P - 50| >= 40 -> score saturates at 1.0
+
+risk_classes:
+  # methodology.md "Risk classes" — R_drought/R_wet/R_dominant are 0-100
+  # relative scores, not probability percentages.
+  - {min: 0, max: 19.9, label: "Very low", code: 0}
+  - {min: 20, max: 39.9, label: "Low", code: 1}
+  - {min: 40, max: 59.9, label: "Moderate", code: 2}
+  - {min: 60, max: 79.9, label: "High", code: 3}
+  - {min: 80, max: 100, label: "Very high", code: 4}
+
+dominant_hazard_codes:
+  # T layer (methodology.md "Combining drought and wetness"), shared coding
+  # with R_dominant categorical risk layer.
+  none: 0        # neither H_dry nor H_wet substantial (below high_hazard_threshold)
+  drought: 1     # H_dry > H_wet
+  wet: 2         # H_wet > H_dry
+  mixed: 3       # both substantial
