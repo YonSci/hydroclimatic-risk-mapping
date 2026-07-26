@@ -43,6 +43,20 @@ def test_save_png_preview_with_admin0_boundary_overlay(tmp_path: Path):
     assert result.stat().st_size > 0
 
 
+def test_save_png_preview_with_category_labels_sets_discrete_colorbar_ticks(tmp_path: Path):
+    shape = tuple(DOMAIN["grid_shape"])
+    array = np.random.default_rng(0).integers(0, 4, size=shape).astype("float64")
+    dest = tmp_path / "categorical.png"
+
+    result = save_png_preview(
+        array, dest, vmin=-0.5, vmax=3.5, show_admin0_boundary=False,
+        category_labels={0: "None", 1: "Drought", 2: "Wet", 3: "Mixed"},
+    )
+
+    assert result.exists()
+    assert result.stat().st_size > 0
+
+
 def _write_tif(path: Path, arr: np.ndarray):
     transform = Affine(DOMAIN["resolution_deg"], 0, DOMAIN["lon_min"], 0, -DOMAIN["resolution_deg"], DOMAIN["lat_max"])
     with rasterio.open(

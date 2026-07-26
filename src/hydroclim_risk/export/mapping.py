@@ -33,10 +33,17 @@ def save_png_preview(
     colorbar_label: str = "",
     domain_cfg: dict[str, Any] | None = None,
     show_admin0_boundary: bool = True,
+    category_labels: dict[int, str] | None = None,
 ) -> Path:
     """Render `array` (on the analysis grid, north-up: row 0 = north,
     matching every GeoTIFF in this project) as a PNG map, with an optional
     Ethiopia admin0 boundary outline.
+
+    `category_labels` (e.g. {0: "None", 1: "Drought", 2: "Wet", 3: "Mixed"})
+    switches the colorbar from a continuous scale to discrete ticks -- use
+    this for categorical layers (dominant_code, risk_class) where the
+    integers are labels, not an ordered magnitude, so a plain numeric
+    colorbar would be misleading (e.g. "Wet"=2 is not "twice" "Drought"=1).
     """
     domain_cfg = domain_cfg or load_data_config()
     domain = domain_cfg["domain"]
@@ -44,7 +51,11 @@ def save_png_preview(
 
     fig, ax = plt.subplots(figsize=(8, 6))
     im = ax.imshow(array, extent=extent, origin="upper", cmap=cmap, vmin=vmin, vmax=vmax)
-    fig.colorbar(im, ax=ax, label=colorbar_label)
+    cbar = fig.colorbar(im, ax=ax, label=colorbar_label)
+    if category_labels:
+        codes = sorted(category_labels)
+        cbar.set_ticks(codes)
+        cbar.set_ticklabels([category_labels[c] for c in codes])
 
     if show_admin0_boundary:
         try:

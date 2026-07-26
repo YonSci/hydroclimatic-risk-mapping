@@ -25,6 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 import numpy as np  # noqa: E402
+from matplotlib.colors import ListedColormap  # noqa: E402
 
 from hydroclim_risk.config import PROJECT_ROOT, load_data_config, load_thresholds_config  # noqa: E402
 from hydroclim_risk.export import save_png_preview  # noqa: E402
@@ -177,18 +178,40 @@ def main() -> None:
         vmin=0, vmax=1, colorbar_label="V_wet (0-1)", domain_cfg=domain_cfg,
     )
 
-    print(f"[5/5] Risk (R_dominant, risk_class) for {SECTOR}, JJAS only...")
+    print(f"[5/5] Risk (all 5 products) for {SECTOR}, JJAS only...")
     hazard_prob = hazard_prob_by_period["JJAS"]
     r_drought = compute_risk(hazard_prob["p_drought"], hazard_prob["s_drought"], e_layer.normalized, v_drought)
     r_wet = compute_risk(hazard_prob["p_wet"], hazard_prob["s_wet"], e_layer.normalized, v_wet)
     r_dominant = combine_dominant_risk(r_drought, r_wet)
     risk_class = classify_risk(r_dominant)
-    dominant_risk_code(r_drought, r_wet)  # not separately rendered
+    dominant_code = dominant_risk_code(r_drought, r_wet)
 
+    save_png_preview(
+        r_drought, IMG_DIR / "risk_r_drought_population_jjas.png",
+        title=f"R_drought — {SECTOR} sector, JJAS 2026", cmap="YlOrBr",
+        vmin=0, vmax=100, colorbar_label="R_drought (0-100)", domain_cfg=domain_cfg,
+    )
+    save_png_preview(
+        r_wet, IMG_DIR / "risk_r_wet_population_jjas.png",
+        title=f"R_wet — {SECTOR} sector, JJAS 2026", cmap="YlGnBu",
+        vmin=0, vmax=100, colorbar_label="R_wet (0-100)", domain_cfg=domain_cfg,
+    )
     save_png_preview(
         r_dominant, IMG_DIR / "risk_r_dominant_population_jjas.png",
         title=f"R_dominant — {SECTOR} sector, JJAS 2026", cmap="YlOrRd",
         vmin=0, vmax=100, colorbar_label="R (0-100)", domain_cfg=domain_cfg,
+    )
+    # dominant_code is CATEGORICAL (hazard TYPE), not an ordered magnitude --
+    # a sequential colormap would wrongly imply "wet"(2) is "more" than
+    # "drought"(1). ListedColormap + category_labels gives each code its own
+    # color and a discretely-labeled colorbar instead.
+    save_png_preview(
+        dominant_code, IMG_DIR / "risk_dominant_code_population_jjas.png",
+        title=f"Dominant risk type — {SECTOR} sector, JJAS 2026", cmap=ListedColormap(
+            ["#f0f0f0", "#e6550d", "#3182bd", "#756bb1"]
+        ),
+        vmin=-0.5, vmax=3.5, colorbar_label="Dominant hazard type", domain_cfg=domain_cfg,
+        category_labels={0: "None", 1: "Drought", 2: "Wet", 3: "Mixed"},
     )
     save_png_preview(
         risk_class.astype(np.float64), IMG_DIR / "risk_class_population_jjas.png",
@@ -196,7 +219,7 @@ def main() -> None:
         vmin=0, vmax=4, colorbar_label="Class (0=Very low .. 4=Very high)", domain_cfg=domain_cfg,
     )
 
-    n_written = 7 * len(PERIODS) + 1 + 2 + 2
+    n_written = 7 * len(PERIODS) + 1 + 2 + 5
     print(f"\nWrote {n_written} PNGs to {IMG_DIR}")
 
 

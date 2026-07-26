@@ -182,6 +182,20 @@ order isn't cosmetic:
   <img src="docs/images/hazard_h_overall_jjas.png" width="60%" alt="H_overall map, JJAS 2026, ensemble mean">
 </p>
 
+> [!TIP]
+> **How to read this map.** `H_overall` answers one question only: *"is at least one
+> hazard type (drought OR excess wetness) forecast to be elevated here, on average across
+> the ensemble?"* — it does **not** tell you which one. In the JJAS 2026 map above, most of
+> the country is orange/yellow (0.6–1.0) — meaning some hazard signal is elevated almost
+> everywhere this season — except a handful of purple/dark patches (e.g. around 8–10°N,
+> 36–39°E and a small cluster near 4°N, 41–42°E) where **neither** hazard is strongly
+> forecast. To find out *which* hazard is driving a high value at a given cell, compare it
+> against the `H_dry`/`H_wet` maps above, or see `dominant_code` in the Risk section below.
+> A high `H_overall` also doesn't imply consistent agreement across all 25 members — it can
+> be high because most members agree on one hazard type, or because members disagree (some
+> forecasting drought, others wetness) while each individually stays "hazardous" in its own
+> direction; `H_overall` alone can't distinguish those two very different situations.
+
 <details>
 <summary><b>Monthly breakdown</b> — H_overall for June, July, August, September</summary>
 <br>
@@ -321,6 +335,35 @@ bands:
 | 60–79.9 | High | 3 |
 | 80–100 | Very high | 4 |
 
+**Example output** — `R_drought` / `R_wet`, population sector, JJAS 2026 (the two
+hazard-specific risk scores that feed everything below):
+
+<p align="center">
+  <img src="docs/images/risk_r_drought_population_jjas.png" width="48%" alt="R_drought map, population sector, JJAS 2026">
+  <img src="docs/images/risk_r_wet_population_jjas.png" width="48%" alt="R_wet map, population sector, JJAS 2026">
+</p>
+
+**Example output** — `R_dominant = max(R_drought, R_wet)`, population sector, JJAS 2026:
+
+<p align="center">
+  <img src="docs/images/risk_r_dominant_population_jjas.png" width="60%" alt="R_dominant map, population sector, JJAS 2026">
+</p>
+
+> [!TIP]
+> **How to read this map, and why it looks so different from `H_overall` above.**
+> `H_overall` was orange/yellow (elevated) across nearly the entire country; `R_dominant`
+> here is pale/near-zero almost everywhere except a few concentrated hotspots (e.g. ~9°N,
+> 42–44°E and a cluster around 6–8°N, 36–40°E). That's not a bug — it's the whole point of
+> the Hazard × Exposure × Vulnerability framework. `R_dominant` isn't hazard alone: it's
+> hazard **gated by whether P/S cross the significance threshold, then multiplied by both
+> normalized exposure and vulnerability**. A cell can have high `H_overall` (a real,
+> forecast-elevated hazard) and still land near-zero `R_dominant` if that cell has little
+> `population` exposure there, or low population-sector vulnerability — hazard without
+> anything exposed and vulnerable to it isn't risk. The bright spots on this map are exactly
+> where elevated hazard **coincides** with people who are both present and vulnerable —
+> read together with `E_population` and `V_drought`/`V_wet` above to see why a given hotspot
+> is a hotspot (high exposure there? high vulnerability? both?).
+
 Alongside `risk_class`, every batch run also writes a `dominant_code` layer
 (`dominant_risk_code()` in [`risk/risk.py`](src/hydroclim_risk/risk/risk.py)). It's easy to
 assume this is just `argmax(R_drought, R_wet)` (whichever is numerically larger) — **it
@@ -341,14 +384,19 @@ are code `0`; a naive argmax would have force-assigned all of them to a hazard t
 isn't actually significant there. `dominant_code` reuses the same `0=none / 1=drought / 2=wet / 3=mixed` numbering as
 `hazard.dominant_hazard_code` (methodology.md's convention for keeping the two layers
 consistent), but it's computed from `R`, not `H` — don't assume the two rasters have
-identical values just because they share a coding scheme.
-
-**Example output** — `R_dominant` and its five-class breakdown, population sector, JJAS
-2026:
+identical values just because they share a coding scheme. Note this is a **categorical**
+layer (a hazard *type*, not a magnitude) — the map below uses a discrete color per code
+rather than a continuous scale, since "Wet"=2 isn't "twice" "Drought"=1:
 
 <p align="center">
-  <img src="docs/images/risk_r_dominant_population_jjas.png" width="48%" alt="R_dominant map, population sector, JJAS 2026">
-  <img src="docs/images/risk_class_population_jjas.png" width="48%" alt="Risk class map, population sector, JJAS 2026">
+  <img src="docs/images/risk_dominant_code_population_jjas.png" width="60%" alt="Dominant risk type map, population sector, JJAS 2026">
+</p>
+
+**Example output** — `risk_class`, the five-band classification of `R_dominant`,
+population sector, JJAS 2026:
+
+<p align="center">
+  <img src="docs/images/risk_class_population_jjas.png" width="60%" alt="Risk class map, population sector, JJAS 2026">
 </p>
 
 #### Why `population`, and what's actually in `outputs/risk/`
@@ -381,9 +429,10 @@ directly — e.g. `outputs/risk/ethiopia_JJAS_2026-05-01_healthsites_risk_class.
 health-facility risk instead of population risk.
 
 > [!NOTE]
-> All 40 PNGs across the sections above (Hazard × 5 periods × {H_dry, H_wet, H_overall},
+> All 43 PNGs across the sections above (Hazard × 5 periods × {H_dry, H_wet, H_overall},
 > Probability & Severity × 5 periods × {P_drought, P_wet, S_drought, S_wet}, Exposure ×1,
-> Vulnerability ×2, Risk ×2) are generated by
+> Vulnerability ×2, Risk × {r_drought, r_wet, r_dominant, dominant_code, risk_class} = 5)
+> are generated by
 > [`scripts/04_generate_doc_images.py`](scripts/04_generate_doc_images.py) from this
 > pipeline's real output — not mockups. The GeoTIFF counterpart of every image here is
 > written by [`scripts/05_generate_stage_geotiffs.py`](scripts/05_generate_stage_geotiffs.py)
