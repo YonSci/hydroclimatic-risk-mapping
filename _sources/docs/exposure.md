@@ -15,8 +15,15 @@ This page documents the exposure component and where to inspect its source and d
 
 Exposure details are documented in the notebooks below:
 
-- [inspect_exposure_geotiffs.ipynb](../inspect_exposure_geotiffs.ipynb)
-- [inspect_exposure_vulnerability_raw_sources.ipynb](../inspect_exposure_vulnerability_raw_sources.ipynb)
+- [Exposure GeoTIFF inspection notebook](../inspect_exposure_geotiffs.html)
+- [Raw source inspection notebook](../inspect_exposure_vulnerability_raw_sources.html)
+
+## Exposure workflow
+
+1. Acquire raw sector datasets.
+2. Harmonize and resample to the 0.25 degree analysis grid.
+3. Preserve absolute layers and generate normalized layers.
+4. Feed exposure layers into risk composition with hazard and vulnerability.
 
 ## What to look for in the notebooks
 
@@ -24,7 +31,7 @@ Exposure details are documented in the notebooks below:
 
 Use the exposure section in:
 
-- [inspect_exposure_geotiffs.ipynb](../inspect_exposure_geotiffs.ipynb)
+- [Exposure GeoTIFF inspection notebook](../inspect_exposure_geotiffs.html)
 
 This notebook includes:
 
@@ -36,7 +43,7 @@ This notebook includes:
 
 Use the raw-source section in:
 
-- [inspect_exposure_vulnerability_raw_sources.ipynb](../inspect_exposure_vulnerability_raw_sources.ipynb)
+- [Raw source inspection notebook](../inspect_exposure_vulnerability_raw_sources.html)
 
 This notebook includes:
 
@@ -47,3 +54,9 @@ This notebook includes:
 ## Representative figure
 
 ![Exposure population example](images/exposure_population.png)
+
+## Related documentation
+
+- Method formulas and composition: [methodology.md](methodology.md)
+- Source licensing and caveats: [data_provenance.md](data_provenance.md)
+- Vulnerability counterpart: [vulnerability.md](vulnerability.md)

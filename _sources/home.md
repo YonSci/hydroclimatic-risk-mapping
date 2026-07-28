@@ -12,35 +12,47 @@ where:
 - $E$ is exposure (people, cropland, livestock, infrastructure)
 - $V$ is vulnerability
 
-<div class="home-grid">
-  <a class="home-card" href="docs/hazards.html">
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-kicker">Seasonal Forecast Analytics</p>
+    <h2 class="hero-title">From Ensemble Rainfall Forecasts To Actionable Risk Maps</h2>
+    <p class="hero-subtitle">
+      A country-scale risk-screening workflow for Ethiopia that combines hazard,
+      exposure, and vulnerability into interpretable outputs for planning,
+      preparedness, and communication.
+    </p>
+  </div>
+</section>
+
+## What you can do with this documentation
+
+<div class="tool-grid">
+  <a class="tool-card" href="docs/hazards.html">
     <h3>Hazards</h3>
-    <p>Drought and excess-wetness hazard surfaces and interpretation.</p>
+    <p>Inspect drought and excess-wetness hazard construction and JJAS hazard products.</p>
   </a>
-  <a class="home-card" href="docs/exposure.html">
+  <a class="tool-card" href="docs/exposure.html">
     <h3>Exposure</h3>
-    <p>Sectoral exposure layers with notebook-based inspection references.</p>
+    <p>Review sectoral exposure layers with notebook-based raw and derived inspections.</p>
   </a>
-  <a class="home-card" href="docs/vulnerability.html">
+  <a class="tool-card" href="docs/vulnerability.html">
     <h3>Vulnerability</h3>
-    <p>Composite vulnerability structure and raw/derived input references.</p>
+    <p>Explore drought and wetness vulnerability composition and supporting indicators.</p>
   </a>
-  <a class="home-card" href="docs/methodology.html">
-    <h3>Methodology</h3>
-    <p>Formulas, standardization, weights, and hazard-probability logic.</p>
-  </a>
-  <a class="home-card" href="docs/data_provenance.html">
-    <h3>Data Provenance</h3>
-    <p>Source-by-source inventory with licenses, caveats, and exclusions.</p>
-  </a>
-  <a class="home-card" href="docs/results_gallery.html">
+  <a class="tool-card" href="docs/results_gallery.html">
     <h3>Results Gallery</h3>
-    <p>JJAS hazard, probability, severity, vulnerability, and risk maps.</p>
+    <p>View representative hazard, probability, severity, and risk map outputs.</p>
   </a>
-  <a class="home-card" href="docs/reproducibility.html">
-    <h3>Reproducibility</h3>
-    <p>Environment setup, local docs build, and GitHub Pages publication.</p>
-  </a>
+</div>
+
+## Documentation map
+
+<div class="doc-grid">
+  <a class="doc-pill" href="docs/methodology.html">Methodology</a>
+  <a class="doc-pill" href="docs/data_provenance.html">Data Provenance</a>
+  <a class="doc-pill" href="docs/reproducibility.html">Reproducibility</a>
+  <a class="doc-pill" href="inspect_exposure_geotiffs.html">Exposure GeoTIFF Notebook</a>
+  <a class="doc-pill" href="inspect_exposure_vulnerability_raw_sources.html">Raw Source Notebook</a>
 </div>
 
 ## Pipeline at a glance
@@ -65,32 +77,80 @@ flowchart LR
 - Reproducibility instructions for local and CI builds
 
 <style>
-.home-grid {
+.hero {
+  border-radius: 16px;
+  padding: 24px 22px;
+  margin: 0.25rem 0 1.2rem 0;
+  background: linear-gradient(135deg, #0b2e4f 0%, #205b8f 52%, #4b9bc9 100%);
+  color: #ffffff;
+  box-shadow: 0 12px 28px rgba(9, 30, 66, 0.18);
+}
+.hero-kicker {
+  margin: 0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #cce7ff;
+}
+.hero-title {
+  margin: 0.5rem 0 0.55rem 0;
+  font-size: 1.8rem;
+  line-height: 1.2;
+  color: #ffffff;
+}
+.hero-subtitle {
+  margin: 0;
+  max-width: 860px;
+  color: #e4f1fb;
+}
+.tool-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 14px;
+  gap: 16px;
   margin: 1rem 0 1.25rem 0;
 }
-.home-card {
+.tool-card {
   display: block;
-  border: 1px solid #d8e2eb;
+  border: 1px solid #d2deea;
   border-radius: 12px;
-  padding: 14px;
+  padding: 16px;
   text-decoration: none;
-  background: linear-gradient(160deg, #f8fbff 0%, #ffffff 100%);
-  box-shadow: 0 2px 10px rgba(9, 30, 66, 0.06);
+  background: linear-gradient(155deg, #f3f9ff 0%, #ffffff 100%);
+  box-shadow: 0 3px 12px rgba(9, 30, 66, 0.08);
 }
-.home-card:hover {
-  border-color: #3a6ea5;
-  box-shadow: 0 6px 18px rgba(9, 30, 66, 0.12);
+.tool-card:hover {
+  border-color: #1e5d93;
+  box-shadow: 0 8px 22px rgba(9, 30, 66, 0.15);
 }
-.home-card h3 {
+.tool-card h3 {
   margin-top: 0;
-  margin-bottom: 0.45rem;
-  color: #0f355f;
+  margin-bottom: 0.4rem;
+  color: #12395f;
 }
-.home-card p {
+.tool-card p {
   margin: 0;
-  color: #334e68;
+  color: #2f4b67;
+}
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+  margin: 0.9rem 0 1.4rem 0;
+}
+.doc-pill {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: #11456f;
+  border: 1px solid #bfd3e7;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #f7fbff;
+  font-weight: 600;
+}
+.doc-pill:hover {
+  background: #e9f4ff;
+  border-color: #7fa8cc;
 }
 </style>

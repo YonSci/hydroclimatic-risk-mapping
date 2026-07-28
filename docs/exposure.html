@@ -406,12 +406,14 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-sectors">Exposure sectors</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-inspection-references">Notebook inspection references</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-workflow">Exposure workflow</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-look-for-in-the-notebooks">What to look for in the notebooks</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derived-exposure-layers-analysis-grid">Derived exposure layers (analysis grid)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raw-source-layers-pre-resampling">Raw source layers (pre-resampling)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representative-figure">Representative figure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-documentation">Related documentation</a></li>
 </ul>
             </nav>
         </div>
@@ -441,9 +443,18 @@ document.write(`
 <h2>Notebook inspection references<a class="headerlink" href="#notebook-inspection-references" title="Permalink to this heading">#</a></h2>
 <p>Exposure details are documented in the notebooks below:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../inspect_exposure_geotiffs.html"><span class="doc std std-doc">inspect_exposure_geotiffs.ipynb</span></a></p></li>
-<li><p><a class="reference internal" href="../inspect_exposure_vulnerability_raw_sources.html"><span class="doc std std-doc">inspect_exposure_vulnerability_raw_sources.ipynb</span></a></p></li>
+<li><p><span class="xref myst">Exposure GeoTIFF inspection notebook</span></p></li>
+<li><p><span class="xref myst">Raw source inspection notebook</span></p></li>
 </ul>
+</section>
+<section id="exposure-workflow">
+<h2>Exposure workflow<a class="headerlink" href="#exposure-workflow" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Acquire raw sector datasets.</p></li>
+<li><p>Harmonize and resample to the 0.25 degree analysis grid.</p></li>
+<li><p>Preserve absolute layers and generate normalized layers.</p></li>
+<li><p>Feed exposure layers into risk composition with hazard and vulnerability.</p></li>
+</ol>
 </section>
 <section id="what-to-look-for-in-the-notebooks">
 <h2>What to look for in the notebooks<a class="headerlink" href="#what-to-look-for-in-the-notebooks" title="Permalink to this heading">#</a></h2>
@@ -451,7 +462,7 @@ document.write(`
 <h3>Derived exposure layers (analysis grid)<a class="headerlink" href="#derived-exposure-layers-analysis-grid" title="Permalink to this heading">#</a></h3>
 <p>Use the exposure section in:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../inspect_exposure_geotiffs.html"><span class="doc std std-doc">inspect_exposure_geotiffs.ipynb</span></a></p></li>
+<li><p><span class="xref myst">Exposure GeoTIFF inspection notebook</span></p></li>
 </ul>
 <p>This notebook includes:</p>
 <ul class="simple">
@@ -464,7 +475,7 @@ document.write(`
 <h3>Raw source layers (pre-resampling)<a class="headerlink" href="#raw-source-layers-pre-resampling" title="Permalink to this heading">#</a></h3>
 <p>Use the raw-source section in:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../inspect_exposure_vulnerability_raw_sources.html"><span class="doc std std-doc">inspect_exposure_vulnerability_raw_sources.ipynb</span></a></p></li>
+<li><p><span class="xref myst">Raw source inspection notebook</span></p></li>
 </ul>
 <p>This notebook includes:</p>
 <ul class="simple">
@@ -477,6 +488,14 @@ document.write(`
 <section id="representative-figure">
 <h2>Representative figure<a class="headerlink" href="#representative-figure" title="Permalink to this heading">#</a></h2>
 <p><img alt="Exposure population example" src="../_images/exposure_population.png" /></p>
+</section>
+<section id="related-documentation">
+<h2>Related documentation<a class="headerlink" href="#related-documentation" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Method formulas and composition: <a class="reference internal" href="methodology.html"><span class="doc std std-doc">methodology.md</span></a></p></li>
+<li><p>Source licensing and caveats: <a class="reference internal" href="data_provenance.html"><span class="doc std std-doc">data_provenance.md</span></a></p></li>
+<li><p>Vulnerability counterpart: <a class="reference internal" href="vulnerability.html"><span class="doc std std-doc">vulnerability.md</span></a></p></li>
+</ul>
 </section>
 </section>
 
@@ -546,12 +565,14 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-sectors">Exposure sectors</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-inspection-references">Notebook inspection references</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-workflow">Exposure workflow</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-look-for-in-the-notebooks">What to look for in the notebooks</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derived-exposure-layers-analysis-grid">Derived exposure layers (analysis grid)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raw-source-layers-pre-resampling">Raw source layers (pre-resampling)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representative-figure">Representative figure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-documentation">Related documentation</a></li>
 </ul>
   </nav></div>
 

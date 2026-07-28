@@ -405,8 +405,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hazard-dimensions">Hazard dimensions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-hazard-is-interpreted">How hazard is interpreted</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jjas-examples">JJAS examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-outputs">Related outputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-pages">Next pages</a></li>
 </ul>
             </nav>
         </div>
@@ -427,6 +429,14 @@ document.write(`
 <li><p>Drought hazard: H_dry</p></li>
 <li><p>Excess-wetness hazard: H_wet</p></li>
 <li><p>Combined hazard: H_overall = max(H_dry, H_wet)</p></li>
+</ul>
+</section>
+<section id="how-hazard-is-interpreted">
+<h2>How hazard is interpreted<a class="headerlink" href="#how-hazard-is-interpreted" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>High H_dry means stronger drought signal from SPI, rainfall percentile, CDD, and CWD.</p></li>
+<li><p>High H_wet means stronger wetness signal from SPI, rainfall percentile, CWD, Rx1day, and Rx5day.</p></li>
+<li><p>H_overall highlights where at least one hazard type is elevated.</p></li>
 </ul>
 </section>
 <section id="jjas-examples">
@@ -451,6 +461,14 @@ document.write(`
 <ul class="simple">
 <li><p>Probability surfaces (P_drought, P_wet)</p></li>
 <li><p>Severity surfaces (S_drought, S_wet)</p></li>
+</ul>
+</section>
+<section id="next-pages">
+<h2>Next pages<a class="headerlink" href="#next-pages" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>For exposure-side context, see <a class="reference internal" href="exposure.html"><span class="doc std std-doc">exposure.md</span></a>.</p></li>
+<li><p>For vulnerability-side context, see <a class="reference internal" href="vulnerability.html"><span class="doc std std-doc">vulnerability.md</span></a>.</p></li>
+<li><p>For full equations and weights, see <a class="reference internal" href="methodology.html"><span class="doc std std-doc">methodology.md</span></a>.</p></li>
 </ul>
 <p>For equations and standardization rules, see <a class="reference internal" href="methodology.html"><span class="doc std std-doc">methodology.md</span></a>.</p>
 </section>
@@ -521,8 +539,10 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hazard-dimensions">Hazard dimensions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-hazard-is-interpreted">How hazard is interpreted</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jjas-examples">JJAS examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-outputs">Related outputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-pages">Next pages</a></li>
 </ul>
   </nav></div>
 
