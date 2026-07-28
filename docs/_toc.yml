@@ -7,6 +7,12 @@ parts:
       - file: docs/README
       - file: README
 
+  - caption: Core Components
+    chapters:
+      - file: docs/hazards
+      - file: docs/exposure
+      - file: docs/vulnerability
+
   - caption: Method And Data
     chapters:
       - file: docs/methodology
