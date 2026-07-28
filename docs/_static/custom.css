@@ -1,0 +1,11 @@
+/* Move the auto-generated in-page "Contents" outline (normally the right
+   sidebar in sphinx-book-theme / pydata-sphinx-theme) to the left, next to
+   the primary site navigation, instead of the right edge of the article. */
+.bd-content {
+  flex-direction: row;
+}
+.bd-sidebar-secondary {
+  order: -1;
+  border-right: 1px solid var(--pst-color-border);
+  border-left: none;
+}
