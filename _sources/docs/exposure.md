@@ -35,6 +35,25 @@ in risk composition -- sectors are never blended into a single generic
 Full citations, acquisition modules, and output file names are in
 [data_provenance.md](data_provenance.md).
 
+## Layer statistics (analysis grid, absolute units)
+
+Computed directly from `outputs/exposure_vulnerability/*.tif` -- the same
+files the notebooks inspect.
+
+| Layer | Valid cells | Min | Mean | Max | Total |
+|---|---|---|---|---|---|
+| Population (people) | 1,481 / 2,880 | 448 | 70,513 | 3,299,466 | 104,430,083 |
+| Cropland fraction (0-1) | 2,880 / 2,880 | 0.00 | 0.14 | 1.00 | -- |
+| Cattle head count | 2,611 / 2,880 | 0 | 33,577 | 489,389 | 87,668,763 |
+| Built-up surface (m^2) | 2,880 / 2,880 | 0 | 1,078,737 | 225,454,809 | 3,106,762,115 |
+| Road length (km) | 2,880 / 2,880 | 0.0 | 129.3 | 4,045.3 | 372,412 |
+| Building count | 2,880 / 2,880 | 0 | 887 | 81,078 | 2,554,920 |
+| Health facility count | 2,880 / 2,880 | 0 | 0.27 | 129 | 777 |
+
+Valid-cell counts differ by sector because each source has its own native
+coverage before resampling (e.g. WorldPop has no population in uninhabited
+cells); this is expected, not missing data.
+
 ## Exposure workflow
 
 1. Acquire raw sector datasets at native resolution.

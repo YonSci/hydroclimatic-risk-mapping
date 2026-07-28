@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -62,6 +63,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/hazards';</script>
     <link rel="canonical" href="https://yonsci.github.io/hydroclimatic-risk-mapping/docs/hazards.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -403,11 +406,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hazard-dimensions">Hazard dimensions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-hazard-is-interpreted">How hazard is interpreted</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jjas-examples">JJAS examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-this-pipeline">In this pipeline</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-outputs">Related outputs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-pages">Next pages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jjas-examples">JJAS examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-documentation">Related documentation</a></li>
 </ul>
             </nav>
         </div>
@@ -421,21 +423,37 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="hazards">
 <h1>Hazards<a class="headerlink" href="#hazards" title="Permalink to this heading">#</a></h1>
-<p>This page summarizes the hazard component used by the hydroclimatic risk pipeline.</p>
-<section id="hazard-dimensions">
-<h2>Hazard dimensions<a class="headerlink" href="#hazard-dimensions" title="Permalink to this heading">#</a></h2>
+<p>Hazard is the first term in the pipeline’s IPCC-aligned framework,
+<span class="math notranslate nohighlight">\(R = H \times E \times V\)</span>: it describes the climate process itself, before any
+question of who or what it affects.</p>
+<div class="note admonition">
+<p class="admonition-title">Definition</p>
+<p>A hazard is a “process, phenomenon or human activity that may cause loss of
+life, injury or other health impacts, property damage, social and economic
+disruption or environmental degradation” (UNDRR, 2019). This pipeline covers
+two hydroclimatic hazard types: seasonal drought and seasonal excess wetness.</p>
+</div>
+<section id="in-this-pipeline">
+<h2>In this pipeline<a class="headerlink" href="#in-this-pipeline" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Drought hazard: H_dry</p></li>
-<li><p>Excess-wetness hazard: H_wet</p></li>
-<li><p>Combined hazard: H_overall = max(H_dry, H_wet)</p></li>
+<li><p>Drought hazard: <code class="docutils literal notranslate"><span class="pre">H_dry</span></code></p></li>
+<li><p>Excess-wetness hazard: <code class="docutils literal notranslate"><span class="pre">H_wet</span></code></p></li>
+<li><p>Combined hazard: <code class="docutils literal notranslate"><span class="pre">H_overall</span> <span class="pre">=</span> <span class="pre">max(H_dry,</span> <span class="pre">H_wet)</span></code></p></li>
+<li><p>High <code class="docutils literal notranslate"><span class="pre">H_dry</span></code> means a stronger drought signal from SPI, rainfall percentile,
+CDD, and CWD.</p></li>
+<li><p>High <code class="docutils literal notranslate"><span class="pre">H_wet</span></code> means a stronger wetness signal from SPI, rainfall percentile,
+CWD, Rx1day, and Rx5day.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">H_overall</span></code> highlights where at least one hazard type is elevated.</p></li>
 </ul>
+<p>Each is a per-ensemble-member field; <code class="docutils literal notranslate"><span class="pre">H_overall</span></code> is combined per member
+(<code class="docutils literal notranslate"><span class="pre">max</span></code>) before averaging, not averaged first and then maxed – see
+<a class="reference internal" href="methodology.html"><span class="doc std std-doc">methodology.md</span></a> for why the order matters.</p>
 </section>
-<section id="how-hazard-is-interpreted">
-<h2>How hazard is interpreted<a class="headerlink" href="#how-hazard-is-interpreted" title="Permalink to this heading">#</a></h2>
+<section id="related-outputs">
+<h2>Related outputs<a class="headerlink" href="#related-outputs" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>High H_dry means stronger drought signal from SPI, rainfall percentile, CDD, and CWD.</p></li>
-<li><p>High H_wet means stronger wetness signal from SPI, rainfall percentile, CWD, Rx1day, and Rx5day.</p></li>
-<li><p>H_overall highlights where at least one hazard type is elevated.</p></li>
+<li><p>Probability surfaces (<code class="docutils literal notranslate"><span class="pre">P_drought</span></code>, <code class="docutils literal notranslate"><span class="pre">P_wet</span></code>)</p></li>
+<li><p>Severity surfaces (<code class="docutils literal notranslate"><span class="pre">S_drought</span></code>, <code class="docutils literal notranslate"><span class="pre">S_wet</span></code>)</p></li>
 </ul>
 </section>
 <section id="jjas-examples">
@@ -455,21 +473,13 @@ document.write(`
 </div>
 <p><img alt="H_overall JJAS" src="../_images/hazard_h_overall_jjas.png" /></p>
 </section>
-<section id="related-outputs">
-<h2>Related outputs<a class="headerlink" href="#related-outputs" title="Permalink to this heading">#</a></h2>
+<section id="related-documentation">
+<h2>Related documentation<a class="headerlink" href="#related-documentation" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Probability surfaces (P_drought, P_wet)</p></li>
-<li><p>Severity surfaces (S_drought, S_wet)</p></li>
+<li><p>Full equations, weights, and standardization rules: <a class="reference internal" href="methodology.html"><span class="doc std std-doc">methodology.md</span></a></p></li>
+<li><p>Exposure component: <a class="reference internal" href="exposure.html"><span class="doc std std-doc">exposure.md</span></a></p></li>
+<li><p>Vulnerability component: <a class="reference internal" href="vulnerability.html"><span class="doc std std-doc">vulnerability.md</span></a></p></li>
 </ul>
-</section>
-<section id="next-pages">
-<h2>Next pages<a class="headerlink" href="#next-pages" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>For exposure-side context, see <a class="reference internal" href="exposure.html"><span class="doc std std-doc">exposure.md</span></a>.</p></li>
-<li><p>For vulnerability-side context, see <a class="reference internal" href="vulnerability.html"><span class="doc std std-doc">vulnerability.md</span></a>.</p></li>
-<li><p>For full equations and weights, see <a class="reference internal" href="methodology.html"><span class="doc std std-doc">methodology.md</span></a>.</p></li>
-</ul>
-<p>For equations and standardization rules, see <a class="reference internal" href="methodology.html"><span class="doc std std-doc">methodology.md</span></a>.</p>
 </section>
 </section>
 
@@ -537,11 +547,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hazard-dimensions">Hazard dimensions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-hazard-is-interpreted">How hazard is interpreted</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jjas-examples">JJAS examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-this-pipeline">In this pipeline</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-outputs">Related outputs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-pages">Next pages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jjas-examples">JJAS examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-documentation">Related documentation</a></li>
 </ul>
   </nav></div>
 
@@ -579,7 +588,11 @@ By YonSci
   <div>
   <b>Hydroclimatic Risk Mapping</b><br>
   Seasonal drought and excess-wetness risk mapping for Ethiopia using
-  Risk = Hazard x Exposure x Vulnerability.
+  Risk = Hazard x Exposure x Vulnerability.<br>
+  <b>How to cite:</b> YonSci, <i>Hydroclimatic Risk Mapping - Ethiopia</i>,
+  <a href="https://github.com/YonSci/hydroclimatic-risk-mapping">github.com/YonSci/hydroclimatic-risk-mapping</a>.<br>
+  <b>Code license:</b> MIT. Third-party data retain their own licenses --
+  see <a href="https://yonsci.github.io/hydroclimatic-risk-mapping/docs/data_provenance.html">Data Provenance</a> for the full list.
 </div>
 
 </div>

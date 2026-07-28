@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -407,6 +408,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-this-pipeline">In this pipeline</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-sectors-and-data-sources">Exposure sectors and data sources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-statistics-analysis-grid-absolute-units">Layer statistics (analysis grid, absolute units)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-workflow">Exposure workflow</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representative-figure">Representative figure</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-the-full-layers">Inspect the full layers</a></li>
@@ -489,6 +491,77 @@ in risk composition – sectors are never blended into a single generic
 </div>
 <p>Full citations, acquisition modules, and output file names are in
 <a class="reference internal" href="data_provenance.html"><span class="doc std std-doc">data_provenance.md</span></a>.</p>
+</section>
+<section id="layer-statistics-analysis-grid-absolute-units">
+<h2>Layer statistics (analysis grid, absolute units)<a class="headerlink" href="#layer-statistics-analysis-grid-absolute-units" title="Permalink to this heading">#</a></h2>
+<p>Computed directly from <code class="docutils literal notranslate"><span class="pre">outputs/exposure_vulnerability/*.tif</span></code> – the same
+files the notebooks inspect.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Layer</p></th>
+<th class="head"><p>Valid cells</p></th>
+<th class="head"><p>Min</p></th>
+<th class="head"><p>Mean</p></th>
+<th class="head"><p>Max</p></th>
+<th class="head"><p>Total</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Population (people)</p></td>
+<td><p>1,481 / 2,880</p></td>
+<td><p>448</p></td>
+<td><p>70,513</p></td>
+<td><p>3,299,466</p></td>
+<td><p>104,430,083</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cropland fraction (0-1)</p></td>
+<td><p>2,880 / 2,880</p></td>
+<td><p>0.00</p></td>
+<td><p>0.14</p></td>
+<td><p>1.00</p></td>
+<td><p>–</p></td>
+</tr>
+<tr class="row-even"><td><p>Cattle head count</p></td>
+<td><p>2,611 / 2,880</p></td>
+<td><p>0</p></td>
+<td><p>33,577</p></td>
+<td><p>489,389</p></td>
+<td><p>87,668,763</p></td>
+</tr>
+<tr class="row-odd"><td><p>Built-up surface (m^2)</p></td>
+<td><p>2,880 / 2,880</p></td>
+<td><p>0</p></td>
+<td><p>1,078,737</p></td>
+<td><p>225,454,809</p></td>
+<td><p>3,106,762,115</p></td>
+</tr>
+<tr class="row-even"><td><p>Road length (km)</p></td>
+<td><p>2,880 / 2,880</p></td>
+<td><p>0.0</p></td>
+<td><p>129.3</p></td>
+<td><p>4,045.3</p></td>
+<td><p>372,412</p></td>
+</tr>
+<tr class="row-odd"><td><p>Building count</p></td>
+<td><p>2,880 / 2,880</p></td>
+<td><p>0</p></td>
+<td><p>887</p></td>
+<td><p>81,078</p></td>
+<td><p>2,554,920</p></td>
+</tr>
+<tr class="row-even"><td><p>Health facility count</p></td>
+<td><p>2,880 / 2,880</p></td>
+<td><p>0</p></td>
+<td><p>0.27</p></td>
+<td><p>129</p></td>
+<td><p>777</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Valid-cell counts differ by sector because each source has its own native
+coverage before resampling (e.g. WorldPop has no population in uninhabited
+cells); this is expected, not missing data.</p>
 </section>
 <section id="exposure-workflow">
 <h2>Exposure workflow<a class="headerlink" href="#exposure-workflow" title="Permalink to this heading">#</a></h2>
@@ -601,6 +674,7 @@ source-to-config mapping, and raw format/extent checks prior to resampling.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-this-pipeline">In this pipeline</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-sectors-and-data-sources">Exposure sectors and data sources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-statistics-analysis-grid-absolute-units">Layer statistics (analysis grid, absolute units)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-workflow">Exposure workflow</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representative-figure">Representative figure</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-the-full-layers">Inspect the full layers</a></li>
@@ -642,7 +716,11 @@ By YonSci
   <div>
   <b>Hydroclimatic Risk Mapping</b><br>
   Seasonal drought and excess-wetness risk mapping for Ethiopia using
-  Risk = Hazard x Exposure x Vulnerability.
+  Risk = Hazard x Exposure x Vulnerability.<br>
+  <b>How to cite:</b> YonSci, <i>Hydroclimatic Risk Mapping - Ethiopia</i>,
+  <a href="https://github.com/YonSci/hydroclimatic-risk-mapping">github.com/YonSci/hydroclimatic-risk-mapping</a>.<br>
+  <b>Code license:</b> MIT. Third-party data retain their own licenses --
+  see <a href="https://yonsci.github.io/hydroclimatic-risk-mapping/docs/data_provenance.html">Data Provenance</a> for the full list.
 </div>
 
 </div>
