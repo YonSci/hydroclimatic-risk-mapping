@@ -13,6 +13,18 @@ where:
 - $V$ is vulnerability
 
 <div class="home-grid">
+  <a class="home-card" href="docs/hazards.html">
+    <h3>Hazards</h3>
+    <p>Drought and excess-wetness hazard surfaces and interpretation.</p>
+  </a>
+  <a class="home-card" href="docs/exposure.html">
+    <h3>Exposure</h3>
+    <p>Sectoral exposure layers with notebook-based inspection references.</p>
+  </a>
+  <a class="home-card" href="docs/vulnerability.html">
+    <h3>Vulnerability</h3>
+    <p>Composite vulnerability structure and raw/derived input references.</p>
+  </a>
   <a class="home-card" href="docs/methodology.html">
     <h3>Methodology</h3>
     <p>Formulas, standardization, weights, and hazard-probability logic.</p>
