@@ -1,0 +1,36 @@
+# Book settings
+title: Hydroclimatic Risk Mapping - Ethiopia
+author: YonSci
+logo: docs/images/hazard_h_overall_jjas.png
+exclude_patterns:
+  - _build
+  - Thumbs.db
+  - .DS_Store
+  - "**.ipynb_checkpoints"
+only_build_toc_files: true
+
+repository:
+  url: https://github.com/YonSci/hydroclimatic-risk-mapping
+  branch: main
+
+html:
+  home_page_in_navbar: false
+  use_edit_page_button: true
+  use_repository_button: true
+  use_issues_button: true
+  baseurl: https://yonsci.github.io/hydroclimatic-risk-mapping
+  extra_footer: |
+    <div>
+      <b>Hydroclimatic Risk Mapping</b><br>
+      Seasonal drought and excess-wetness risk mapping for Ethiopia using
+      Risk = Hazard x Exposure x Vulnerability.
+    </div>
+
+execute:
+  execute_notebooks: off
+  allow_errors: true
+
+sphinx:
+  config:
+    html_last_updated_fmt: "%b %d, %Y"
+    html_show_copyright: false

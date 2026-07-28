@@ -1,0 +1,23 @@
+format: jb-book
+root: home
+
+parts:
+  - caption: Overview
+    chapters:
+      - file: docs/README
+      - file: README
+
+  - caption: Method And Data
+    chapters:
+      - file: docs/methodology
+      - file: docs/data_provenance
+
+  - caption: Outputs And Validation
+    chapters:
+      - file: docs/results_gallery
+      - file: docs/reproducibility
+
+  - caption: Notebooks
+    chapters:
+      - file: inspect_exposure_geotiffs
+      - file: inspect_exposure_vulnerability_raw_sources
