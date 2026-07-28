@@ -18,6 +18,9 @@ Exposure details are documented in the notebooks below:
 - [Exposure GeoTIFF inspection notebook](../inspect_exposure_geotiffs.html)
 - [Raw source inspection notebook](../inspect_exposure_vulnerability_raw_sources.html)
 
+These two notebooks are also listed in the left sidebar under this Exposure page,
+so you can navigate their complete content directly from the TOC panel.
+
 ## Exposure workflow
 
 1. Acquire raw sector datasets.
@@ -60,3 +63,9 @@ This notebook includes:
 - Method formulas and composition: [methodology.md](methodology.md)
 - Source licensing and caveats: [data_provenance.md](data_provenance.md)
 - Vulnerability counterpart: [vulnerability.md](vulnerability.md)
+
+## Full content access
+
+- Normalized and derived layers are in the Exposure GeoTIFF notebook.
+- Raw source layers are in the Raw Source notebook.
+- Both pages are integrated into the book navigation tree on the left.
