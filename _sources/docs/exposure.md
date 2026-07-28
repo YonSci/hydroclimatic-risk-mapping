@@ -1,71 +1,75 @@
 # Exposure
 
-This page documents the exposure component and where to inspect its source and derived layers.
+Exposure identifies *what* is present in the landscape and *how much of it* sits in
+areas where hazard is elevated. It is the second term in the pipeline's
+IPCC-aligned framework, $R = H \times E \times V$.
 
-## Exposure sectors
+```{admonition} Definition
+:class: note
+Exposure is "the situation of people, infrastructure, housing, production
+capacities and other tangible human assets located in hazard-prone areas"
+(UNDRR, 2019). Exposure alone does not imply risk -- it becomes risk only once
+combined with hazard and vulnerability.
+```
 
-- Population
-- Cropland (total, irrigated, rainfed)
-- Livestock
-- Built-up surface
-- Roads and buildings
-- Health facilities
+## In this pipeline
 
-## Notebook inspection references
+Exposure is represented as sector-specific layers on the same 0.25 degree
+analysis grid used by hazard and vulnerability, so all three terms can be
+multiplied cell-by-cell. Each sector is kept as its own absolute layer
+(people, hectares, head count, m^2, km, count) plus a 0-1 normalized layer used
+in risk composition -- sectors are never blended into a single generic
+"exposure index."
 
-Exposure details are documented in the notebooks below:
+## Exposure sectors and data sources
 
-- [Exposure GeoTIFF inspection notebook](../inspect_exposure_geotiffs.html)
-- [Raw source inspection notebook](../inspect_exposure_vulnerability_raw_sources.html)
+| Sector | Indicator(s) | Source | License |
+|---|---|---|---|
+| Population | Population count | WorldPop | CC-BY 4.0 |
+| Cropland | Cropland fraction (total, irrigated, rainfed split) | ESA WorldCover 10m v200 (2021) + FAO GMIA v5 | CC-BY 4.0 |
+| Livestock | Cattle, sheep, goat head count | FAO Gridded Livestock of the World v4 (2020) | CC-BY 4.0 |
+| Built-up surface | Built-up surface area | JRC GHS-BUILT-S R2023A | CC-BY 4.0 |
+| Roads and buildings | Road length, building count | OpenStreetMap (via Geofabrik) | ODbL |
+| Health facilities | Health facility count | Global Healthsites Mapping Project (via HDX) | ODbL |
 
-These two notebooks are also listed in the left sidebar under this Exposure page,
-so you can navigate their complete content directly from the TOC panel.
+Full citations, acquisition modules, and output file names are in
+[data_provenance.md](data_provenance.md).
 
 ## Exposure workflow
 
-1. Acquire raw sector datasets.
-2. Harmonize and resample to the 0.25 degree analysis grid.
-3. Preserve absolute layers and generate normalized layers.
+1. Acquire raw sector datasets at native resolution.
+2. Harmonize and resample to the 0.25 degree analysis grid (sum for extensive
+   quantities like population and built-up area, mean for fractions).
+3. Preserve absolute layers and generate normalized (0-1) layers.
 4. Feed exposure layers into risk composition with hazard and vulnerability.
-
-## What to look for in the notebooks
-
-### Derived exposure layers (analysis grid)
-
-Use the exposure section in:
-
-- [Exposure GeoTIFF inspection notebook](../inspect_exposure_geotiffs.html)
-
-This notebook includes:
-
-- absolute and normalized exposure rasters
-- metadata, units, source, and processing notes
-- summary statistics and Ethiopia-clipped map previews
-
-### Raw source layers (pre-resampling)
-
-Use the raw-source section in:
-
-- [Raw source inspection notebook](../inspect_exposure_vulnerability_raw_sources.html)
-
-This notebook includes:
-
-- native-resolution source layers in data/exposure_vulnerability_raw
-- source-to-config mapping for exposure indicators
-- raw format and extent checks prior to resampling
 
 ## Representative figure
 
 ![Exposure population example](images/exposure_population.png)
+*Population exposure layer, normalized 0-1, Ethiopia-clipped.*
+
+## Inspect the full layers
+
+Two notebooks carry the complete, machine-readable detail behind this page.
+Both are also listed in the left sidebar under this Exposure page.
+
+```{admonition} Exposure GeoTIFF inspection notebook
+:class: seealso
+[inspect_exposure_geotiffs.html](../inspect_exposure_geotiffs.html) -- absolute
+and normalized exposure rasters on the analysis grid: metadata, units, source
+and processing notes, summary statistics, and Ethiopia-clipped map previews.
+```
+
+```{admonition} Raw source inspection notebook
+:class: seealso
+[inspect_exposure_vulnerability_raw_sources.html](../inspect_exposure_vulnerability_raw_sources.html)
+-- native-resolution source layers from `data/exposure_vulnerability_raw`,
+source-to-config mapping, and raw format/extent checks prior to resampling.
+```
 
 ## Related documentation
 
 - Method formulas and composition: [methodology.md](methodology.md)
 - Source licensing and caveats: [data_provenance.md](data_provenance.md)
-- Vulnerability counterpart: [vulnerability.md](vulnerability.md)
-
-## Full content access
-
-- Normalized and derived layers are in the Exposure GeoTIFF notebook.
-- Raw source layers are in the Raw Source notebook.
-- Both pages are integrated into the book navigation tree on the left.
+- Hazard component: [hazards.md](hazards.md)
+- Vulnerability component: [vulnerability.md](vulnerability.md)

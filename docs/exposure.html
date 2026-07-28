@@ -62,6 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/exposure';</script>
     <link rel="canonical" href="https://yonsci.github.io/hydroclimatic-risk-mapping/docs/exposure.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -403,17 +405,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-sectors">Exposure sectors</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-inspection-references">Notebook inspection references</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-this-pipeline">In this pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-sectors-and-data-sources">Exposure sectors and data sources</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-workflow">Exposure workflow</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-look-for-in-the-notebooks">What to look for in the notebooks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derived-exposure-layers-analysis-grid">Derived exposure layers (analysis grid)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raw-source-layers-pre-resampling">Raw source layers (pre-resampling)</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representative-figure">Representative figure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-the-full-layers">Inspect the full layers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-documentation">Related documentation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#full-content-access">Full content access</a></li>
 </ul>
             </nav>
         </div>
@@ -427,84 +424,111 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="exposure">
 <h1>Exposure<a class="headerlink" href="#exposure" title="Permalink to this heading">#</a></h1>
-<p>This page documents the exposure component and where to inspect its source and derived layers.</p>
-<section id="exposure-sectors">
-<h2>Exposure sectors<a class="headerlink" href="#exposure-sectors" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Population</p></li>
-<li><p>Cropland (total, irrigated, rainfed)</p></li>
-<li><p>Livestock</p></li>
-<li><p>Built-up surface</p></li>
-<li><p>Roads and buildings</p></li>
-<li><p>Health facilities</p></li>
-</ul>
+<p>Exposure identifies <em>what</em> is present in the landscape and <em>how much of it</em> sits in
+areas where hazard is elevated. It is the second term in the pipeline’s
+IPCC-aligned framework, <span class="math notranslate nohighlight">\(R = H \times E \times V\)</span>.</p>
+<div class="note admonition">
+<p class="admonition-title">Definition</p>
+<p>Exposure is “the situation of people, infrastructure, housing, production
+capacities and other tangible human assets located in hazard-prone areas”
+(UNDRR, 2019). Exposure alone does not imply risk – it becomes risk only once
+combined with hazard and vulnerability.</p>
+</div>
+<section id="in-this-pipeline">
+<h2>In this pipeline<a class="headerlink" href="#in-this-pipeline" title="Permalink to this heading">#</a></h2>
+<p>Exposure is represented as sector-specific layers on the same 0.25 degree
+analysis grid used by hazard and vulnerability, so all three terms can be
+multiplied cell-by-cell. Each sector is kept as its own absolute layer
+(people, hectares, head count, m^2, km, count) plus a 0-1 normalized layer used
+in risk composition – sectors are never blended into a single generic
+“exposure index.”</p>
 </section>
-<section id="notebook-inspection-references">
-<h2>Notebook inspection references<a class="headerlink" href="#notebook-inspection-references" title="Permalink to this heading">#</a></h2>
-<p>Exposure details are documented in the notebooks below:</p>
-<ul class="simple">
-<li><p><span class="xref myst">Exposure GeoTIFF inspection notebook</span></p></li>
-<li><p><span class="xref myst">Raw source inspection notebook</span></p></li>
-</ul>
-<p>These two notebooks are also listed in the left sidebar under this Exposure page,
-so you can navigate their complete content directly from the TOC panel.</p>
+<section id="exposure-sectors-and-data-sources">
+<h2>Exposure sectors and data sources<a class="headerlink" href="#exposure-sectors-and-data-sources" title="Permalink to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sector</p></th>
+<th class="head"><p>Indicator(s)</p></th>
+<th class="head"><p>Source</p></th>
+<th class="head"><p>License</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Population</p></td>
+<td><p>Population count</p></td>
+<td><p>WorldPop</p></td>
+<td><p>CC-BY 4.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cropland</p></td>
+<td><p>Cropland fraction (total, irrigated, rainfed split)</p></td>
+<td><p>ESA WorldCover 10m v200 (2021) + FAO GMIA v5</p></td>
+<td><p>CC-BY 4.0</p></td>
+</tr>
+<tr class="row-even"><td><p>Livestock</p></td>
+<td><p>Cattle, sheep, goat head count</p></td>
+<td><p>FAO Gridded Livestock of the World v4 (2020)</p></td>
+<td><p>CC-BY 4.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Built-up surface</p></td>
+<td><p>Built-up surface area</p></td>
+<td><p>JRC GHS-BUILT-S R2023A</p></td>
+<td><p>CC-BY 4.0</p></td>
+</tr>
+<tr class="row-even"><td><p>Roads and buildings</p></td>
+<td><p>Road length, building count</p></td>
+<td><p>OpenStreetMap (via Geofabrik)</p></td>
+<td><p>ODbL</p></td>
+</tr>
+<tr class="row-odd"><td><p>Health facilities</p></td>
+<td><p>Health facility count</p></td>
+<td><p>Global Healthsites Mapping Project (via HDX)</p></td>
+<td><p>ODbL</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Full citations, acquisition modules, and output file names are in
+<a class="reference internal" href="data_provenance.html"><span class="doc std std-doc">data_provenance.md</span></a>.</p>
 </section>
 <section id="exposure-workflow">
 <h2>Exposure workflow<a class="headerlink" href="#exposure-workflow" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>Acquire raw sector datasets.</p></li>
-<li><p>Harmonize and resample to the 0.25 degree analysis grid.</p></li>
-<li><p>Preserve absolute layers and generate normalized layers.</p></li>
+<li><p>Acquire raw sector datasets at native resolution.</p></li>
+<li><p>Harmonize and resample to the 0.25 degree analysis grid (sum for extensive
+quantities like population and built-up area, mean for fractions).</p></li>
+<li><p>Preserve absolute layers and generate normalized (0-1) layers.</p></li>
 <li><p>Feed exposure layers into risk composition with hazard and vulnerability.</p></li>
 </ol>
 </section>
-<section id="what-to-look-for-in-the-notebooks">
-<h2>What to look for in the notebooks<a class="headerlink" href="#what-to-look-for-in-the-notebooks" title="Permalink to this heading">#</a></h2>
-<section id="derived-exposure-layers-analysis-grid">
-<h3>Derived exposure layers (analysis grid)<a class="headerlink" href="#derived-exposure-layers-analysis-grid" title="Permalink to this heading">#</a></h3>
-<p>Use the exposure section in:</p>
-<ul class="simple">
-<li><p><span class="xref myst">Exposure GeoTIFF inspection notebook</span></p></li>
-</ul>
-<p>This notebook includes:</p>
-<ul class="simple">
-<li><p>absolute and normalized exposure rasters</p></li>
-<li><p>metadata, units, source, and processing notes</p></li>
-<li><p>summary statistics and Ethiopia-clipped map previews</p></li>
-</ul>
-</section>
-<section id="raw-source-layers-pre-resampling">
-<h3>Raw source layers (pre-resampling)<a class="headerlink" href="#raw-source-layers-pre-resampling" title="Permalink to this heading">#</a></h3>
-<p>Use the raw-source section in:</p>
-<ul class="simple">
-<li><p><span class="xref myst">Raw source inspection notebook</span></p></li>
-</ul>
-<p>This notebook includes:</p>
-<ul class="simple">
-<li><p>native-resolution source layers in data/exposure_vulnerability_raw</p></li>
-<li><p>source-to-config mapping for exposure indicators</p></li>
-<li><p>raw format and extent checks prior to resampling</p></li>
-</ul>
-</section>
-</section>
 <section id="representative-figure">
 <h2>Representative figure<a class="headerlink" href="#representative-figure" title="Permalink to this heading">#</a></h2>
-<p><img alt="Exposure population example" src="../_images/exposure_population.png" /></p>
+<p><img alt="Exposure population example" src="../_images/exposure_population.png" />
+<em>Population exposure layer, normalized 0-1, Ethiopia-clipped.</em></p>
+</section>
+<section id="inspect-the-full-layers">
+<h2>Inspect the full layers<a class="headerlink" href="#inspect-the-full-layers" title="Permalink to this heading">#</a></h2>
+<p>Two notebooks carry the complete, machine-readable detail behind this page.
+Both are also listed in the left sidebar under this Exposure page.</p>
+<div class="seealso admonition">
+<p class="admonition-title">Exposure GeoTIFF inspection notebook</p>
+<p><span class="xref myst">inspect_exposure_geotiffs.html</span> – absolute
+and normalized exposure rasters on the analysis grid: metadata, units, source
+and processing notes, summary statistics, and Ethiopia-clipped map previews.</p>
+</div>
+<div class="seealso admonition">
+<p class="admonition-title">Raw source inspection notebook</p>
+<p><span class="xref myst">inspect_exposure_vulnerability_raw_sources.html</span>
+– native-resolution source layers from <code class="docutils literal notranslate"><span class="pre">data/exposure_vulnerability_raw</span></code>,
+source-to-config mapping, and raw format/extent checks prior to resampling.</p>
+</div>
 </section>
 <section id="related-documentation">
 <h2>Related documentation<a class="headerlink" href="#related-documentation" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Method formulas and composition: <a class="reference internal" href="methodology.html"><span class="doc std std-doc">methodology.md</span></a></p></li>
 <li><p>Source licensing and caveats: <a class="reference internal" href="data_provenance.html"><span class="doc std std-doc">data_provenance.md</span></a></p></li>
-<li><p>Vulnerability counterpart: <a class="reference internal" href="vulnerability.html"><span class="doc std std-doc">vulnerability.md</span></a></p></li>
-</ul>
-</section>
-<section id="full-content-access">
-<h2>Full content access<a class="headerlink" href="#full-content-access" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Normalized and derived layers are in the Exposure GeoTIFF notebook.</p></li>
-<li><p>Raw source layers are in the Raw Source notebook.</p></li>
-<li><p>Both pages are integrated into the book navigation tree on the left.</p></li>
+<li><p>Hazard component: <a class="reference internal" href="hazards.html"><span class="doc std std-doc">hazards.md</span></a></p></li>
+<li><p>Vulnerability component: <a class="reference internal" href="vulnerability.html"><span class="doc std std-doc">vulnerability.md</span></a></p></li>
 </ul>
 </section>
 <div class="toctree-wrapper compound">
@@ -575,17 +599,12 @@ so you can navigate their complete content directly from the TOC panel.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-sectors">Exposure sectors</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebook-inspection-references">Notebook inspection references</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-this-pipeline">In this pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-sectors-and-data-sources">Exposure sectors and data sources</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-workflow">Exposure workflow</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-look-for-in-the-notebooks">What to look for in the notebooks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derived-exposure-layers-analysis-grid">Derived exposure layers (analysis grid)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raw-source-layers-pre-resampling">Raw source layers (pre-resampling)</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representative-figure">Representative figure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-the-full-layers">Inspect the full layers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-documentation">Related documentation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#full-content-access">Full content access</a></li>
 </ul>
   </nav></div>
 
