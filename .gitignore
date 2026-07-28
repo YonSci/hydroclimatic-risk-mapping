@@ -33,5 +33,8 @@ data/
 # --- Generated pipeline outputs (regenerate via scripts/03_generate_risk_maps.py) ---
 outputs/
 
+# --- Generated documentation build output ---
+_build/
+
 # --- Stray local scratch file (Windows `tree` command dump, not project content) ---
 folder_file.txt
