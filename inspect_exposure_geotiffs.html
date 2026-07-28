@@ -1,0 +1,2039 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Inspect Exposure and Vulnerability &#8212; Hydroclimatic Risk Mapping - Ethiopia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'inspect_exposure_geotiffs';</script>
+    <link rel="canonical" href="https://yonsci.github.io/hydroclimatic-risk-mapping/inspect_exposure_geotiffs.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Inspect Raw Exposure &amp; Vulnerability Source Files" href="inspect_exposure_vulnerability_raw_sources.html" />
+    <link rel="prev" title="Reproducibility" href="docs/reproducibility.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Jul 28, 2026"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="home.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/hazard_h_overall_jjas.png" class="logo__image only-light" alt="Hydroclimatic Risk Mapping - Ethiopia - Home"/>
+    <script>document.write(`<img src="_static/hazard_h_overall_jjas.png" class="logo__image only-dark" alt="Hydroclimatic Risk Mapping - Ethiopia - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="docs/README.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">Hydroclimatic Risk Mapping — Ethiopia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Core Components</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="docs/hazards.html">Hazards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/exposure.html">Exposure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/vulnerability.html">Vulnerability</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Method And Data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="docs/methodology.html">Methodology Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/data_provenance.html">Data Provenance</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Outputs And Validation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="docs/results_gallery.html">Results Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/reproducibility.html">Reproducibility</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Inspect Exposure and Vulnerability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inspect_exposure_vulnerability_raw_sources.html">Inspect Raw Exposure &amp; Vulnerability Source Files</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/YonSci/hydroclimatic-risk-mapping" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/YonSci/hydroclimatic-risk-mapping/edit/main/inspect_exposure_geotiffs.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/YonSci/hydroclimatic-risk-mapping/issues/new?title=Issue%20on%20page%20%2Finspect_exposure_geotiffs.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/inspect_exposure_geotiffs.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Inspect Exposure and Vulnerability</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-vulnerability-risk">Exposure, Vulnerability, Risk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directory">Directory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-python-package">Import Python Package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raw-geotiff-directory-listing">Raw GeoTIFF Directory Listing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-geotiff-directory-listing">Exposure GeoTIFF Directory Listing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vulnerability-geotiff-directory-listing">Vulnerability GeoTIFF Directory Listing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-ethiopia-boundary-geometry">Load Ethiopia Boundary Geometry</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-raster-plot-helper">Define Raster Plot Helper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raw-layers-outputs-exposure-vulnerability">Raw layers – outputs/exposure_vulnerability/</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#population-count">Population Count</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buildings">Buildings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cropland-fraction">Cropland Fraction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#livestock-cattle">Livestock – Cattle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#built-up-surface">Built-up Surface</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#health-facilities">Health Facilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roads">Roads</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aridity-index">Aridity Index</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#irrigated-area">Irrigated Area (%)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#electrification-no-access">Electrification – No access</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elevation">Elevation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slope">Slope</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#soil-clay-content">Soil Clay Content</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#river-water-body-distance">River / Water-body distance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relative-wealth-index">Relative Wealth Index</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-layers-absolute-normalized-outputs-exposure">Exposure layers (absolute + normalized) – outputs/exposure/</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#population-normalized">Population (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buildings-normalized">Buildings (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#built-up-surface-normalized">Built-up surface (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roads-normalized">Roads (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#livestock-cattle-normalized">Livestock – cattle (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#health-facilities-normalized">Health facilities (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cropland-total-normalized">Cropland – total (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cropland-irrigated-absolute">Cropland – irrigated (absolute)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cropland-irrigated-normalized">Cropland – irrigated (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cropland-rainfed-absolute">Cropland – rainfed (absolute)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cropland-rainfed-normalized">Cropland – rainfed (normalized)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vulnerability-composite-indices-outputs-vulnerability">Vulnerability composite indices – outputs/vulnerability/</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v-drought-composite">V_drought (composite)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v-wet-composite">V_wet (composite)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="inspect-exposure-and-vulnerability">
+<h1>Inspect Exposure and Vulnerability<a class="headerlink" href="#inspect-exposure-and-vulnerability" title="Permalink to this heading">#</a></h1>
+<section id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><span class="xref myst">Raw layers – outputs/exposure_vulnerability/</span></p>
+<ul>
+<li><p><span class="xref myst">Population count</span></p></li>
+<li><p><span class="xref myst">Buildings</span></p></li>
+<li><p><span class="xref myst">Cropland fraction</span></p></li>
+<li><p><span class="xref myst">Livestock – cattle</span></p></li>
+<li><p><span class="xref myst">Built-up surface</span></p></li>
+<li><p><span class="xref myst">Health facilities</span></p></li>
+<li><p><span class="xref myst">Roads</span></p></li>
+<li><p><span class="xref myst">Aridity index</span></p></li>
+<li><p><span class="xref myst">Irrigated area (%)</span></p></li>
+<li><p><span class="xref myst">Electrification – no access</span></p></li>
+<li><p><span class="xref myst">Elevation</span></p></li>
+<li><p><span class="xref myst">Slope</span></p></li>
+<li><p><span class="xref myst">Soil clay content</span></p></li>
+<li><p><span class="xref myst">River / water-body distance</span></p></li>
+<li><p><span class="xref myst">Relative Wealth Index</span></p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Exposure layers (absolute + normalized) – outputs/exposure/</span></p>
+<ul>
+<li><p><span class="xref myst">Population (normalized)</span></p></li>
+<li><p><span class="xref myst">Buildings (normalized)</span></p></li>
+<li><p><span class="xref myst">Built-up surface (normalized)</span></p></li>
+<li><p><span class="xref myst">Roads (normalized)</span></p></li>
+<li><p><span class="xref myst">Livestock – cattle (normalized)</span></p></li>
+<li><p><span class="xref myst">Health facilities (normalized)</span></p></li>
+<li><p><span class="xref myst">Cropland – total (normalized)</span></p></li>
+<li><p><span class="xref myst">Cropland – irrigated (absolute)</span></p></li>
+<li><p><span class="xref myst">Cropland – irrigated (normalized)</span></p></li>
+<li><p><span class="xref myst">Cropland – rainfed (absolute)</span></p></li>
+<li><p><span class="xref myst">Cropland – rainfed (normalized)</span></p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">Vulnerability composite indices – outputs/vulnerability/</span></p>
+<ul>
+<li><p><span class="xref myst">V_drought (composite)</span></p></li>
+<li><p><span class="xref myst">V_wet (composite)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="exposure-vulnerability-risk">
+<h2>Exposure, Vulnerability, Risk<a class="headerlink" href="#exposure-vulnerability-risk" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Exposure is “how much is there” (count, area, length)</p></li>
+<li><p>Vulnerability is “how susceptible is it” (poverty, terrain, drainage, access)</p></li>
+<li><p>Risk = 100 x P x S x E x V</p></li>
+<li><p>Every layer below regardless of native resolution or format is resampled
+onto the same 0.25 degree regular lat/lon grid (EPSG:4326), domain
+approximately <strong>33-48 degrees E, 3-15 degrees N</strong> (60 x 48 cells).</p></li>
+<li><p>Provides metadata and summary statistics printed alongside each map.</p></li>
+<li><p>Maps are clipped to Ethiopia’s admin-0 boundary for display (with the boundary outline drawn on top for reference), but the underlying GeoTIFFs are <strong>not</strong> clipped, and normalization percentiles are computed over the full domain rectangle, not just Ethiopia’s territory.</p></li>
+</ul>
+<p>Two aggregation patterns recur throughout:</p>
+<ul class="simple">
+<li><p><strong>extensive quantities</strong> (population, livestock, built-up area, electrification no-access) are summed via a density-then- multiply resampling to conserve national totals</p></li>
+<li><p><strong>intensive quantities</strong> (percentages, indices, distances) are mean-resampled.</p></li>
+</ul>
+</section>
+<section id="directory">
+<h2>Directory<a class="headerlink" href="#directory" title="Permalink to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Directory</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Form</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">outputs/exposure_vulnerability/</span></code></p></td>
+<td><p>Raw acquired layers, resampled onto the analysis grid but not yet normalized</p></td>
+<td><p>Absolute physical units (people, km, %, m, …)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">outputs/exposure/</span></code></p></td>
+<td><p>Per-sector exposure layers derived from the raw layers</p></td>
+<td><p>Both absolute and normalized (0-1, robust 5th/95th-percentile) versions</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">outputs/vulnerability/</span></code></p></td>
+<td><p>Final composite <code class="docutils literal notranslate"><span class="pre">V_drought</span></code> / <code class="docutils literal notranslate"><span class="pre">V_wet</span></code> indices, combining sensitivity + adaptive-capacity-deficit sub-indicators</p></td>
+<td><p>Normalized index (0-1), higher = more vulnerable</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="import-python-package">
+<h2>Import Python Package<a class="headerlink" href="#import-python-package" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">textwrap</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.mask</span><span class="w"> </span><span class="kn">import</span> <span class="n">mask</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.plot</span><span class="w"> </span><span class="kn">import</span> <span class="n">show</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;font.size&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">&quot;axes.titlesize&quot;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span> <span class="s2">&quot;axes.labelsize&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">&quot;xtick.labelsize&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;ytick.labelsize&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="raw-geotiff-directory-listing">
+<h2>Raw GeoTIFF Directory Listing<a class="headerlink" href="#raw-geotiff-directory-listing" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;outputs/exposure_vulnerability&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Raw exposure_vulnerability rasters:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">raw_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.tif&quot;</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Raw exposure_vulnerability rasters:
+  ethiopia_aridity.tif
+  ethiopia_buildings.tif
+  ethiopia_cropland.tif
+  ethiopia_elevation.tif
+  ethiopia_gdessa_no_access.tif
+  ethiopia_ghs_built.tif
+  ethiopia_healthsites.tif
+  ethiopia_irrigation_gmia.tif
+  ethiopia_livestock_cattle.tif
+  ethiopia_population.tif
+  ethiopia_poverty_rwi.tif
+  ethiopia_river_distance.tif
+  ethiopia_roads.tif
+  ethiopia_slope.tif
+  ethiopia_soil_clay.tif
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exposure-geotiff-directory-listing">
+<h2>Exposure GeoTIFF Directory Listing<a class="headerlink" href="#exposure-geotiff-directory-listing" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exposure_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;outputs/exposure&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Exposure rasters (absolute + normalized):&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">exposure_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.tif&quot;</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exposure rasters (absolute + normalized):
+  ethiopia_buildings_normalized.tif
+  ethiopia_built_up_normalized.tif
+  ethiopia_cropland_irrigated_absolute.tif
+  ethiopia_cropland_irrigated_normalized.tif
+  ethiopia_cropland_rainfed_absolute.tif
+  ethiopia_cropland_rainfed_normalized.tif
+  ethiopia_cropland_total_normalized.tif
+  ethiopia_healthsites_normalized.tif
+  ethiopia_livestock_cattle_normalized.tif
+  ethiopia_population_normalized.tif
+  ethiopia_roads_normalized.tif
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="vulnerability-geotiff-directory-listing">
+<h2>Vulnerability GeoTIFF Directory Listing<a class="headerlink" href="#vulnerability-geotiff-directory-listing" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vulnerability_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;outputs/vulnerability&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Vulnerability composite rasters:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">vulnerability_dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.tif&quot;</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vulnerability composite rasters:
+  ethiopia_v_drought.tif
+  ethiopia_v_wet.tif
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-ethiopia-boundary-geometry">
+<h2>Load Ethiopia Boundary Geometry<a class="headerlink" href="#load-ethiopia-boundary-geometry" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">boundary_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;boundaries/eth_shapefile/eth_admin0.shp&quot;</span><span class="p">)</span>
+<span class="n">boundary_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">boundary_path</span><span class="p">)</span>
+<span class="n">boundary_geom</span> <span class="o">=</span> <span class="n">boundary_gdf</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="define-raster-plot-helper">
+<h2>Define Raster Plot Helper<a class="headerlink" href="#define-raster-plot-helper" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">describe_and_plot</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">meta</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Print this layer&#39;s metadata + summary stats, then plot the</span>
+<span class="sd">    boundary-clipped raster with Ethiopia&#39;s admin-0 outline drawn on top.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">  (</span><span class="si">{</span><span class="n">path</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Category:          </span><span class="si">{</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Source:            </span><span class="si">{</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Native resolution: </span><span class="si">{</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;native_resolution&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Native format:     </span><span class="si">{</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;native_format&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Units:             </span><span class="si">{</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  License:           </span><span class="si">{</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;license&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Processing:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;processing&quot;</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    </span><span class="si">{</span><span class="n">line</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">boundary_gdf</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">src</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">boundary_gdf</span><span class="o">.</span><span class="n">crs</span> <span class="o">!=</span> <span class="n">src</span><span class="o">.</span><span class="n">crs</span><span class="p">:</span>
+            <span class="n">boundary_geom_proj</span> <span class="o">=</span> <span class="n">boundary_gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">boundary_geom_proj</span> <span class="o">=</span> <span class="n">boundary_geom</span>
+        <span class="n">clipped</span><span class="p">,</span> <span class="n">out_transform</span> <span class="o">=</span> <span class="n">mask</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="p">[</span><span class="n">boundary_geom_proj</span><span class="o">.</span><span class="n">__geo_interface__</span><span class="p">],</span> <span class="n">crop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">clipped</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">src</span><span class="o">.</span><span class="n">nodata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">nodata</span><span class="p">)</span>
+
+        <span class="n">valid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">compressed</span><span class="p">()</span>
+        <span class="n">n_valid</span><span class="p">,</span> <span class="n">n_total</span> <span class="o">=</span> <span class="n">valid</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">size</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;  Clipped stats (Ethiopia boundary): n=</span><span class="si">{</span><span class="n">n_valid</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_total</span><span class="si">}</span><span class="s2"> valid &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="mi">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n_valid</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n_total</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">% coverage), &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;min=</span><span class="si">{</span><span class="n">valid</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.3g</span><span class="si">}</span><span class="s2">, mean=</span><span class="si">{</span><span class="n">valid</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3g</span><span class="si">}</span><span class="s2">, max=</span><span class="si">{</span><span class="n">valid</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.3g</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">if</span> <span class="n">n_valid</span> <span class="k">else</span> <span class="s2">&quot;  Clipped stats: no valid pixels within the boundary&quot;</span>
+        <span class="p">)</span>
+
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+        <span class="n">show</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">out_transform</span><span class="p">)</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+        <span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+        <span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">cbar</span><span class="o">.</span><span class="n">outline</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">cbar</span><span class="o">.</span><span class="n">outline</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+    <span class="n">boundary_gdf</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">spine</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>
+        <span class="n">spine</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="raw-layers-outputs-exposure-vulnerability">
+<h2>Raw layers – outputs/exposure_vulnerability/<a class="headerlink" href="#raw-layers-outputs-exposure-vulnerability" title="Permalink to this heading">#</a></h2>
+<section id="population-count">
+<h3>Population Count<a class="headerlink" href="#population-count" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_population_count</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Population Count -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Population count&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- population&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;WorldPop gridded population count, Ethiopia 2020 (hub.worldpop.org)&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;~100 m&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF (count per source pixel)&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;people (count, summed per 0.25 deg cell)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;Extensive count: converted to density, average-resampled, then multiplied by destination cell area to conserve the national total (literal GDAL sum-resampling was found to not be true block-summation).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_population.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_population_count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Population count  (outputs/exposure_vulnerability/ethiopia_population.tif)
+  Category:          Exposure -- population
+  Source:            WorldPop gridded population count, Ethiopia 2020 (hub.worldpop.org)
+  Native resolution: ~100 m
+  Native format:     GeoTIFF (count per source pixel)
+  Units:             people (count, summed per 0.25 deg cell)
+  License:           CC-BY 4.0
+  Processing:
+    Extensive count: converted to density, average-resampled, then multiplied by destination cell area
+    to conserve the national total (literal GDAL sum-resampling was found to not be true block-
+    summation).
+  Clipped stats (Ethiopia boundary): n=1469/2820 valid (52.1% coverage), min=448, mean=7.1e+04, max=3.3e+06
+</pre></div>
+</div>
+<img alt="_images/077c5aee1140ee46e289f58be6a2790e3654b91152ed397be0bd9b237616c5e8.png" src="_images/077c5aee1140ee46e289f58be6a2790e3654b91152ed397be0bd9b237616c5e8.png" />
+</div>
+</div>
+</section>
+<section id="buildings">
+<h3>Buildings<a class="headerlink" href="#buildings" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_buildings</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Buildings -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Buildings&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- infrastructure&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;OpenStreetMap building footprints (Geofabrik Ethiopia extract, gis_osm_buildings_a_free_1.shp)&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;vector (no fixed grid resolution)&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;ESRI Shapefile (polygons)&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;count (buildings per 0.25 deg cell)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;Building centroids binned into 0.25 deg cells (2,554,920 buildings total; 3 empty geometries dropped before centroid computation).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;ODbL (OpenStreetMap contributors)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_buildings.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_buildings</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Buildings  (outputs/exposure_vulnerability/ethiopia_buildings.tif)
+  Category:          Exposure -- infrastructure
+  Source:            OpenStreetMap building footprints (Geofabrik Ethiopia extract, gis_osm_buildings_a_free_1.shp)
+  Native resolution: vector (no fixed grid resolution)
+  Native format:     ESRI Shapefile (polygons)
+  Units:             count (buildings per 0.25 deg cell)
+  License:           ODbL (OpenStreetMap contributors)
+  Processing:
+    Building centroids binned into 0.25 deg cells (2,554,920 buildings total; 3 empty geometries dropped
+    before centroid computation).
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=1.69e+03, max=8.11e+04
+</pre></div>
+</div>
+<img alt="_images/bba5bfa256d2ed15dfb2881551144df46e34b962058748df17d3ba09bb53d8d6.png" src="_images/bba5bfa256d2ed15dfb2881551144df46e34b962058748df17d3ba09bb53d8d6.png" />
+</div>
+</div>
+</section>
+<section id="cropland-fraction">
+<h3>Cropland Fraction<a class="headerlink" href="#cropland-fraction" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_cropland_fraction</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Cropland fraction -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Cropland fraction&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- agriculture&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;ESA WorldCover 10 m land cover v200 (2021), cropland class (value 40)&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;10 m&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;Cloud-Optimized GeoTIFF (3x3 deg tiles)&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;fraction of cell classified cropland (0-1)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s2">&quot;Exact numpy block-mean of the binary cropland mask (the 3 deg tile grid is an exact 12x multiple of 0.25 deg, so no destination cell straddles a tile boundary); GDAL&#39;s average-resampling was found unreliable at this ~20-240x downsampling ratio.&quot;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_cropland.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_cropland_fraction</span><span class="p">(</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cropland fraction  (outputs/exposure_vulnerability/ethiopia_cropland.tif)
+  Category:          Exposure -- agriculture
+  Source:            ESA WorldCover 10 m land cover v200 (2021), cropland class (value 40)
+  Native resolution: 10 m
+  Native format:     Cloud-Optimized GeoTIFF (3x3 deg tiles)
+  Units:             fraction of cell classified cropland (0-1)
+  License:           CC-BY 4.0
+  Processing:
+    Exact numpy block-mean of the binary cropland mask (the 3 deg tile grid is an exact 12x multiple of
+    0.25 deg, so no destination cell straddles a tile boundary); GDAL&#39;s average-resampling was found
+    unreliable at this ~20-240x downsampling ratio.
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=0.185, max=0.99
+</pre></div>
+</div>
+<img alt="_images/6a5a2db0a3f4cfc532ba873d7a907e985511b8dd28f59e13adb5e1e3330bb0ad.png" src="_images/6a5a2db0a3f4cfc532ba873d7a907e985511b8dd28f59e13adb5e1e3330bb0ad.png" />
+</div>
+</div>
+</section>
+<section id="livestock-cattle">
+<h3>Livestock – Cattle<a class="headerlink" href="#livestock-cattle" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_livestock_cattle</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Livestock -- cattle -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Livestock -- cattle&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- livestock&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;FAO Gridded Livestock of the World v4 (2020), cattle&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;5 arcmin (~10 km), native density head/km^2&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;head (count, summed per 0.25 deg cell)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;Density x source-pixel area -&gt; head count, then area-weighted-sum resampled to conserve the total head count (~87.7M cattle nationally).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_livestock_cattle.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_livestock_cattle</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Livestock -- cattle  (outputs/exposure_vulnerability/ethiopia_livestock_cattle.tif)
+  Category:          Exposure -- livestock
+  Source:            FAO Gridded Livestock of the World v4 (2020), cattle
+  Native resolution: 5 arcmin (~10 km), native density head/km^2
+  Native format:     GeoTIFF
+  Units:             head (count, summed per 0.25 deg cell)
+  License:           CC-BY 4.0
+  Processing:
+    Density x source-pixel area -&gt; head count, then area-weighted-sum resampled to conserve the total
+    head count (~87.7M cattle nationally).
+  Clipped stats (Ethiopia boundary): n=1477/2820 valid (52.4% coverage), min=0, mean=4.72e+04, max=4.89e+05
+</pre></div>
+</div>
+<img alt="_images/fe545cb25657220a0974e6dfe57dcd1d8682719415eb9cbb30250896a793a9a8.png" src="_images/fe545cb25657220a0974e6dfe57dcd1d8682719415eb9cbb30250896a793a9a8.png" />
+</div>
+</div>
+</section>
+<section id="built-up-surface">
+<h3>Built-up Surface<a class="headerlink" href="#built-up-surface" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_built_up_surface</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Built-up surface -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Built-up surface&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- infrastructure (built environment)&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;JRC GHSL GHS-BUILT-S R2023A, 2020 epoch&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;30 arcsec (~1 km), WGS84 global mosaic&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;m^2 built-up surface (summed per 0.25 deg cell)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;Extensive area quantity; windowed read (global grid is ~924M pixels) then density-then-multiply resampling, same conservation approach as population.&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_ghs_built.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_built_up_surface</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Built-up surface  (outputs/exposure_vulnerability/ethiopia_ghs_built.tif)
+  Category:          Exposure -- infrastructure (built environment)
+  Source:            JRC GHSL GHS-BUILT-S R2023A, 2020 epoch
+  Native resolution: 30 arcsec (~1 km), WGS84 global mosaic
+  Native format:     GeoTIFF
+  Units:             m^2 built-up surface (summed per 0.25 deg cell)
+  License:           CC-BY 4.0
+  Processing:
+    Extensive area quantity; windowed read (global grid is ~924M pixels) then density-then-multiply
+    resampling, same conservation approach as population.
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=1.56e+06, max=2.25e+08
+</pre></div>
+</div>
+<img alt="_images/faf6e23627859989824086eb7f5b2add7d821851720c54c5d1d3a6f7c9e5563a.png" src="_images/faf6e23627859989824086eb7f5b2add7d821851720c54c5d1d3a6f7c9e5563a.png" />
+</div>
+</div>
+</section>
+<section id="health-facilities">
+<h3>Health Facilities<a class="headerlink" href="#health-facilities" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_health_facilities</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Health facilities -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Health facilities&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- infrastructure (also feeds V_wet adaptive capacity)&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Global Healthsites Mapping Project, via HDX bulk CSV mirror&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;point-based (no fixed grid resolution)&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;CSV (lat/lon points)&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;count (facilities per 0.25 deg cell)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;Facility points counted per 0.25 deg cell via point-in-cell binning.&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;ODbL (OpenStreetMap contributors, via Global Healthsites Mapping Project)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_healthsites.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_health_facilities</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Health facilities  (outputs/exposure_vulnerability/ethiopia_healthsites.tif)
+  Category:          Exposure -- infrastructure (also feeds V_wet adaptive capacity)
+  Source:            Global Healthsites Mapping Project, via HDX bulk CSV mirror
+  Native resolution: point-based (no fixed grid resolution)
+  Native format:     CSV (lat/lon points)
+  Units:             count (facilities per 0.25 deg cell)
+  License:           ODbL (OpenStreetMap contributors, via Global Healthsites Mapping Project)
+  Processing:
+    Facility points counted per 0.25 deg cell via point-in-cell binning.
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=0.522, max=129
+</pre></div>
+</div>
+<img alt="_images/f841001001202c723d4c51e1f83dda2dc62ea3ed77a53c074689d08018cdfaa4.png" src="_images/f841001001202c723d4c51e1f83dda2dc62ea3ed77a53c074689d08018cdfaa4.png" />
+</div>
+</div>
+</section>
+<section id="roads">
+<h3>Roads<a class="headerlink" href="#roads" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_roads</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Roads -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Roads&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- infrastructure&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;OpenStreetMap road network (Geofabrik Ethiopia extract, gis_osm_roads_free_1.shp)&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;vector (no fixed grid resolution)&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;ESRI Shapefile (lines)&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;km (road length per 0.25 deg cell)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;Geodesic (WGS84 ellipsoid) vector overlay of road lines against the 0.25 deg grid via pyproj -- not rasterization (372,412 km total, max density at Addis Ababa as expected).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;ODbL (OpenStreetMap contributors)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_roads.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_roads</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Roads  (outputs/exposure_vulnerability/ethiopia_roads.tif)
+  Category:          Exposure -- infrastructure
+  Source:            OpenStreetMap road network (Geofabrik Ethiopia extract, gis_osm_roads_free_1.shp)
+  Native resolution: vector (no fixed grid resolution)
+  Native format:     ESRI Shapefile (lines)
+  Units:             km (road length per 0.25 deg cell)
+  License:           ODbL (OpenStreetMap contributors)
+  Processing:
+    Geodesic (WGS84 ellipsoid) vector overlay of road lines against the 0.25 deg grid via pyproj -- not
+    rasterization (372,412 km total, max density at Addis Ababa as expected).
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=244, max=4.05e+03
+</pre></div>
+</div>
+<img alt="_images/6bec75a1e67ead1a05a32eb812d3ccd04b411bfe6691f7763eae4af09b820677.png" src="_images/6bec75a1e67ead1a05a32eb812d3ccd04b411bfe6691f7763eae4af09b820677.png" />
+</div>
+</div>
+</section>
+<section id="aridity-index">
+<h3>Aridity Index<a class="headerlink" href="#aridity-index" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_aridity_index</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Aridity index -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Aridity index&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Vulnerability -- drought sensitivity&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;CGIAR-CSI Global Aridity Index v3.1&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;30 arcsec (~1 km)&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;index (unitless, ~0-1.5+; higher = wetter baseline climate)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;Windowed read, mean-resampled to 0.25 deg. Raw file has no embedded GDAL scale tag despite storing values x10000 -- a 0.0001 scale factor was applied and verified against known semi-arid climate values (domain mean 0.34). Inverted when combined into V_drought (higher AI = less drought-sensitive).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_aridity.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_aridity_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Aridity index  (outputs/exposure_vulnerability/ethiopia_aridity.tif)
+  Category:          Vulnerability -- drought sensitivity
+  Source:            CGIAR-CSI Global Aridity Index v3.1
+  Native resolution: 30 arcsec (~1 km)
+  Native format:     GeoTIFF
+  Units:             index (unitless, ~0-1.5+; higher = wetter baseline climate)
+  License:           CC-BY 4.0
+  Processing:
+    Windowed read, mean-resampled to 0.25 deg. Raw file has no embedded GDAL scale tag despite storing
+    values x10000 -- a 0.0001 scale factor was applied and verified against known semi-arid climate
+    values (domain mean 0.34). Inverted when combined into V_drought (higher AI = less drought-
+    sensitive).
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0.0551, mean=0.508, max=1.47
+</pre></div>
+</div>
+<img alt="_images/bc96f13480ac55f551ae288e2f00e153227f4c1e33b34841eea7e4043af21893.png" src="_images/bc96f13480ac55f551ae288e2f00e153227f4c1e33b34841eea7e4043af21893.png" />
+</div>
+</div>
+</section>
+<section id="irrigated-area">
+<h3>Irrigated Area (%)<a class="headerlink" href="#irrigated-area" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_irrigated_area</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Irrigated area (%) -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Irrigated area (%)&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s2">&quot;Vulnerability -- drought adaptive capacity (also feeds exposure&#39;s irrigated/rainfed cropland split)&quot;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;FAO/Bonn Global Map of Irrigation Areas v5&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;5 arcmin (~9 km)&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;ESRI ASCII grid&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">% o</span><span class="s1">f cell area irrigated (0-100)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s2">&quot;Mean-resampled to 0.25 deg (domain mean 0.67%, max 88%, consistent with Ethiopia&#39;s known very low irrigation development). Inverted when combined into V_drought&#39;s adaptive-capacity deficit.&quot;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_irrigation_gmia.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_irrigated_area</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Irrigated area (%)  (outputs/exposure_vulnerability/ethiopia_irrigation_gmia.tif)
+  Category:          Vulnerability -- drought adaptive capacity (also feeds exposure&#39;s irrigated/rainfed cropland split)
+  Source:            FAO/Bonn Global Map of Irrigation Areas v5
+  Native resolution: 5 arcmin (~9 km)
+  Native format:     ESRI ASCII grid
+  Units:             % of cell area irrigated (0-100)
+  License:           CC-BY 4.0
+  Processing:
+    Mean-resampled to 0.25 deg (domain mean 0.67%, max 88%, consistent with Ethiopia&#39;s known very low
+    irrigation development). Inverted when combined into V_drought&#39;s adaptive-capacity deficit.
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=0.182, max=26
+</pre></div>
+</div>
+<img alt="_images/13b056e774ba1b90e5491e9abd4634d878342ab5d9a7614810422ba5871ecbee.png" src="_images/13b056e774ba1b90e5491e9abd4634d878342ab5d9a7614810422ba5871ecbee.png" />
+</div>
+</div>
+</section>
+<section id="electrification-no-access">
+<h3>Electrification – No access<a class="headerlink" href="#electrification-no-access" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_electrification_no_access</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Electrification -- no access -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Electrification -- no access&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Vulnerability -- drought + wet adaptive capacity&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;IIASA/Falchetta et al. GDESSA (population without electricity access), 2020 slice of a 2014-2020 Sub-Saharan-Africa grid&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;~1 km&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;NetCDF (density, people without access per km^2)&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;people without electricity access (count, summed per 0.25 deg cell)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;Density x pixel area -&gt; count, then area-weighted-sum resampled (~80M people nationally). Real coverage gap (709/1484 Ethiopia cells valid pre-fill) is nearest-neighbor gap-filled within the admin-0 boundary downstream in the vulnerability module -- not in this raw file.&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_gdessa_no_access.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_electrification_no_access</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Electrification -- no access  (outputs/exposure_vulnerability/ethiopia_gdessa_no_access.tif)
+  Category:          Vulnerability -- drought + wet adaptive capacity
+  Source:            IIASA/Falchetta et al. GDESSA (population without electricity access), 2020 slice of a 2014-2020 Sub-Saharan-Africa grid
+  Native resolution: ~1 km
+  Native format:     NetCDF (density, people without access per km^2)
+  Units:             people without electricity access (count, summed per 0.25 deg cell)
+  License:           CC-BY 4.0
+  Processing:
+    Density x pixel area -&gt; count, then area-weighted-sum resampled (~80M people nationally). Real
+    coverage gap (709/1484 Ethiopia cells valid pre-fill) is nearest-neighbor gap-filled within the
+    admin-0 boundary downstream in the vulnerability module -- not in this raw file.
+  Clipped stats (Ethiopia boundary): n=709/2820 valid (25.1% coverage), min=775, mean=9.69e+04, max=2.21e+06
+</pre></div>
+</div>
+<img alt="_images/5bf5ae47fe7f11ab6bc15415b38a2589685b01891597d6cfd3b034ef3f8d7a42.png" src="_images/5bf5ae47fe7f11ab6bc15415b38a2589685b01891597d6cfd3b034ef3f8d7a42.png" />
+</div>
+</div>
+</section>
+<section id="elevation">
+<h3>Elevation<a class="headerlink" href="#elevation" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_elevation</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Elevation -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Elevation&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Vulnerability -- wet sensitivity&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;NOAA ETOPO 2022 global relief model&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;30 arcsec (~900 m)&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF (streamed via HTTP range requests, /vsicurl/)&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;meters (mean-aggregated per 0.25 deg cell)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s2">&quot;Windowed read, mean-aggregated to 0.25 deg. Low elevation = low-lying = more wet-vulnerable (inverted in V_wet). Includes real Red Sea bathymetry in the domain&#39;s NE corner (outside Ethiopia).&quot;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;Public domain (NOAA/NCEI, U.S. Government work; not for navigational use)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_elevation.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_elevation</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Elevation  (outputs/exposure_vulnerability/ethiopia_elevation.tif)
+  Category:          Vulnerability -- wet sensitivity
+  Source:            NOAA ETOPO 2022 global relief model
+  Native resolution: 30 arcsec (~900 m)
+  Native format:     GeoTIFF (streamed via HTTP range requests, /vsicurl/)
+  Units:             meters (mean-aggregated per 0.25 deg cell)
+  License:           Public domain (NOAA/NCEI, U.S. Government work; not for navigational use)
+  Processing:
+    Windowed read, mean-aggregated to 0.25 deg. Low elevation = low-lying = more wet-vulnerable
+    (inverted in V_wet). Includes real Red Sea bathymetry in the domain&#39;s NE corner (outside Ethiopia).
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=-124, mean=1.26e+03, max=4.03e+03
+</pre></div>
+</div>
+<img alt="_images/78a5fe6004c9c32c055a5f27b8859d13029e9ac54600156cf4abbf9d44513127.png" src="_images/78a5fe6004c9c32c055a5f27b8859d13029e9ac54600156cf4abbf9d44513127.png" />
+</div>
+</div>
+</section>
+<section id="slope">
+<h3>Slope<a class="headerlink" href="#slope" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_slope</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Slope -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Slope&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Vulnerability -- wet sensitivity&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Derived from NOAA ETOPO 2022 (same source file as elevation)&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;30 arcsec (~900 m)&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;Computed, not separately distributed&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;degrees (mean-aggregated per 0.25 deg cell)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;Central-difference gradient at native 30-arcsec resolution using true per-latitude meter spacing, then mean-aggregated to 0.25 deg. Flat terrain (low slope) = poor drainage = more wet-vulnerable (inverted in V_wet). An explicit simplification of Topographic Wetness Index -- no flow-accumulation tooling (richdem/pysheds/whitebox) was available for a full TWI.&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;Public domain (NOAA/NCEI)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_slope.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_slope</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Slope  (outputs/exposure_vulnerability/ethiopia_slope.tif)
+  Category:          Vulnerability -- wet sensitivity
+  Source:            Derived from NOAA ETOPO 2022 (same source file as elevation)
+  Native resolution: 30 arcsec (~900 m)
+  Native format:     Computed, not separately distributed
+  Units:             degrees (mean-aggregated per 0.25 deg cell)
+  License:           Public domain (NOAA/NCEI)
+  Processing:
+    Central-difference gradient at native 30-arcsec resolution using true per-latitude meter spacing,
+    then mean-aggregated to 0.25 deg. Flat terrain (low slope) = poor drainage = more wet-vulnerable
+    (inverted in V_wet). An explicit simplification of Topographic Wetness Index -- no flow-accumulation
+    tooling (richdem/pysheds/whitebox) was available for a full TWI.
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=2.89, max=20.4
+</pre></div>
+</div>
+<img alt="_images/c18c1f5c4ee81d35413b58c4ac639a7f771aaf54cc9518827d9344998f02735a.png" src="_images/c18c1f5c4ee81d35413b58c4ac639a7f771aaf54cc9518827d9344998f02735a.png" />
+</div>
+</div>
+</section>
+<section id="soil-clay-content">
+<h3>Soil Clay Content<a class="headerlink" href="#soil-clay-content" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_soil_clay_content</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Soil clay content -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Soil clay content&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Vulnerability -- wet sensitivity&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;ISRIC SoilGrids 2.0, topsoil (0-5 cm) mean clay content&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;250 m&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;Cloud-Optimized GeoTIFF via WebDAV/VRT (native CRS: Interrupted Goode Homolosine)&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">% c</span><span class="s1">lay content (0-100)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;Reprojected via a rasterio WarpedVRT; documented g/kg x10 convention applied (divide by 10 for percent), verified against known global topsoil averages (~24.5% mean). High clay = poor infiltration = more wet-vulnerable (direct in V_wet).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_soil_clay.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_soil_clay_content</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Soil clay content  (outputs/exposure_vulnerability/ethiopia_soil_clay.tif)
+  Category:          Vulnerability -- wet sensitivity
+  Source:            ISRIC SoilGrids 2.0, topsoil (0-5 cm) mean clay content
+  Native resolution: 250 m
+  Native format:     Cloud-Optimized GeoTIFF via WebDAV/VRT (native CRS: Interrupted Goode Homolosine)
+  Units:             % clay content (0-100)
+  License:           CC-BY 4.0
+  Processing:
+    Reprojected via a rasterio WarpedVRT; documented g/kg x10 convention applied (divide by 10 for
+    percent), verified against known global topsoil averages (~24.5% mean). High clay = poor
+    infiltration = more wet-vulnerable (direct in V_wet).
+  Clipped stats (Ethiopia boundary): n=1480/2820 valid (52.5% coverage), min=17.5, mean=33.2, max=53.6
+</pre></div>
+</div>
+<img alt="_images/eb0396f02bcbcc155e548aad7ce40b207a607036c14b72a225c0da92557bfb15.png" src="_images/eb0396f02bcbcc155e548aad7ce40b207a607036c14b72a225c0da92557bfb15.png" />
+</div>
+</div>
+</section>
+<section id="river-water-body-distance">
+<h3>River / Water-body distance<a class="headerlink" href="#river-water-body-distance" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_river_water_body_distance</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot River / water-body distance -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;River / water-body distance&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Vulnerability -- wet sensitivity&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;OpenStreetMap waterways + water bodies (Geofabrik Ethiopia extract, gis_osm_waterways_free_1.shp + gis_osm_water_a_free_1.shp)&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;vector (no fixed grid resolution)&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;ESRI Shapefile (lines + polygons)&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;km (distance from cell centroid to nearest river/water body)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s2">&quot;Nearest-feature distance via geopandas sjoin_nearest in a local Azimuthal Equidistant projection centered on Ethiopia (lat_0=9, lon_0=40), not UTM (Ethiopia spans multiple UTM zones). Short distance = more wet-vulnerable (inverted in V_wet). OSM extract is clipped to Ethiopia&#39;s territory, slightly overestimating distance for a handful of border cells near cross-border rivers.&quot;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;ODbL (OpenStreetMap contributors)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_river_distance.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_river_water_body_distance</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>River / water-body distance  (outputs/exposure_vulnerability/ethiopia_river_distance.tif)
+  Category:          Vulnerability -- wet sensitivity
+  Source:            OpenStreetMap waterways + water bodies (Geofabrik Ethiopia extract, gis_osm_waterways_free_1.shp + gis_osm_water_a_free_1.shp)
+  Native resolution: vector (no fixed grid resolution)
+  Native format:     ESRI Shapefile (lines + polygons)
+  Units:             km (distance from cell centroid to nearest river/water body)
+  License:           ODbL (OpenStreetMap contributors)
+  Processing:
+    Nearest-feature distance via geopandas sjoin_nearest in a local Azimuthal Equidistant projection
+    centered on Ethiopia (lat_0=9, lon_0=40), not UTM (Ethiopia spans multiple UTM zones). Short
+    distance = more wet-vulnerable (inverted in V_wet). OSM extract is clipped to Ethiopia&#39;s territory,
+    slightly overestimating distance for a handful of border cells near cross-border rivers.
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=7.2, max=63
+</pre></div>
+</div>
+<img alt="_images/10505c033423c231422a90520d6b91bb2ddea3ff1308520fa08ccd1e5bd6ee30.png" src="_images/10505c033423c231422a90520d6b91bb2ddea3ff1308520fa08ccd1e5bd6ee30.png" />
+</div>
+</div>
+</section>
+<section id="relative-wealth-index">
+<h3>Relative Wealth Index<a class="headerlink" href="#relative-wealth-index" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_relative_wealth_index</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Relative Wealth Index -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Relative Wealth Index&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Vulnerability -- drought + wet sensitivity&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Meta Relative Wealth Index (Data for Good, via HDX)&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;~2.4 km (point resolution)&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;CSV (lat/lon points)&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;index (unitless, roughly -1 to +1, centered near 0; higher = wealthier)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;Mean of points falling in each 0.25 deg cell (domain range -1.16 to 0.17, mean -0.46). Small real gap (54/1484 Ethiopia cells) nearest-neighbor gap-filled downstream. Higher RWI = wealthier = LESS vulnerable (inverted when combined into V_drought/V_wet).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0 (Meta Data for Good)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">raw_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_poverty_rwi.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_relative_wealth_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Relative Wealth Index  (outputs/exposure_vulnerability/ethiopia_poverty_rwi.tif)
+  Category:          Vulnerability -- drought + wet sensitivity
+  Source:            Meta Relative Wealth Index (Data for Good, via HDX)
+  Native resolution: ~2.4 km (point resolution)
+  Native format:     CSV (lat/lon points)
+  Units:             index (unitless, roughly -1 to +1, centered near 0; higher = wealthier)
+  License:           CC-BY 4.0 (Meta Data for Good)
+  Processing:
+    Mean of points falling in each 0.25 deg cell (domain range -1.16 to 0.17, mean -0.46). Small real
+    gap (54/1484 Ethiopia cells) nearest-neighbor gap-filled downstream. Higher RWI = wealthier = LESS
+    vulnerable (inverted when combined into V_drought/V_wet).
+  Clipped stats (Ethiopia boundary): n=1430/2820 valid (50.7% coverage), min=-1.06, mean=-0.458, max=0.168
+</pre></div>
+</div>
+<img alt="_images/a3caf98bd7107d9eb7fad6efb8b33cfd1cc13da0e990de95df09484a8a3b5068.png" src="_images/a3caf98bd7107d9eb7fad6efb8b33cfd1cc13da0e990de95df09484a8a3b5068.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="exposure-layers-absolute-normalized-outputs-exposure">
+<h2>Exposure layers (absolute + normalized) – outputs/exposure/<a class="headerlink" href="#exposure-layers-absolute-normalized-outputs-exposure" title="Permalink to this heading">#</a></h2>
+<section id="population-normalized">
+<h3>Population (normalized)<a class="headerlink" href="#population-normalized" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_population_normalized</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Population (normalized) -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Population (normalized)&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- population&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Normalized from ethiopia_population.tif&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;0.25 deg analysis grid (source: ~100 m)&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;normalized index (0-1, robust 5th/95th-percentile of the absolute layer, domain-wide)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;robust_percentile_normalize(p_low=5, p_high=95); small gap (15/1484 Ethiopia cells) nearest-neighbor gap-filled first.&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0 (WorldPop)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">exposure_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_population_normalized.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_population_normalized</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Population (normalized)  (outputs/exposure/ethiopia_population_normalized.tif)
+  Category:          Exposure -- population
+  Source:            Normalized from ethiopia_population.tif
+  Native resolution: 0.25 deg analysis grid (source: ~100 m)
+  Native format:     GeoTIFF
+  Units:             normalized index (0-1, robust 5th/95th-percentile of the absolute layer, domain-wide)
+  License:           CC-BY 4.0 (WorldPop)
+  Processing:
+    robust_percentile_normalize(p_low=5, p_high=95); small gap (15/1484 Ethiopia cells) nearest-neighbor
+    gap-filled first.
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=0.194, max=1
+</pre></div>
+</div>
+<img alt="_images/60584f4a3e307fe6c0d1ab52414bb4073a0930eb69e5f9dcc9ee784c9b43ad3c.png" src="_images/60584f4a3e307fe6c0d1ab52414bb4073a0930eb69e5f9dcc9ee784c9b43ad3c.png" />
+</div>
+</div>
+</section>
+<section id="buildings-normalized">
+<h3>Buildings (normalized)<a class="headerlink" href="#buildings-normalized" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_buildings_normalized</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Buildings (normalized) -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Buildings (normalized)&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- infrastructure&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Normalized from ethiopia_buildings.tif&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;0.25 deg analysis grid&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;normalized index (0-1, robust 5th/95th-percentile, domain-wide)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;robust_percentile_normalize(p_low=5, p_high=95).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;ODbL (OpenStreetMap contributors)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">exposure_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_buildings_normalized.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_buildings_normalized</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Buildings (normalized)  (outputs/exposure/ethiopia_buildings_normalized.tif)
+  Category:          Exposure -- infrastructure
+  Source:            Normalized from ethiopia_buildings.tif
+  Native resolution: 0.25 deg analysis grid
+  Native format:     GeoTIFF
+  Units:             normalized index (0-1, robust 5th/95th-percentile, domain-wide)
+  License:           ODbL (OpenStreetMap contributors)
+  Processing:
+    robust_percentile_normalize(p_low=5, p_high=95).
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=0.166, max=1
+</pre></div>
+</div>
+<img alt="_images/ee1ec6bf4841b24c1ee37584316c7f8e7eb11d2228bf63d6aed6680711e1979d.png" src="_images/ee1ec6bf4841b24c1ee37584316c7f8e7eb11d2228bf63d6aed6680711e1979d.png" />
+</div>
+</div>
+</section>
+<section id="built-up-surface-normalized">
+<h3>Built-up surface (normalized)<a class="headerlink" href="#built-up-surface-normalized" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_built_up_surface_normalized</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Built-up surface (normalized) -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Built-up surface (normalized)&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- infrastructure&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Normalized from ethiopia_ghs_built.tif&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;0.25 deg analysis grid (source: ~1 km)&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;normalized index (0-1, robust 5th/95th-percentile, domain-wide)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;robust_percentile_normalize(p_low=5, p_high=95).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0 (JRC GHSL)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">exposure_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_built_up_normalized.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_built_up_surface_normalized</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Built-up surface (normalized)  (outputs/exposure/ethiopia_built_up_normalized.tif)
+  Category:          Exposure -- infrastructure
+  Source:            Normalized from ethiopia_ghs_built.tif
+  Native resolution: 0.25 deg analysis grid (source: ~1 km)
+  Native format:     GeoTIFF
+  Units:             normalized index (0-1, robust 5th/95th-percentile, domain-wide)
+  License:           CC-BY 4.0 (JRC GHSL)
+  Processing:
+    robust_percentile_normalize(p_low=5, p_high=95).
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=0.164, max=1
+</pre></div>
+</div>
+<img alt="_images/a42f8a03e21de2ca99b86067f79c762ee71c7f3e1e3103307c4149d23edf7b7e.png" src="_images/a42f8a03e21de2ca99b86067f79c762ee71c7f3e1e3103307c4149d23edf7b7e.png" />
+</div>
+</div>
+</section>
+<section id="roads-normalized">
+<h3>Roads (normalized)<a class="headerlink" href="#roads-normalized" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_roads_normalized</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Roads (normalized) -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Roads (normalized)&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- infrastructure&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Normalized from ethiopia_roads.tif&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;0.25 deg analysis grid&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;normalized index (0-1, robust 5th/95th-percentile, domain-wide)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;robust_percentile_normalize(p_low=5, p_high=95).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;ODbL (OpenStreetMap contributors)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">exposure_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_roads_normalized.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_roads_normalized</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Roads (normalized)  (outputs/exposure/ethiopia_roads_normalized.tif)
+  Category:          Exposure -- infrastructure
+  Source:            Normalized from ethiopia_roads.tif
+  Native resolution: 0.25 deg analysis grid
+  Native format:     GeoTIFF
+  Units:             normalized index (0-1, robust 5th/95th-percentile, domain-wide)
+  License:           ODbL (OpenStreetMap contributors)
+  Processing:
+    robust_percentile_normalize(p_low=5, p_high=95).
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=0.365, max=1
+</pre></div>
+</div>
+<img alt="_images/335b3e6cbc1b8516def07bc52fe7f7248ce8f20865681758a5d8bf4424981829.png" src="_images/335b3e6cbc1b8516def07bc52fe7f7248ce8f20865681758a5d8bf4424981829.png" />
+</div>
+</div>
+</section>
+<section id="livestock-cattle-normalized">
+<h3>Livestock – cattle (normalized)<a class="headerlink" href="#livestock-cattle-normalized" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_livestock_cattle_normalized</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Livestock -- cattle (normalized) -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Livestock -- cattle (normalized)&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- livestock&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Normalized from ethiopia_livestock_cattle.tif&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;0.25 deg analysis grid (source: ~10 km)&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;normalized index (0-1, robust 5th/95th-percentile, domain-wide)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;robust_percentile_normalize(p_low=5, p_high=95).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0 (FAO GLW4)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">exposure_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_livestock_cattle_normalized.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_livestock_cattle_normalized</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Livestock -- cattle (normalized)  (outputs/exposure/ethiopia_livestock_cattle_normalized.tif)
+  Category:          Exposure -- livestock
+  Source:            Normalized from ethiopia_livestock_cattle.tif
+  Native resolution: 0.25 deg analysis grid (source: ~10 km)
+  Native format:     GeoTIFF
+  Units:             normalized index (0-1, robust 5th/95th-percentile, domain-wide)
+  License:           CC-BY 4.0 (FAO GLW4)
+  Processing:
+    robust_percentile_normalize(p_low=5, p_high=95).
+  Clipped stats (Ethiopia boundary): n=1477/2820 valid (52.4% coverage), min=0, mean=0.295, max=1
+</pre></div>
+</div>
+<img alt="_images/c74a22640bcd1e6315c0a7f83239af88cafb88d1c5b4d5a92e7663bcbdc3733e.png" src="_images/c74a22640bcd1e6315c0a7f83239af88cafb88d1c5b4d5a92e7663bcbdc3733e.png" />
+</div>
+</div>
+</section>
+<section id="health-facilities-normalized">
+<h3>Health facilities (normalized)<a class="headerlink" href="#health-facilities-normalized" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_health_facilities_normalized</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Health facilities (normalized) -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Health facilities (normalized)&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- infrastructure&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Normalized from ethiopia_healthsites.tif&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;0.25 deg analysis grid&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;normalized index (0-1, robust 0th/99th-percentile override, domain-wide)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;robust_percentile_normalize(p_low=0, p_high=99) -- the domain-wide default (5/95) degenerates to a flat 0.5 because 95.03</span><span class="si">% o</span><span class="s1">f cells are exactly zero (only towns/cities have a mapped facility); the 0/99 override keeps zero-vs-any-facility distinguishable.&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;ODbL (Global Healthsites Mapping Project)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">exposure_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_healthsites_normalized.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_health_facilities_normalized</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Health facilities (normalized)  (outputs/exposure/ethiopia_healthsites_normalized.tif)
+  Category:          Exposure -- infrastructure
+  Source:            Normalized from ethiopia_healthsites.tif
+  Native resolution: 0.25 deg analysis grid
+  Native format:     GeoTIFF
+  Units:             normalized index (0-1, robust 0th/99th-percentile override, domain-wide)
+  License:           ODbL (Global Healthsites Mapping Project)
+  Processing:
+    robust_percentile_normalize(p_low=0, p_high=99) -- the domain-wide default (5/95) degenerates to a
+    flat 0.5 because 95.03% of cells are exactly zero (only towns/cities have a mapped facility); the
+    0/99 override keeps zero-vs-any-facility distinguishable.
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=0.045, max=1
+</pre></div>
+</div>
+<img alt="_images/6ef8b524b41310323d4f9b61448e87b912d9c63fbadc222ac8ab5160576c5db1.png" src="_images/6ef8b524b41310323d4f9b61448e87b912d9c63fbadc222ac8ab5160576c5db1.png" />
+</div>
+</div>
+</section>
+<section id="cropland-total-normalized">
+<h3>Cropland – total (normalized)<a class="headerlink" href="#cropland-total-normalized" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_cropland_total_normalized</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Cropland -- total (normalized) -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Cropland -- total (normalized)&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- agriculture&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Normalized from ethiopia_cropland.tif&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;0.25 deg analysis grid (source: 10 m)&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;normalized index (0-1, robust 5th/95th-percentile, domain-wide)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;robust_percentile_normalize(p_low=5, p_high=95).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0 (ESA WorldCover)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">exposure_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_cropland_total_normalized.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_cropland_total_normalized</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cropland -- total (normalized)  (outputs/exposure/ethiopia_cropland_total_normalized.tif)
+  Category:          Exposure -- agriculture
+  Source:            Normalized from ethiopia_cropland.tif
+  Native resolution: 0.25 deg analysis grid (source: 10 m)
+  Native format:     GeoTIFF
+  Units:             normalized index (0-1, robust 5th/95th-percentile, domain-wide)
+  License:           CC-BY 4.0 (ESA WorldCover)
+  Processing:
+    robust_percentile_normalize(p_low=5, p_high=95).
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=0.218, max=1
+</pre></div>
+</div>
+<img alt="_images/9ba6c4cfa62f7fd396cd9f2da43b9370f25263b8d9e0714f84f30abd674a0ec0.png" src="_images/9ba6c4cfa62f7fd396cd9f2da43b9370f25263b8d9e0714f84f30abd674a0ec0.png" />
+</div>
+</div>
+</section>
+<section id="cropland-irrigated-absolute">
+<h3>Cropland – irrigated (absolute)<a class="headerlink" href="#cropland-irrigated-absolute" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_cropland_irrigated_absolute</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Cropland -- irrigated (absolute) -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Cropland -- irrigated (absolute)&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- agriculture&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Derived: ethiopia_cropland.tif x (ethiopia_irrigation_gmia.tif / 100)&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;0.25 deg analysis grid&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;fraction of cell (0-1)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;cropland_fraction * (irrigation_percent / 100), computed at the 0.25 deg grid (both inputs already on this grid).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0 (ESA WorldCover + FAO/Bonn GMIA v5)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">exposure_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_cropland_irrigated_absolute.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_cropland_irrigated_absolute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cropland -- irrigated (absolute)  (outputs/exposure/ethiopia_cropland_irrigated_absolute.tif)
+  Category:          Exposure -- agriculture
+  Source:            Derived: ethiopia_cropland.tif x (ethiopia_irrigation_gmia.tif / 100)
+  Native resolution: 0.25 deg analysis grid
+  Native format:     GeoTIFF
+  Units:             fraction of cell (0-1)
+  License:           CC-BY 4.0 (ESA WorldCover + FAO/Bonn GMIA v5)
+  Processing:
+    cropland_fraction * (irrigation_percent / 100), computed at the 0.25 deg grid (both inputs already
+    on this grid).
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=0.00094, max=0.162
+</pre></div>
+</div>
+<img alt="_images/34b8e0c50d26a9bcad520d83f99c1951bd965b115c80ec88aa08fde6a74d87c6.png" src="_images/34b8e0c50d26a9bcad520d83f99c1951bd965b115c80ec88aa08fde6a74d87c6.png" />
+</div>
+</div>
+</section>
+<section id="cropland-irrigated-normalized">
+<h3>Cropland – irrigated (normalized)<a class="headerlink" href="#cropland-irrigated-normalized" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_cropland_irrigated_normalized</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Cropland -- irrigated (normalized) -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Cropland -- irrigated (normalized)&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- agriculture&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Normalized from ethiopia_cropland_irrigated_absolute.tif&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;0.25 deg analysis grid&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;normalized index (0-1, robust 5th/95th-percentile, domain-wide)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;robust_percentile_normalize(p_low=5, p_high=95).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">exposure_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_cropland_irrigated_normalized.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_cropland_irrigated_normalized</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cropland -- irrigated (normalized)  (outputs/exposure/ethiopia_cropland_irrigated_normalized.tif)
+  Category:          Exposure -- agriculture
+  Source:            Normalized from ethiopia_cropland_irrigated_absolute.tif
+  Native resolution: 0.25 deg analysis grid
+  Native format:     GeoTIFF
+  Units:             normalized index (0-1, robust 5th/95th-percentile, domain-wide)
+  License:           CC-BY 4.0
+  Processing:
+    robust_percentile_normalize(p_low=5, p_high=95).
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=0.0437, max=1
+</pre></div>
+</div>
+<img alt="_images/b2e05575a91fd62578b6a80b08d45c51055b236e980d110643c095a438c5187b.png" src="_images/b2e05575a91fd62578b6a80b08d45c51055b236e980d110643c095a438c5187b.png" />
+</div>
+</div>
+</section>
+<section id="cropland-rainfed-absolute">
+<h3>Cropland – rainfed (absolute)<a class="headerlink" href="#cropland-rainfed-absolute" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_cropland_rainfed_absolute</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Cropland -- rainfed (absolute) -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Cropland -- rainfed (absolute)&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- agriculture&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Derived: ethiopia_cropland.tif x (1 - ethiopia_irrigation_gmia.tif / 100)&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;0.25 deg analysis grid&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;fraction of cell (0-1)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;cropland_fraction * (1 - irrigation_percent / 100), the complement of the irrigated split.&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0 (ESA WorldCover + FAO/Bonn GMIA v5)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">exposure_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_cropland_rainfed_absolute.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_cropland_rainfed_absolute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cropland -- rainfed (absolute)  (outputs/exposure/ethiopia_cropland_rainfed_absolute.tif)
+  Category:          Exposure -- agriculture
+  Source:            Derived: ethiopia_cropland.tif x (1 - ethiopia_irrigation_gmia.tif / 100)
+  Native resolution: 0.25 deg analysis grid
+  Native format:     GeoTIFF
+  Units:             fraction of cell (0-1)
+  License:           CC-BY 4.0 (ESA WorldCover + FAO/Bonn GMIA v5)
+  Processing:
+    cropland_fraction * (1 - irrigation_percent / 100), the complement of the irrigated split.
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=0.184, max=0.99
+</pre></div>
+</div>
+<img alt="_images/6c44ae11ab7be7049234f9b50b3b35671d067e2af8ba4d618ea64f1646f3d8df.png" src="_images/6c44ae11ab7be7049234f9b50b3b35671d067e2af8ba4d618ea64f1646f3d8df.png" />
+</div>
+</div>
+</section>
+<section id="cropland-rainfed-normalized">
+<h3>Cropland – rainfed (normalized)<a class="headerlink" href="#cropland-rainfed-normalized" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_cropland_rainfed_normalized</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot Cropland -- rainfed (normalized) -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Cropland -- rainfed (normalized)&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Exposure -- agriculture&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Normalized from ethiopia_cropland_rainfed_absolute.tif&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;0.25 deg analysis grid&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;normalized index (0-1, robust 5th/95th-percentile, domain-wide)&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;robust_percentile_normalize(p_low=5, p_high=95).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;CC-BY 4.0&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">exposure_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_cropland_rainfed_normalized.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_cropland_rainfed_normalized</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cropland -- rainfed (normalized)  (outputs/exposure/ethiopia_cropland_rainfed_normalized.tif)
+  Category:          Exposure -- agriculture
+  Source:            Normalized from ethiopia_cropland_rainfed_absolute.tif
+  Native resolution: 0.25 deg analysis grid
+  Native format:     GeoTIFF
+  Units:             normalized index (0-1, robust 5th/95th-percentile, domain-wide)
+  License:           CC-BY 4.0
+  Processing:
+    robust_percentile_normalize(p_low=5, p_high=95).
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0, mean=0.223, max=1
+</pre></div>
+</div>
+<img alt="_images/d042b5e4bd576e9a2916a8759a4e1fcd134c27eb362bab72fab27e0e6fd54fef.png" src="_images/d042b5e4bd576e9a2916a8759a4e1fcd134c27eb362bab72fab27e0e6fd54fef.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="vulnerability-composite-indices-outputs-vulnerability">
+<h2>Vulnerability composite indices – outputs/vulnerability/<a class="headerlink" href="#vulnerability-composite-indices-outputs-vulnerability" title="Permalink to this heading">#</a></h2>
+<section id="v-drought-composite">
+<h3>V_drought (composite)<a class="headerlink" href="#v-drought-composite" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_v_drought_composite</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot V_drought (composite) -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;V_drought (composite)&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Vulnerability -- drought composite index&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Computed: 0.60 x drought_sensitivity + 0.40 x adaptive_capacity_deficit&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;0.25 deg analysis grid&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;normalized index (0-1); higher = more vulnerable&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;Sensitivity = 0.5 x poverty_rwi(inverted) + 0.5 x aridity(inverted); adaptive-capacity deficit = 0.5 x irrigation(inverted) + 0.5 x electrification_no_access_rate (already deficit-framed). Static composite, not period-dependent. Domain mean 0.51, range 0.09-0.96.&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;Derived (see component layers above for source licenses)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">vulnerability_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_v_drought.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_v_drought_composite</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V_drought (composite)  (outputs/vulnerability/ethiopia_v_drought.tif)
+  Category:          Vulnerability -- drought composite index
+  Source:            Computed: 0.60 x drought_sensitivity + 0.40 x adaptive_capacity_deficit
+  Native resolution: 0.25 deg analysis grid
+  Native format:     GeoTIFF
+  Units:             normalized index (0-1); higher = more vulnerable
+  License:           Derived (see component layers above for source licenses)
+  Processing:
+    Sensitivity = 0.5 x poverty_rwi(inverted) + 0.5 x aridity(inverted); adaptive-capacity deficit = 0.5
+    x irrigation(inverted) + 0.5 x electrification_no_access_rate (already deficit-framed). Static
+    composite, not period-dependent. Domain mean 0.51, range 0.09-0.96.
+  Clipped stats (Ethiopia boundary): n=1484/2820 valid (52.6% coverage), min=0.0918, mean=0.582, max=0.967
+</pre></div>
+</div>
+<img alt="_images/725d249e10a21b30eef8c12b85401f3a6b3265f9ac9605faeefbc2eb8e380134.png" src="_images/725d249e10a21b30eef8c12b85401f3a6b3265f9ac9605faeefbc2eb8e380134.png" />
+</div>
+</div>
+</section>
+<section id="v-wet-composite">
+<h3>V_wet (composite)<a class="headerlink" href="#v-wet-composite" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_v_wet_composite</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot V_wet (composite) -- edit this function alone to change its metadata, colormap, or figure without touching any other layer.&quot;&quot;&quot;</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;V_wet (composite)&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="s1">&#39;Vulnerability -- wet composite index&#39;</span><span class="p">,</span>
+        <span class="n">source</span><span class="o">=</span><span class="s1">&#39;Computed: 0.60 x wet_sensitivity + 0.40 x adaptive_capacity_deficit&#39;</span><span class="p">,</span>
+        <span class="n">native_resolution</span><span class="o">=</span><span class="s1">&#39;0.25 deg analysis grid&#39;</span><span class="p">,</span>
+        <span class="n">native_format</span><span class="o">=</span><span class="s1">&#39;GeoTIFF&#39;</span><span class="p">,</span>
+        <span class="n">units</span><span class="o">=</span><span class="s1">&#39;normalized index (0-1); higher = more vulnerable&#39;</span><span class="p">,</span>
+        <span class="n">processing</span><span class="o">=</span><span class="s1">&#39;Sensitivity = poverty_rwi + elevation + slope + soil_clay + river_distance, each weighted 0.20 (all direction-corrected so higher = more vulnerable); adaptive-capacity deficit = 0.5 x healthsites(inverted) + 0.5 x electrification_no_access_rate. Domain mean 0.40, range 0.10-0.90. Correlation with V_drought is 0.641 (n=1485) -- moderate, genuine distinct signal, not a poverty proxy in disguise (fixed 2026-07-25 by adding real terrain/soil/river-proximity data).&#39;</span><span class="p">,</span>
+        <span class="n">license</span><span class="o">=</span><span class="s1">&#39;Derived (see component layers above for source licenses)&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">describe_and_plot</span><span class="p">(</span><span class="n">vulnerability_dir</span> <span class="o">/</span> <span class="s2">&quot;ethiopia_v_wet.tif&quot;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+<span class="n">plot_v_wet_composite</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>V_wet (composite)  (outputs/vulnerability/ethiopia_v_wet.tif)
+  Category:          Vulnerability -- wet composite index
+  Source:            Computed: 0.60 x wet_sensitivity + 0.40 x adaptive_capacity_deficit
+  Native resolution: 0.25 deg analysis grid
+  Native format:     GeoTIFF
+  Units:             normalized index (0-1); higher = more vulnerable
+  License:           Derived (see component layers above for source licenses)
+  Processing:
+    Sensitivity = poverty_rwi + elevation + slope + soil_clay + river_distance, each weighted 0.20 (all
+    direction-corrected so higher = more vulnerable); adaptive-capacity deficit = 0.5 x
+    healthsites(inverted) + 0.5 x electrification_no_access_rate. Domain mean 0.40, range 0.10-0.90.
+    Correlation with V_drought is 0.641 (n=1485) -- moderate, genuine distinct signal, not a poverty
+    proxy in disguise (fixed 2026-07-25 by adding real terrain/soil/river-proximity data).
+  Clipped stats (Ethiopia boundary): n=1480/2820 valid (52.5% coverage), min=0.277, mean=0.563, max=0.811
+</pre></div>
+</div>
+<img alt="_images/3f74932b372563df53a7d2f3b12738212c4bbd40ab3d20689271699534cfe3a0.png" src="_images/3f74932b372563df53a7d2f3b12738212c4bbd40ab3d20689271699534cfe3a0.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="docs/reproducibility.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Reproducibility</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="inspect_exposure_vulnerability_raw_sources.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Inspect Raw Exposure &amp; Vulnerability Source Files</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-vulnerability-risk">Exposure, Vulnerability, Risk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directory">Directory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-python-package">Import Python Package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raw-geotiff-directory-listing">Raw GeoTIFF Directory Listing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-geotiff-directory-listing">Exposure GeoTIFF Directory Listing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vulnerability-geotiff-directory-listing">Vulnerability GeoTIFF Directory Listing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-ethiopia-boundary-geometry">Load Ethiopia Boundary Geometry</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-raster-plot-helper">Define Raster Plot Helper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raw-layers-outputs-exposure-vulnerability">Raw layers – outputs/exposure_vulnerability/</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#population-count">Population Count</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buildings">Buildings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cropland-fraction">Cropland Fraction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#livestock-cattle">Livestock – Cattle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#built-up-surface">Built-up Surface</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#health-facilities">Health Facilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roads">Roads</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aridity-index">Aridity Index</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#irrigated-area">Irrigated Area (%)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#electrification-no-access">Electrification – No access</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elevation">Elevation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slope">Slope</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#soil-clay-content">Soil Clay Content</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#river-water-body-distance">River / Water-body distance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relative-wealth-index">Relative Wealth Index</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-layers-absolute-normalized-outputs-exposure">Exposure layers (absolute + normalized) – outputs/exposure/</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#population-normalized">Population (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buildings-normalized">Buildings (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#built-up-surface-normalized">Built-up surface (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roads-normalized">Roads (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#livestock-cattle-normalized">Livestock – cattle (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#health-facilities-normalized">Health facilities (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cropland-total-normalized">Cropland – total (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cropland-irrigated-absolute">Cropland – irrigated (absolute)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cropland-irrigated-normalized">Cropland – irrigated (normalized)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cropland-rainfed-absolute">Cropland – rainfed (absolute)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cropland-rainfed-normalized">Cropland – rainfed (normalized)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vulnerability-composite-indices-outputs-vulnerability">Vulnerability composite indices – outputs/vulnerability/</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v-drought-composite">V_drought (composite)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v-wet-composite">V_wet (composite)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By YonSci
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Jul 28, 2026.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <div>
+  <b>Hydroclimatic Risk Mapping</b><br>
+  Seasonal drought and excess-wetness risk mapping for Ethiopia using
+  Risk = Hazard x Exposure x Vulnerability.
+</div>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
