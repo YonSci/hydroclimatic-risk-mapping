@@ -11,6 +11,9 @@ parts:
     chapters:
       - file: docs/hazards
       - file: docs/exposure
+        sections:
+          - file: inspect_exposure_geotiffs
+          - file: inspect_exposure_vulnerability_raw_sources
       - file: docs/vulnerability
 
   - caption: Method And Data
@@ -23,7 +26,3 @@ parts:
       - file: docs/results_gallery
       - file: docs/reproducibility
 
-  - caption: Notebooks
-    chapters:
-      - file: inspect_exposure_geotiffs
-      - file: inspect_exposure_vulnerability_raw_sources
