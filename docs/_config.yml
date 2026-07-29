@@ -1,7 +1,6 @@
 # Book settings
 title: Hydroclimatic Risk Mapping - Ethiopia
 author: YonSci
-logo: docs/images/hazard_h_overall_jjas.png
 exclude_patterns:
   - _build
   - Thumbs.db
