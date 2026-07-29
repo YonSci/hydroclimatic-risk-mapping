@@ -157,14 +157,8 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
-    
-    
-      
-    
-    
-    <img src="../_static/hazard_h_overall_jjas.png" class="logo__image only-light" alt="Hydroclimatic Risk Mapping - Ethiopia - Home"/>
-    <script>document.write(`<img src="../_static/hazard_h_overall_jjas.png" class="logo__image only-dark" alt="Hydroclimatic Risk Mapping - Ethiopia - Home"/>`);</script>
   
+    <p class="title logo__title">Hydroclimatic Risk Mapping - Ethiopia</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -407,6 +401,11 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-this-pipeline">In this pipeline</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-sectors-and-data-sources">Exposure sectors and data sources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formula">Formula</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-used">Data used</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#result">Result</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-statistics-analysis-grid-absolute-units">Layer statistics (analysis grid, absolute units)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-workflow">Exposure workflow</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representative-figure">Representative figure</a></li>
@@ -490,6 +489,34 @@ in risk composition – sectors are never blended into a single generic
 </div>
 <p>Full citations, acquisition modules, and output file names are in
 <a class="reference internal" href="data_provenance.html"><span class="doc std std-doc">data_provenance.md</span></a>.</p>
+</section>
+<section id="formula">
+<h2>Formula<a class="headerlink" href="#formula" title="Permalink to this heading">#</a></h2>
+<p>Exposure sectors are not weighted-combined the way hazard and vulnerability
+are – each sector stays its own layer (see “In this pipeline” above). What
+each sector <em>does</em> go through is robust normalization, so every sector lands
+on the same 0-1 scale before it multiplies into risk:</p>
+<div class="math notranslate nohighlight">
+\[
+E_{norm} = \mathrm{clip}\!\left(\frac{x - p_{5}}{p_{95} - p_{5}},\ 0,\ 1\right)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(x\)</span> is the sector’s absolute value at a cell and <span class="math notranslate nohighlight">\(p_5\)</span>/<span class="math notranslate nohighlight">\(p_{95}\)</span> are
+that sector’s 5th/95th percentile across all valid cells (not a global
+min-max, so a handful of extreme cells – e.g. Addis Ababa’s population
+count – don’t compress every other cell toward 0). This is the exact
+<code class="docutils literal notranslate"><span class="pre">robust_percentile_normalize</span></code> function
+(<code class="docutils literal notranslate"><span class="pre">src/hydroclim_risk/layers.py</span></code>) also used by the vulnerability module.</p>
+<section id="data-used">
+<h3>Data used<a class="headerlink" href="#data-used" title="Permalink to this heading">#</a></h3>
+<p>See the sector table above and <a class="reference internal" href="data_provenance.html"><span class="doc std std-doc">data_provenance.md</span></a> for
+exact source files and acquisition modules.</p>
+</section>
+<section id="result">
+<h3>Result<a class="headerlink" href="#result" title="Permalink to this heading">#</a></h3>
+<p>See “Layer statistics” and “Representative figure” below, or the full
+per-sector maps in the
+<span class="xref myst">Exposure GeoTIFF inspection notebook</span>.</p>
+</section>
 </section>
 <section id="layer-statistics-analysis-grid-absolute-units">
 <h2>Layer statistics (analysis grid, absolute units)<a class="headerlink" href="#layer-statistics-analysis-grid-absolute-units" title="Permalink to this heading">#</a></h2>
@@ -673,6 +700,11 @@ source-to-config mapping, and raw format/extent checks prior to resampling.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-this-pipeline">In this pipeline</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-sectors-and-data-sources">Exposure sectors and data sources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formula">Formula</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-used">Data used</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#result">Result</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-statistics-analysis-grid-absolute-units">Layer statistics (analysis grid, absolute units)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exposure-workflow">Exposure workflow</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representative-figure">Representative figure</a></li>

@@ -35,6 +35,35 @@ in risk composition -- sectors are never blended into a single generic
 Full citations, acquisition modules, and output file names are in
 [data_provenance.md](data_provenance.md).
 
+## Formula
+
+Exposure sectors are not weighted-combined the way hazard and vulnerability
+are -- each sector stays its own layer (see "In this pipeline" above). What
+each sector *does* go through is robust normalization, so every sector lands
+on the same 0-1 scale before it multiplies into risk:
+
+$$
+E_{norm} = \mathrm{clip}\!\left(\frac{x - p_{5}}{p_{95} - p_{5}},\ 0,\ 1\right)
+$$
+
+where $x$ is the sector's absolute value at a cell and $p_5$/$p_{95}$ are
+that sector's 5th/95th percentile across all valid cells (not a global
+min-max, so a handful of extreme cells -- e.g. Addis Ababa's population
+count -- don't compress every other cell toward 0). This is the exact
+`robust_percentile_normalize` function
+(`src/hydroclim_risk/layers.py`) also used by the vulnerability module.
+
+### Data used
+
+See the sector table above and [data_provenance.md](data_provenance.md) for
+exact source files and acquisition modules.
+
+### Result
+
+See "Layer statistics" and "Representative figure" below, or the full
+per-sector maps in the
+[Exposure GeoTIFF inspection notebook](../inspect_exposure_geotiffs.html).
+
 ## Layer statistics (analysis grid, absolute units)
 
 Computed directly from `outputs/exposure_vulnerability/*.tif` -- the same

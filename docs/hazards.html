@@ -157,14 +157,8 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
-    
-    
-      
-    
-    
-    <img src="../_static/hazard_h_overall_jjas.png" class="logo__image only-light" alt="Hydroclimatic Risk Mapping - Ethiopia - Home"/>
-    <script>document.write(`<img src="../_static/hazard_h_overall_jjas.png" class="logo__image only-dark" alt="Hydroclimatic Risk Mapping - Ethiopia - Home"/>`);</script>
   
+    <p class="title logo__title">Hydroclimatic Risk Mapping - Ethiopia</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -406,6 +400,12 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-this-pipeline">In this pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formula">Formula</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardization-turning-a-raw-indicator-into-a-0-1-score">Standardization (turning a raw indicator into a 0-1 score)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-used">Data used</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#result">Result</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-outputs">Related outputs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jjas-examples">JJAS examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-documentation">Related documentation</a></li>
@@ -447,6 +447,59 @@ CWD, Rx1day, and Rx5day.</p></li>
 <p>Each is a per-ensemble-member field; <code class="docutils literal notranslate"><span class="pre">H_overall</span></code> is combined per member
 (<code class="docutils literal notranslate"><span class="pre">max</span></code>) before averaging, not averaged first and then maxed – see
 <a class="reference internal" href="methodology.html"><span class="doc std std-doc">methodology.md</span></a> for why the order matters.</p>
+</section>
+<section id="formula">
+<h2>Formula<a class="headerlink" href="#formula" title="Permalink to this heading">#</a></h2>
+<p>Weights below are the live values in <code class="docutils literal notranslate"><span class="pre">config/weights.yaml</span></code>, not illustrative
+numbers. Every sub-score is normalized 0-1 first (see “Standardization” below),
+then combined by the weighted sum.</p>
+<div class="math notranslate nohighlight">
+\[
+H_{dry} = 0.35 \cdot S_{SPI,dry} + 0.20 \cdot S_{rain,dry}
+        + 0.30 \cdot S_{CDD,dry} + 0.15 \cdot S_{CWD,dry}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+H_{wet} = 0.20 \cdot S_{SPI,wet} + 0.20 \cdot S_{rain,wet}
+        + 0.20 \cdot S_{CWD,wet} + 0.15 \cdot S_{Rx1day,wet}
+        + 0.25 \cdot S_{Rx5day,wet}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+H_{overall} = \max(H_{dry}, H_{wet})
+\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">Rx1day</span></code>/<code class="docutils literal notranslate"><span class="pre">Rx5day</span></code> are wetness-only: a low value in either is not meaningful
+evidence of dryness, so they never enter <code class="docutils literal notranslate"><span class="pre">H_dry</span></code>. <code class="docutils literal notranslate"><span class="pre">CDD</span></code> is dropped from <code class="docutils literal notranslate"><span class="pre">H_wet</span></code>
+for the mirrored reason – see <a class="reference internal" href="methodology.html"><span class="doc std std-doc">methodology.md</span></a> for the full
+reasoning behind both design calls.</p>
+<section id="standardization-turning-a-raw-indicator-into-a-0-1-score">
+<h3>Standardization (turning a raw indicator into a 0-1 score)<a class="headerlink" href="#standardization-turning-a-raw-indicator-into-a-0-1-score" title="Permalink to this heading">#</a></h3>
+<p>Percentile-based, using each grid cell’s own historical distribution for that
+calendar period (never a map-wide min-max):</p>
+<div class="math notranslate nohighlight">
+\[
+S_{rain,dry} = \mathrm{clip}\!\left(\frac{50 - P}{40},\ 0,\ 1\right), \qquad
+S_{SPI,dry} = \mathrm{clip}\!\left(\frac{-SPI}{2},\ 0,\ 1\right)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(P\)</span> is the rainfall percentile (0-100) at that cell for that calendar
+period. <code class="docutils literal notranslate"><span class="pre">CDD</span></code>, <code class="docutils literal notranslate"><span class="pre">CWD</span></code>, <code class="docutils literal notranslate"><span class="pre">Rx1day</span></code>, <code class="docutils literal notranslate"><span class="pre">Rx5day</span></code> use the same clipped-percentile form
+against their own historical percentile rank. Full formulas for every
+sub-score, see the “Standardization formulas” section in <a class="reference internal" href="methodology.html"><span class="doc std std-doc">methodology.md</span></a>.</p>
+</section>
+<section id="data-used">
+<h3>Data used<a class="headerlink" href="#data-used" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">H_dry</span></code>/<code class="docutils literal notranslate"><span class="pre">H_wet</span></code> are computed per ensemble member from six indicators (rainfall
+percentile, SPI, CDD, CWD, Rx1day, Rx5day), produced upstream by the sibling
+indicator-calculation project and consumed as trusted input – see the
+“Hazard / probability inputs” table in <a class="reference internal" href="data_provenance.html"><span class="doc std std-doc">data_provenance.md</span></a>
+for the exact source files (<code class="docutils literal notranslate"><span class="pre">corrected_1993_2025.nc</span></code>, <code class="docutils literal notranslate"><span class="pre">corrected_2026.nc</span></code>,
+CHIRPS, and the sibling repo’s per-period GeoTIFF/NetCDF exports).</p>
+</section>
+<section id="result">
+<h3>Result<a class="headerlink" href="#result" title="Permalink to this heading">#</a></h3>
+<p>See the JJAS maps below, or the full per-period set (June-September) in
+<a class="reference internal" href="results_gallery.html"><span class="doc std std-doc">results_gallery.md</span></a>.</p>
+</section>
 </section>
 <section id="related-outputs">
 <h2>Related outputs<a class="headerlink" href="#related-outputs" title="Permalink to this heading">#</a></h2>
@@ -547,6 +600,12 @@ CWD, Rx1day, and Rx5day.</p></li>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-this-pipeline">In this pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formula">Formula</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardization-turning-a-raw-indicator-into-a-0-1-score">Standardization (turning a raw indicator into a 0-1 score)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-used">Data used</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#result">Result</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-outputs">Related outputs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jjas-examples">JJAS examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-documentation">Related documentation</a></li>
