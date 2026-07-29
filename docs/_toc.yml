@@ -15,6 +15,9 @@ parts:
           - file: inspect_exposure_geotiffs
           - file: inspect_exposure_vulnerability_raw_sources
       - file: docs/vulnerability
+        sections:
+          - file: inspect_exposure_geotiffs
+          - file: inspect_exposure_vulnerability_raw_sources
 
   - caption: Method And Data
     chapters:
